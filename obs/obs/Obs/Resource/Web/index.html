@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style type='text/css'>
+		html { font-family:Helvetica; color:#222; }
+		h1 { color:steelblue; font-size:24px; margin-top:10px; }
+		button { margin:0 3px 10px; font-size:12px; margin-top:10px;}
+		.logLine { border-bottom:1px solid #ccc; padding:4px 2px; font-family:courier; font-size:11px; }
+  </style>
+</head>
+<body>
+  <div>
+    <button style="height:40px;background-color:black;color:white;width:300px;" onclick="gotoBootstrap();">Bootstrap</button>
+     <button style="height:40px;background-color:black;color:white;width:300px;margin-top:10px;" onclick="gotoJqm();">jQuey Mobile</button>
+  </div>
+  <div id='log'></div>
+  <div id='buttons'></div>
+</body>
+</html>
+<script>
+function gotoBootstrap() {
+  location.href = "bsIndex.html";
+}
+function gotoJqm() {
+  location.href = "jqmIndex.html";
+}
+document.addEventListener('WebViewJavascriptBridgeReady', onBridgeReady, false);
+function onBridgeReady(event) {
+  var bridge = event.bridge;
+  var uniqueId = 1;
+  
+  bridge.init(function(message, responseCallback) {
+    log('JS got a message', message);
+    var data = { 'Javascript Responds':'Wee!' }
+    log('JS responding with', data);
+    responseCallback(data);
+  });
+  bridge.registerHandler('testJavascriptHandler', function(data, responseCallback) {
+    log('ObjC called testJavascriptHandler with', data);
+    var responseData = { 'Javascript Says':'Right back atcha!' };
+    log('JS responding with', responseData);
+    responseCallback(responseData);
+  });
+   
+  var button = document.getElementById('buttons').appendChild(document.createElement('button'));
+  button.innerHTML = 'Send message to ObjC';
+  button.style.backgroundColor = "black";
+  button.style.color = "white";
+  button.style.height = "40px";
+  button.style.width = "180px";
+  button.onclick = function(e) {
+    e.preventDefault();
+    var data = 'Hello from JS button';
+    log('JS sending message', data);
+    bridge.send(data, function(responseData) {
+      log('JS got response', responseData);
+    });
+  }
+  document.body.appendChild(document.createElement('br'));
+  var callbackButton = document.getElementById('buttons').appendChild(document.createElement('button'));
+  callbackButton.innerHTML = 'Back';
+  callbackButton.style.backgroundColor = "black";
+  callbackButton.style.color = "white";
+  callbackButton.style.height = "40px";
+  callbackButton.style.width = "100px";
+  callbackButton.onclick = function(e) {
+    e.preventDefault();
+    bridge.callHandler('backToHome', {'foo': 'bar'}, function(response) {
+      log('JS got response', response);
+    });
+  }
+  
+  function log(message, data) {
+    var log = document.getElementById('log');
+    var el = document.createElement('div');
+    el.className = 'logLine';
+    el.innerHTML = uniqueId++ + '. ' + message + (data ? ':<br/>' + JSON.stringify(data) : '');
+    if (log.children.length) {
+      log.insertBefore(el, log.children[0]);
+    } else {
+      log.appendChild(el);
+    }
+  }
+}
+</script>

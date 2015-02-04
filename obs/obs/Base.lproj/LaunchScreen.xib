@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Limousine " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DKg-Tx-iFg">
+                    <rect key="frame" x="120" y="155" width="240" height="57.5"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Transport" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="usZ-lf-vx9">
+                    <rect key="frame" x="135.5" y="215" width="209.5" height="57.5"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_vehicle" translatesAutoresizingMaskIntoConstraints="NO" id="F4H-nI-ciL">
+                    <rect key="frame" x="10" y="334" width="460" height="146"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="F4H-nI-ciL" secondAttribute="trailing" constant="10" id="0JD-mP-33U"/>
+                <constraint firstAttribute="centerY" secondItem="DKg-Tx-iFg" secondAttribute="centerY" constant="56" id="NI2-iV-sjM"/>
+                <constraint firstAttribute="centerX" secondItem="F4H-nI-ciL" secondAttribute="centerX" id="eMx-Gn-PoN"/>
+                <constraint firstItem="usZ-lf-vx9" firstAttribute="bottom" secondItem="DKg-Tx-iFg" secondAttribute="bottom" constant="60" id="ouM-pd-BJJ"/>
+                <constraint firstAttribute="bottom" secondItem="F4H-nI-ciL" secondAttribute="bottom" id="pcd-n0-tth"/>
+                <constraint firstAttribute="centerX" secondItem="DKg-Tx-iFg" secondAttribute="centerX" id="pnp-9j-C1r"/>
+                <constraint firstItem="F4H-nI-ciL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="yLc-dc-erv"/>
+                <constraint firstAttribute="centerX" secondItem="usZ-lf-vx9" secondAttribute="centerX" id="yfJ-cu-IgO"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="548" y="455"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="img_vehicle" width="460" height="146"/>
+    </resources>
+</document>

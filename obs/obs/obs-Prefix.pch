@@ -1,0 +1,16 @@
+//
+//  obs-Prefix.pch
+//  obs
+//
+//  Created by ganjianping on 4/2/15.
+//  Copyright (c) 2015 lt. All rights reserved.
+//
+
+#ifndef obs_obs_Prefix_pch
+#define obs_obs_Prefix_pch
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "OBSDConst.h"
+
+#endif

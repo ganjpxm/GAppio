@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="resource/jquerymobile/v1.4.2/themes/blue.min.css" />
+        <link rel="stylesheet" href="resource/jquerymobile/v1.4.2/themes/jquery.mobile.icons.min.css" />
+        <link rel="stylesheet" href="resource/jquerymobile/v1.4.2/jquery.mobile.structure.min.css" />
+        <script src="resource/jquery/jquery-1.11.0.min.js"></script>
+        <script src="resource/jquerymobile/v1.4.2/jquery.mobile.min.js"></script>
+        <style>
+            .ui-table-columntoggle-btn {
+                display: none !important;
+            }
+        .label {
+            border-right: 1px solid #D0D0D0;
+            width:110px;
+            font-size:13px;
+        }
+        </style>
+    </head>
+    <body>
+        <table data-role="table" data-mode="columntoggle" class="ui-responsive table-stroke">
+            <tbody>
+                <tr style="background-color:white;">
+                    <td style="vertical-align:middle;" colspan="2">
+                        <div id="service" style="font-weight:bold;"></div>
+                        <div id="pickupDateTime" style="color:gray;"></div>
+                    </td>
+                </tr>
+                
+                <tr style="background-color:white;">
+                    <td style="vertical-align:middle;" colspan="2">
+                        <div style="font-weight:bold;">From</div>
+                        <div id="from" style="color:gray;"></div>
+                    </td>
+                </tr>
+                
+                <tr style="background-color:white;">
+                    <td style="vertical-align:middle;" colspan="2">
+                        <div style="font-weight:bold;">To</div>
+                        <div id="to" style="color:gray;"></div>
+                    </td>
+                </tr>
+                
+                <tr style="background-color:white;">
+                    <td  style="vertical-align:middle;">
+                        <div style="font-weight:bold;">Lead Passenger</div>
+                        <div id="leadPassenger" style="color:gray;"></div>
+                    </td>
+                    <td style="width:50px;vertical-align:middle;">
+                       <a id="leadPassengerMobileNumber"><img style="width:40px;height:40px;" src="resource/image/icon_call.png"/></a>
+                    </td>
+                </tr>
+              
+                <tr style="background-color:white;">
+                    <td  style="vertical-align:middle;">
+                        <div style="font-weight:bold;">Book By</div>
+                        <div id="bookByPerson" style="color:gray;"></div>
+                    </td>
+                    <td style="width:50px;vertical-align:middle;">
+                        <a id="bookByMobileNumber"><img style="width:40px;height:40px;" src="resource/image/icon_call.png"/></a>
+                    </td>
+                </tr>
+                  <!--
+                <tr>
+                    <th class="label" style="vertical-align:middle;">Book By</th>
+                    <td> <span id="bookByPerson"></span> <a id="bookByMobileNumber"></a></td>
+                </tr>
+                <tr>
+                    <th class="label" style="vertical-align:middle;">Create By</th>
+                    <td> <span id="createByPerson"></span> <a id="createByMobileNumber"></a></td>
+                </tr>
+                <tr>
+                    <th class="label" style="vertical-align:middle;">No. of Passenger</th>
+                    <td id="noOfPassenger"></td>
+                </tr>
+                <tr>
+                    <th class="label" style="vertical-align:middle;">Payment</th>
+                    <td id="payment" class="value"></td>
+                </tr>
+                <tr>
+                    <th class="label">Remarks</th>
+                    <td id="remarks"></td>
+                </tr>
+                 -->
+            </tbody>
+        </table>
+        
+    </body>
+</html>
+<script type="text/javascript">
+//    document.getElementById("service").innerHTML="Point to Point Transfer";
+//    document.getElementById('from').innerHTML='131 Bukit Batok West Avenue 6';
+</script>

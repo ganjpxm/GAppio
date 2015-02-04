@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Driver Login</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="resource/jquerymobile/v1.4.2/jquery.mobile.css" />
+   <link rel="stylesheet" href="resource/intlTelInput/css/intlTelInput.css" />
+   
+  <script src="resource/jquery/jquery-1.11.0.min.js"></script>
+  <script src="resource/jquerymobile/v1.4.2/jquery.mobile.min.js"></script>
+  <script src="resource/jquery/jquery.validate-1.11.1.js"></script>
+  <script src="resource/intlTelInput/js/intlTelInput.js"></script>
+  <script src="resource/intlTelInput/js/utils.js"></script>
+</head>
+<body>
+<div style="padding:10px;background-color: transparent">
+  <form id="signInForm" action="#" method="post">
+    <label for="tel"><span style="color:red">*</span>Mobile No. : </label>
+    <input type="tel" name="userCd" id="userCd" value="" data-clear-btn="true" style="min-width:300px;">
+    <label for="password"><span style="color:red">*</span>Password:</label>
+    <input type="password" name="password" id="password" value="" autocomplete="off" data-clear-btn="true">
+    <div style="margin-top:30px;">
+        <input id="login" type="button" data-theme="b" data-iconshadow="true" value="Login" style="width:260px;">
+    </div>
+  </form>
+</div>
+</body>
+</html>
+<script>
+document.addEventListener('WebViewJavascriptBridgeReady', onBridgeReady, false);
+function onBridgeReady(event) {
+  var bridge = event.bridge;
+  bridge.init(function(json, responseCallback) {
+    //alert('User Name : ' + json.userName + ', Password:' + json.password);
+    var data = {'result':'success'};
+    responseCallback(data);
+  });
+  
+  var loginButton = document.getElementById('login');
+  loginButton.onclick = function(e) {
+    e.preventDefault();
+    if ($('#signInForm').validate().form()) {
+        var data = {'action':'login'};
+        bridge.send(data, function(responseData) {});
+    };
+  }
+}
+
+$(document).ready(function(){
+  var telInput = $("#userCd"),
+        errorMsg = $("#error-msg");
+  telInput.intlTelInput({preferredCountries: [ "sg", "my", "cn", "hk" ], defaultCountry: "sg", width: 500,
+                                        utilsScript: "/resources/intlTelInput/js/utils.js"});
+  telInput.blur(function() {
+        if ($.trim(telInput.val())) {
+            if (!telInput.intlTelInput("isValidNumber")) {
+                telInput.addClass("error");
+                errorMsg.removeClass("hide");
+            }
+        }
+  });
+  $('#signInForm').validate({
+    focusInvalid: false,
+    rules: {
+      userCd: {required: true},
+      password: {required: true},
+    },
+    messages: {
+      userCd: {required: "required"},
+      password: {required: "required"}
+    },
+    invalidHandler:function(form, validator) {var errors = validator.numberOfInvalids(); if (errors) {validator.errorList[0].element.focus();}},
+    success: function (element) {element.closest('span').removeClass('has-error'); element.remove(); },
+    errorPlacement: function (error, element) {error.insertAfter(element); error.css('color', 'red');}
+  });
+});
+</script>

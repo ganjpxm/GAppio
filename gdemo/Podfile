@@ -1,0 +1,18 @@
+# Uncomment this line to define a global platform for your project
+platform :ios, '8.1'
+
+workspace '../GApp'
+
+target 'gdemo' do
+pod 'AFNetworking', '~> 2.5'
+pod 'Reachability', '~> 3.2'
+pod 'MMDrawerController', '~> 0.5'
+pod 'WebViewJavascriptBridge', '~> 4.1'
+pod 'GoogleAnalytics-iOS-SDK', '~> 3.10'
+pod 'Google-Maps-iOS-SDK', '~> 1.9'
+end
+
+target 'gdemoTests' do
+
+end
+
