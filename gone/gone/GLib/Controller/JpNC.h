@@ -5,9 +5,6 @@
 //  Created by Johnny on 23/2/14.
 //  Copyright (c) 2014 ganjp. All rights reserved.
 //
-
-#import "UIViewController+MMDrawerController.h"
-
 @interface JpNC : UINavigationController
 
 @end

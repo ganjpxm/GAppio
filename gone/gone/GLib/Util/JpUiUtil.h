@@ -10,14 +10,15 @@
 
 
 #pragma mark window
-+ (float)getWindowHeight;
-+ (float)getWindowWidth;
++ (float)getScreenHeight;
++ (float)getScreenWidth;
 + (NSInteger)getStartHeightOffset;
 
 #pragma alert
 + (void)showAlertWithMessage:(NSString*)aMessage title:(NSString*)title;
 
 #pragma Image
++ (UIImage *)imageWithColor:(UIColor *)color;
 + (UIImage *)resizeImageWithImage:(UIImage *)image width:(int)width height:(int)height;
 + (UIImage*)getImageWithImageFullName: (NSString*)imageFullName savedImageDirPath:(NSString*)imageDirPath;
 

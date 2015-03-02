@@ -24,7 +24,6 @@
 #import "JpDataUtil.h"
 #import "JpDateUtil.h"
 #import "DBManager.h"
-#import "OBSDConst.h"
 
 @implementation ObsWebAPIClient
 
@@ -40,78 +39,81 @@
 }
 
 + (NSURLSessionDataTask *)getObmBookingItemsFromServerWithBlock:(void (^)(NSArray *sections, NSDictionary *sectionCellsDic, NSError *error))block {
-    NSString *loginUserId = [JpDataUtil getValueFromUDByKey:KEY_USER_ID_OBSD];
+    NSString *loginUserId = [JpDataUtil getValueFromUDByKey:KEY_USER_ID];
     NSString *lastUpdateTimeKey = [loginUserId stringByAppendingString:TABLE_OBM_BOOKING_VEHICLE_ITEM];
     NSString *lastUpdateTimeIntStr = [JpDataUtil getValueFromUDByKey:lastUpdateTimeKey];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     if (lastUpdateTimeIntStr) {
         NSString *lastUpdateTimeStr = [JpDateUtil getDateTimeStrByMilliSecond:[lastUpdateTimeIntStr longLongValue]];
         [parameters setObject:lastUpdateTimeStr forKey:KEY_START_DATE];
-        NSLog(@"%@'s last update date is %@", [JpDataUtil getValueFromUDByKey:KEY_USER_NAME_OBSD], lastUpdateTimeStr);
+        NSLog(@"%@'s last update date is %@", [JpDataUtil getValueFromUDByKey:KEY_USER_NAME], lastUpdateTimeStr);
     }
     
-    return [[ObsWebAPIClient sharedClient] GET:[@"free/driver/booking/" stringByAppendingString:[JpDataUtil getValueFromUDByKey:KEY_USER_ID_OBSD]] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSDictionary *respondDic = responseObject;
-        NSString *result = [respondDic valueForKey:KEY_RESULT];
+    return [[ObsWebAPIClient sharedClient] GET:[@"free/driver/booking/" stringByAppendingString:[JpDataUtil getValueFromUDByKey:KEY_USER_ID]] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+            NSDictionary *respondDic = responseObject;
+            NSString *result = [respondDic valueForKey:KEY_RESULT];
         
-        NSMutableArray *mutableSections = [[NSMutableArray alloc]init];
-        NSMutableDictionary *mutaleSectionAndCellsDic = [[NSMutableDictionary alloc] init];
+            NSMutableArray *mutableSections = [[NSMutableArray alloc]init];
+            NSMutableDictionary *mutaleSectionAndCellsDic = [[NSMutableDictionary alloc] init];
         
-        if ([result isEqualToString:VALUE_SCCESS]) {
-            NSArray *obmBookingItems = [respondDic valueForKeyPath:KEY_DATA];
-            NSString *newLastUpdateTimeIntStr = lastUpdateTimeIntStr;
-            DBManager *dbManager = [DBManager getSharedInstance];
-            for (NSDictionary *obmBookingItem in obmBookingItems) {
-                NSString *pickupDateIntStr = [obmBookingItem objectForKey:COLUMN_PICKUP_DATE];
-                NSString *pickupTimeStr = [obmBookingItem objectForKey:COLUMN_PICKUP_TIME];
-                if (pickupDateIntStr != nil && ![pickupDateIntStr isKindOfClass:[NSNull class]] &&
-                    pickupTimeStr != nil && ![pickupTimeStr isKindOfClass:[NSNull class]] ) {
-                    NSString *pickupDateStr = [JpDateUtil getDateStrByMilliSecond:[pickupDateIntStr longLongValue]];
-                    NSString *modifyTimeIntStr = [obmBookingItem objectForKey:COLUMN_MODIFY_TIMESTAMP];
-                    if (!newLastUpdateTimeIntStr || [modifyTimeIntStr longLongValue] > [newLastUpdateTimeIntStr longLongValue]){
-                        NSLog(@"%@", [JpDateUtil getDateTimeStrByMilliSecond:[modifyTimeIntStr longLongValue]]);
-                        newLastUpdateTimeIntStr = modifyTimeIntStr;
-                    }
-                    if (![mutableSections containsObject:pickupDateStr]) {
-                        [mutableSections addObject:pickupDateStr];
-                    }
-                    if ([mutaleSectionAndCellsDic objectForKey:pickupDateStr]) {
-                        [[mutaleSectionAndCellsDic objectForKey:pickupDateStr] addObject:obmBookingItem];
-                    } else {
-                        NSMutableArray *newObmBookingItems = [[NSMutableArray alloc]init];
-                        [newObmBookingItems addObject:obmBookingItem];
-                        [mutaleSectionAndCellsDic setObject:newObmBookingItems forKey:pickupDateStr];
-                    }
-                    NSMutableDictionary *mutableDic= [obmBookingItem mutableCopy];
-                    NSString *pickupDateTimeStr = [obmBookingItem objectForKey:COLUMN_PICKUP_DATE_TIME];
-                    if (!pickupDateTimeStr || [pickupDateTimeStr isKindOfClass:[NSNull class]]) {
-                        [obmBookingItem objectForKey:COLUMN_PICKUP_DATE_TIME];
-                        pickupDateTimeStr = [NSString stringWithFormat:@"%@ %@", pickupDateStr, pickupTimeStr];
-                        
-                        NSDateFormatter *formate = [[NSDateFormatter alloc] init];
-                        [formate setDateFormat:(@"dd/MM/yyyy HH:mm:ss")];
-                        NSDate *date = [formate dateFromString:pickupDateTimeStr];
-                        unsigned long long milliSecond = [date timeIntervalSince1970] * 1000;
-                        NSString *s = [NSString stringWithFormat:@"%llu", milliSecond];
-                        [mutableDic setValue:s  forKey:COLUMN_PICKUP_DATE_TIME];
-                    }
-                    [mutableDic removeObjectForKey:COLUMN_QUERY_FILTERS];
-                    [dbManager insertOrUpdateOneRecord:TABLE_OBM_BOOKING_VEHICLE_ITEM pkColumnName:COLUMN_BOOKING_VEHICLE_ITEM_ID columnValueDic:mutableDic];
-                }
+            NSString *broadcastBookingVehicleItemIds = [respondDic valueForKey:KEY_BROADCAST_BOOKING_VEHICLE_ITEM_IDS];
+            if ([broadcastBookingVehicleItemIds length]>=32) {
+                [mutaleSectionAndCellsDic setObject:broadcastBookingVehicleItemIds forKey:KEY_BROADCAST_BOOKING_VEHICLE_ITEM_IDS];
             }
-            [JpDataUtil saveDataToUDForKey:lastUpdateTimeKey value:newLastUpdateTimeIntStr];
-            NSLog(@"The update date is %@", [JpDateUtil getDateTimeStrByMilliSecond:[newLastUpdateTimeIntStr longLongValue]]);
-        }
         
-        if (block) {
-            block([NSArray arrayWithArray:mutableSections],[NSDictionary dictionaryWithDictionary:mutaleSectionAndCellsDic], nil);
-        }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"%@", error);
-        if (block) {
-            block([NSArray array], [NSDictionary dictionary], error);
-        }
-    }];
+            if ([result isEqualToString:VALUE_SUCCESS]) {
+                NSArray *obmBookingItems = [respondDic valueForKeyPath:KEY_DATA];
+                NSString *newLastUpdateTimeIntStr = lastUpdateTimeIntStr;
+                DBManager *dbManager = [DBManager getSharedInstance];
+                for (NSDictionary *obmBookingItem in obmBookingItems) {
+                    NSString *pickupDateIntStr = [obmBookingItem objectForKey:COLUMN_PICKUP_DATE];
+                    NSString *pickupTimeStr = [obmBookingItem objectForKey:COLUMN_PICKUP_TIME];
+                    if (pickupDateIntStr!=nil && ![pickupDateIntStr isKindOfClass:[NSNull class]] &&
+                        pickupTimeStr!=nil && ![pickupTimeStr isKindOfClass:[NSNull class]]) {
+                        NSString *pickupDateStr = [JpDateUtil getDateStrByMilliSecond:[pickupDateIntStr longLongValue]];
+                        NSString *modifyTimeIntStr = [obmBookingItem objectForKey:COLUMN_MODIFY_TIMESTAMP];
+                        if (!newLastUpdateTimeIntStr || [modifyTimeIntStr longLongValue] > [newLastUpdateTimeIntStr longLongValue]){
+                            NSLog(@"%@", [JpDateUtil getDateTimeStrByMilliSecond:[modifyTimeIntStr longLongValue]]);
+                            newLastUpdateTimeIntStr = modifyTimeIntStr;
+                        }
+                        if (![mutableSections containsObject:pickupDateStr]) {
+                            [mutableSections addObject:pickupDateStr];
+                        }
+                        if ([mutaleSectionAndCellsDic objectForKey:pickupDateStr]) {
+                            [[mutaleSectionAndCellsDic objectForKey:pickupDateStr] addObject:obmBookingItem];
+                        } else {
+                            NSMutableArray *newObmBookingItems = [[NSMutableArray alloc]init];
+                            [newObmBookingItems addObject:obmBookingItem];
+                            [mutaleSectionAndCellsDic setObject:newObmBookingItems forKey:pickupDateStr];
+                        }
+                        NSMutableDictionary *mutableDic= [obmBookingItem mutableCopy];
+                        NSString *pickupDateTimeStr = [obmBookingItem objectForKey:COLUMN_PICKUP_DATE_TIME];
+                        if (!pickupDateTimeStr || [pickupDateTimeStr isKindOfClass:[NSNull class]]) {
+                            pickupDateTimeStr = [NSString stringWithFormat:@"%@ %@", pickupDateStr, pickupTimeStr];
+                        
+                            NSDateFormatter *formate = [[NSDateFormatter alloc] init];
+                            [formate setDateFormat:(@"dd/MM/yyyy HH:mm:ss")];
+                            NSDate *date = [formate dateFromString:pickupDateTimeStr];
+                            unsigned long long milliSecond = [date timeIntervalSince1970] * 1000;
+                            NSString *milliSecondStr = [NSString stringWithFormat:@"%llu", milliSecond];
+                            [mutableDic setValue:milliSecondStr forKey:COLUMN_PICKUP_DATE_TIME];
+                        }
+                        [dbManager insertOrUpdateOneRecord:TABLE_OBM_BOOKING_VEHICLE_ITEM pkColumnName:COLUMN_BOOKING_VEHICLE_ITEM_ID columnValueDic:mutableDic];
+                    }
+                }
+                [JpDataUtil saveDataToUDForKey:lastUpdateTimeKey value:newLastUpdateTimeIntStr];
+                NSLog(@"The update date is %@", [JpDateUtil getDateTimeStrByMilliSecond:[newLastUpdateTimeIntStr longLongValue]]);
+            }
+        
+            if (block) {
+                block([NSArray arrayWithArray:mutableSections],[NSDictionary dictionaryWithDictionary:mutaleSectionAndCellsDic], nil);
+            }
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            NSLog(@"%@", error);
+            if (block) {
+                block([NSArray array], [NSDictionary dictionary], error);
+            }
+        }];
 }
 
 @end

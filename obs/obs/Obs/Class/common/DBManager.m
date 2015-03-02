@@ -9,7 +9,6 @@
 #import "DBManager.h"
 #import <sqlite3.h>
 #import "JpDataUtil.h"
-#import "OBSDConst.h"
 
 static sqlite3 *database = nil;
 static sqlite3_stmt *statement = nil;
@@ -59,10 +58,7 @@ static sqlite3_stmt *statement = nil;
             char *errMsg;
             if (sqlite3_exec(database, [sql UTF8String], NULL, NULL, &errMsg) != SQLITE_OK) isSuccess = NO;
             
-            sql = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (%@ text primary key, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ TEXT, %@ REAL, %@ REAL, %@ INTEGER, %@ INTEGER, %@ INTEGER, %@ INTEGER, %@ INTEGER, %@ INTEGER, %@ INTEGER, %@ INTEGER)", TABLE_OBM_BOOKING_VEHICLE_ITEM,COLUMN_BOOKING_VEHICLE_ITEM_ID,COLUMN_BOOKING_VEHICLE_ID,COLUMN_BOOKING_NUMBER,COLUMN_BOOKING_SERVICE,COLUMN_BOOKING_SERVICE_CD,COLUMN_FLIGHT_NUMBER,COLUMN_PICKUP_CITY,COLUMN_PICKUP_CITY_CD,COLUMN_PICKUP_ADDRESS,COLUMN_PICKUP_POINT,COLUMN_DESTINATION,COLUMN_VEHICLE,COLUMN_VEHICLE_CD,COLUMN_DRIVER_USER_ID,COLUMN_LEAD_PASSENGER_FIRST_NAME,COLUMN_LEAD_PASSENGER_LAST_NAME,COLUMN_LEAD_PASSENGER_MOBILE_NUMBER,COLUMN_BOOKING_STATUS,COLUMN_BOOKING_STATUS_CD,COLUMN_PAYMENT_STATUS,COLUMN_PAYMENT_STATUS_CD,COLUMN_DRIVER_USER_NAME,COLUMN_DRIVER_MOBILE_NUMBER,COLUMN_DRIVER_VEHICLE,COLUMN_LEAD_PASSENGER_GENDER,COLUMN_LEAD_PASSENGER_GENDER_CD,COLUMN_NUMBER_OF_PASSENGER,COLUMN_PAYMENT_MODE,COLUMN_PAYMENT_MODE_CD,COLUMN_BOOKING_USER_NAME,COLUMN_BOOKING_USER_MOBILE_NUMBER,COLUMN_BOOKING_USER_EMAIL,COLUMN_BOOKING_USER_SURNAME,COLUMN_ORG_EMAIL,COLUMN_ASSIGN_ORG_ID,COLUMN_ASSIGN_ORG_NAME,COLUMN_ASSIGN_ORG_EMAIL,COLUMN_ASSIGN_DRIVER_USER_ID,COLUMN_ASSIGN_DRIVER_USER_NAME,COLUMN_ASSIGN_DRIVER_MOBILE_PHONE,COLUMN_ASSIGN_DRIVER_EMAIL,
-                COLUMN_BOOKING_USER_GENDER, COLUMN_BOOKING_USER_GENDER_CD, COLUMN_AGENT_USER_ID, COLUMN_AGENT_USER_NAME, COLUMN_AGENT_MOBILE_NUMBER,COLUMN_AGENT_EMAIL, COLUMN_OPERATOR_MOBILE_NUMBER, COLUMN_OPERATOR_EMAIL,
-                COLUMN_REMARK,COLUMN_ORG_ID,COLUMN_ORG_NAME,COLUMN_OPERATOR_ID,COLUMN_OPERATOR_NAME,COLUMN_DATA_STATE,COLUMN_SEND_STATE,
-                COLUMN_PRICE,COLUMN_BOOKING_GHOURS,COLUMN_DISPLAY_NO,COLUMN_PICKUP_DATE,COLUMN_PICKUP_TIME,COLUMN_PICKUP_DATE_TIME,COLUMN_CREATE_DATE_TIME,COLUMN_MODIFY_TIMESTAMP,COLUMN_SEND_DATE_TIME,COLUMN_RECIEVE_DATE_TIME];
+            sql = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (%@ text primary key, %@ TEXT, %@ INTEGER,%@ TEXT,%@ INTEGER,%@ TEXT,%@ TEXT,%@ REAL,%@ TEXT,%@ TEXT,%@ TEXT,%@ TEXT,%@ TEXT,%@ TEXT,%@ TEXT,%@ TEXT,%@ REAL,%@ TEXT,%@ TEXT,%@ TEXT,%@ TEXT,%@ TEXT,%@ TEXT,%@ TEXT,%@ TEXT,%@ TEXT,%@ TEXT,%@ TEXT,%@ TEXT,%@ TEXT,%@ TEXT,%@ TEXT,%@ TEXT,%@ TEXT,%@ TEXT,%@ TEXT,%@ TEXT,%@ REAL,%@ TEXT,%@ TEXT,%@ TEXT,%@ TEXT,%@ TEXT,%@ INTEGER,%@ INTEGER,%@ TEXT)", TABLE_OBM_BOOKING_VEHICLE_ITEM,COLUMN_BOOKING_VEHICLE_ITEM_ID,COLUMN_BOOKING_NUMBER,COLUMN_PICKUP_DATE,COLUMN_PICKUP_TIME,COLUMN_PICKUP_DATE_TIME,COLUMN_BOOKING_SERVICE,COLUMN_BOOKING_SERVICE_CD,COLUMN_BOOKING_HOURS,COLUMN_FLIGHT_NUMBER,COLUMN_PICKUP_ADDRESS,COLUMN_DESTINATION,COLUMN_STOP1_ADDRESS,COLUMN_STOP2_ADDRESS,COLUMN_REMARK,COLUMN_VEHICLE,COLUMN_PRICE_UNIT,COLUMN_PRICE,COLUMN_PAYMENT_STATUS,COLUMN_PAYMENT_MODE,COLUMN_BOOKING_STATUS,COLUMN_BOOKING_STATUS_CD,COLUMN_BOOKING_USER_FIRST_NAME,COLUMN_BOOKING_USER_LAST_NAME,COLUMN_BOOKING_USER_GENDER,COLUMN_BOOKING_USER_MOBILE_NUMBER,COLUMN_BOOKING_USER_EMAIL,COLUMN_LEAD_PASSENGER_FIRST_NAME,COLUMN_LEAD_PASSENGER_LAST_NAME,COLUMN_LEAD_PASSENGER_GENDER,COLUMN_LEAD_PASSENGER_MOBILE_NUMBER,COLUMN_LEAD_PASSENGER_EMAIL,COLUMN_NUMBER_OF_PASSENGER,COLUMN_DRIVER_USER_NAME,COLUMN_DRIVER_LOGIN_USER_ID,COLUMN_DRIVER_MOBILE_NUMBER,COLUMN_DRIVER_VEHICLE,COLUMN_DRIVER_CLAIM_CURRENCY,COLUMN_DRIVER_CLAIM_PRICE,COLUMN_DRIVER_ACTION,COLUMN_ASSIGN_DRIVER_USER_ID,COLUMN_ASSIGN_DRIVER_USER_NAME,COLUMN_HISTORTY_DRIVER_USER_IDS,COLUMN_BROADCAST_TAG,COLUMN_CREATE_DATE_TIME,COLUMN_MODIFY_TIMESTAMP,COLUMN_DATA_STATE];
             
             
             if (sqlite3_exec(database, [sql UTF8String], NULL, NULL, &errMsg) != SQLITE_OK) isSuccess = NO;
@@ -108,7 +104,7 @@ static sqlite3_stmt *statement = nil;
             int i=1;
             for ( NSString *column in columns) {
                 NSString *value = [columnValueDic objectForKey:column];
-                if ([column isEqual:COLUMN_PRICE] || [column isEqual:COLUMN_BOOKING_GHOURS] || [column isEqual:COLUMN_DISPLAY_NO] || [column isEqual:COLUMN_PICKUP_DATE] || [column isEqual:COLUMN_PICKUP_TIME] || [column isEqual:COLUMN_PICKUP_DATE_TIME] || [column isEqual:COLUMN_CREATE_DATE_TIME] || [column isEqual:COLUMN_MODIFY_TIMESTAMP] || [column isEqual:COLUMN_SEND_DATE_TIME] || [column isEqual:COLUMN_RECIEVE_DATE_TIME]) {
+                if ([column isEqual:COLUMN_PICKUP_DATE] || [column isEqual:COLUMN_PICKUP_DATE_TIME] || [column isEqual:COLUMN_BOOKING_HOURS] || [column isEqual:COLUMN_PRICE] || [column isEqual:COLUMN_DRIVER_CLAIM_PRICE] || [column isEqual:COLUMN_CREATE_DATE_TIME] || [column isEqual:COLUMN_MODIFY_TIMESTAMP]) {
                     if ([value isKindOfClass:[NSNull class]]) {
                         value = @"0";
                     }
@@ -321,7 +317,7 @@ static sqlite3_stmt *statement = nil;
     {
         NSString *sql = [NSString stringWithFormat:@"select * from %@ ", TABLE_OBM_BOOKING_VEHICLE_ITEM];
         if ([aDriverUserId length] > 0) {
-            sql = [sql stringByAppendingString:[NSString stringWithFormat:@" where (%@ = '%@' or %@ = '%@') ", COLUMN_DRIVER_USER_ID, aDriverUserId, COLUMN_OPERATOR_ID, aDriverUserId]];
+            sql = [sql stringByAppendingString:[NSString stringWithFormat:@" where (%@ = '%@' or %@ = '%@') ", COLUMN_DRIVER_LOGIN_USER_ID, aDriverUserId, COLUMN_ASSIGN_DRIVER_USER_ID, aDriverUserId]];
         }
         
         unsigned long long curDateTimeMillisecond = ([[NSDate date] timeIntervalSince1970] * 1000);
@@ -331,6 +327,9 @@ static sqlite3_stmt *statement = nil;
                 break;
             case PAST:
                 sql = [sql stringByAppendingString:[NSString stringWithFormat:@" and %@ < %llu order by %@ desc,%@ asc ", COLUMN_PICKUP_DATE_TIME, curDateTimeMillisecond, COLUMN_PICKUP_DATE, COLUMN_PICKUP_TIME]];
+                break;
+            case BROADCAST:
+                sql = [sql stringByAppendingString:[NSString stringWithFormat:@" and %@ = '%@' order by %@ asc,%@ asc ", COLUMN_BROADCAST_TAG, @"yes", COLUMN_PICKUP_DATE, COLUMN_PICKUP_TIME]];
                 break;
             default:
                 sql = [sql stringByAppendingString:[NSString stringWithFormat:@" order by %@ desc,%@ asc ", COLUMN_PICKUP_DATE, COLUMN_PICKUP_TIME]];
@@ -345,78 +344,59 @@ static sqlite3_stmt *statement = nil;
                 NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
                 
                 [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 0)] forKey:COLUMN_BOOKING_VEHICLE_ITEM_ID];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 1)] forKey:COLUMN_BOOKING_VEHICLE_ID];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 2)] forKey:COLUMN_BOOKING_NUMBER];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 3)] forKey:COLUMN_BOOKING_SERVICE];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 4)] forKey:COLUMN_BOOKING_SERVICE_CD];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 5)] forKey:COLUMN_FLIGHT_NUMBER];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 6)] forKey:COLUMN_PICKUP_CITY];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 7)] forKey:COLUMN_PICKUP_CITY_CD];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 8)] forKey:COLUMN_PICKUP_ADDRESS];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 9)] forKey:COLUMN_PICKUP_POINT];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 1)] forKey:COLUMN_BOOKING_NUMBER];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 2)] forKey:COLUMN_PICKUP_DATE];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 3)] forKey:COLUMN_PICKUP_TIME];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 4)] forKey:COLUMN_PICKUP_DATE_TIME];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 5)] forKey:COLUMN_BOOKING_SERVICE];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 6)] forKey:COLUMN_BOOKING_SERVICE_CD];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 7)] forKey:COLUMN_BOOKING_HOURS];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 8)] forKey:COLUMN_FLIGHT_NUMBER];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 9)] forKey:COLUMN_PICKUP_ADDRESS];
                 [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 10)] forKey:COLUMN_DESTINATION];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 11)] forKey:COLUMN_VEHICLE];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 12)] forKey:COLUMN_VEHICLE_CD];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 13)] forKey:COLUMN_DRIVER_USER_ID];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 14)] forKey:COLUMN_LEAD_PASSENGER_FIRST_NAME];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 15)] forKey:COLUMN_LEAD_PASSENGER_LAST_NAME];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 16)] forKey:COLUMN_LEAD_PASSENGER_MOBILE_NUMBER];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 17)] forKey:COLUMN_BOOKING_STATUS];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 18)] forKey:COLUMN_BOOKING_STATUS_CD];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 19)] forKey:COLUMN_PAYMENT_STATUS];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 20)] forKey:COLUMN_PAYMENT_STATUS_CD];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 21)] forKey:COLUMN_DRIVER_USER_NAME];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 22)] forKey:COLUMN_DRIVER_MOBILE_NUMBER];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 23)] forKey:COLUMN_DRIVER_VEHICLE];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 24)] forKey:COLUMN_LEAD_PASSENGER_GENDER];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 25)] forKey:COLUMN_LEAD_PASSENGER_GENDER_CD];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 26)] forKey:COLUMN_NUMBER_OF_PASSENGER];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 27)] forKey:COLUMN_PAYMENT_MODE];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 28)] forKey:COLUMN_PAYMENT_MODE_CD];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 29)] forKey:COLUMN_BOOKING_USER_NAME];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 30)] forKey:COLUMN_BOOKING_USER_MOBILE_NUMBER];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 31)] forKey:COLUMN_BOOKING_USER_EMAIL];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 11)] forKey:COLUMN_STOP1_ADDRESS];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 12)] forKey:COLUMN_STOP2_ADDRESS];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 13)] forKey:COLUMN_REMARK];
                 
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 32)] forKey:COLUMN_BOOKING_USER_SURNAME];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 33)] forKey:COLUMN_ORG_EMAIL];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 34)] forKey:COLUMN_ASSIGN_ORG_ID];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 35)] forKey:COLUMN_ASSIGN_ORG_NAME];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 35)] forKey:COLUMN_BOOKING_USER_EMAIL];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 36)] forKey:COLUMN_ASSIGN_ORG_EMAIL];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 37)] forKey:COLUMN_ASSIGN_DRIVER_USER_ID];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 38)] forKey:COLUMN_ASSIGN_DRIVER_USER_NAME];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 39)] forKey:COLUMN_ASSIGN_DRIVER_MOBILE_PHONE];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 40)] forKey:COLUMN_ASSIGN_DRIVER_EMAIL];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 14)] forKey:COLUMN_VEHICLE];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 15)] forKey:COLUMN_PRICE_UNIT];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 16)] forKey:COLUMN_PRICE];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 17)] forKey:COLUMN_PAYMENT_STATUS];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 18)] forKey:COLUMN_PAYMENT_MODE];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 19)] forKey:COLUMN_BOOKING_STATUS];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 20)] forKey:COLUMN_BOOKING_STATUS_CD];
                 
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 41)] forKey:COLUMN_BOOKING_USER_GENDER];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 42)] forKey:COLUMN_BOOKING_USER_GENDER_CD];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 43)] forKey:COLUMN_AGENT_USER_ID];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 44)] forKey:COLUMN_AGENT_USER_NAME];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 45)] forKey:COLUMN_AGENT_MOBILE_NUMBER];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 46)] forKey:COLUMN_AGENT_EMAIL];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 47)] forKey:COLUMN_OPERATOR_MOBILE_NUMBER];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 48)] forKey:COLUMN_OPERATOR_EMAIL];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 21)] forKey:COLUMN_BOOKING_USER_FIRST_NAME];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 22)] forKey:COLUMN_BOOKING_USER_LAST_NAME];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 23)] forKey:COLUMN_BOOKING_USER_GENDER];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 24)] forKey:COLUMN_BOOKING_USER_MOBILE_NUMBER];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 25)] forKey:COLUMN_BOOKING_USER_EMAIL];
                 
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 49)] forKey:COLUMN_REMARK];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 26)] forKey:COLUMN_LEAD_PASSENGER_FIRST_NAME];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 27)] forKey:COLUMN_LEAD_PASSENGER_LAST_NAME];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 28)] forKey:COLUMN_LEAD_PASSENGER_GENDER];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 29)] forKey:COLUMN_LEAD_PASSENGER_MOBILE_NUMBER];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 30)] forKey:COLUMN_LEAD_PASSENGER_EMAIL];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 31)] forKey:COLUMN_NUMBER_OF_PASSENGER];
                 
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 50)] forKey:COLUMN_ORG_ID];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 51)] forKey:COLUMN_ORG_NAME];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 52)] forKey:COLUMN_OPERATOR_ID];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 53)] forKey:COLUMN_OPERATOR_NAME];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 54)] forKey:COLUMN_DATA_STATE];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 55)] forKey:COLUMN_SEND_STATE];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 56)] forKey:COLUMN_PRICE];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 57)] forKey:COLUMN_BOOKING_GHOURS];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 58)] forKey:COLUMN_DISPLAY_NO];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 59)] forKey:COLUMN_PICKUP_DATE];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 60)] forKey:COLUMN_PICKUP_TIME];
                 
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 61)] forKey:COLUMN_PICKUP_DATE_TIME];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 32)] forKey:COLUMN_DRIVER_USER_NAME];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 33)] forKey:COLUMN_DRIVER_LOGIN_USER_ID];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 34)] forKey:COLUMN_DRIVER_MOBILE_NUMBER];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 35)] forKey:COLUMN_DRIVER_VEHICLE];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 36)] forKey:COLUMN_DRIVER_CLAIM_CURRENCY];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 37)] forKey:COLUMN_DRIVER_CLAIM_PRICE];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 38)] forKey:COLUMN_DRIVER_ACTION];
                 
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 62)] forKey:COLUMN_CREATE_DATE_TIME];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 63)] forKey:COLUMN_MODIFY_TIMESTAMP];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 64)] forKey:COLUMN_SEND_DATE_TIME];
-                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 65)] forKey:COLUMN_RECIEVE_DATE_TIME];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 39)] forKey:COLUMN_ASSIGN_DRIVER_USER_ID];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 40)] forKey:COLUMN_ASSIGN_DRIVER_USER_NAME];
+                
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 41)] forKey:COLUMN_HISTORTY_DRIVER_USER_IDS];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 42)] forKey:COLUMN_BROADCAST_TAG];
+                
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 43)] forKey:COLUMN_CREATE_DATE_TIME];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 44)] forKey:COLUMN_MODIFY_TIMESTAMP];
+                [dic setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 45)] forKey:COLUMN_DATA_STATE];
             
                 [obmBookingVehicleItems addObject:dic];
             }

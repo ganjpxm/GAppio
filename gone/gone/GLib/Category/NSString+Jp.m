@@ -71,8 +71,8 @@
 //China,Singapore
 - (NSMutableArray*)toArr
 {
-    if (self.isEmpty || ![self containsString:@","]) {
-        return NULL;
+    if (self.isEmpty) {
+       return NULL;
     }
     return [[NSMutableArray alloc] initWithArray:[self componentsSeparatedByString:@","]];
 }

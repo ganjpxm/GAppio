@@ -1,23 +1,23 @@
 //
-//  ViewController.h
-//  obsc
+//  JpWebVC.h
+//  GOne
 //
-//  Created by Johnny on 7/3/14.
-//  Copyright (c) 2014 ganjp. All rights reserved.
+//  Created by Johnny on 7/3/15.
+//  Copyright (c) 2015 ganjp. All rights reserved.
 //
 #import "JpVC.h"
 
 @interface JpWebVC : JpVC<UIWebViewDelegate>
 
-@property (nonatomic, strong) NSString   *currenURL;
-@property (nonatomic, strong) UIWebView  *webView;
+@property (nonatomic, strong) NSString   *iCurrenURL;
+@property (nonatomic, strong) UIWebView  *iWebView;
 
 - (void)loadPage:(NSString *)urlString;
-- (void)hideMask;
-- (void)showMask;
-- (void)showMask:(NSString *)text;
+- (void)hideMaskView;
+- (void)showMaskView;
+- (void)showMaskView:(NSString *)text;
 
 //UIWebViewDelegate method
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType;
+- (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)aRequest navigationType:(UIWebViewNavigationType)aNavigationType;
 - (void)webViewDidFinishLoad:(UIWebView *)aWebView;
 @end

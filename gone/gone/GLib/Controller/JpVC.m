@@ -48,7 +48,7 @@
     [[self navigationController] setNavigationBarHidden:NO animated:NO];
     
     //Setup common back button
-//    UIButton *backButton = [UIButton createNavBarBtnWithTitle:@"" imgName:@"icon_back_white" target:self action:@selector(onClickBackBtn:)];
+    //UIButton *backButton = [UIButton createNavBarBtnWithTitle:@"" imgName:@"icon_back_white" target:self action:@selector(onClickBackBtn:)];
 
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     [backButton setImage:[UIImage imageNamed:@"icon_back_white"] forState:UIControlStateNormal];

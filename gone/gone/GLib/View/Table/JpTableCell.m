@@ -15,7 +15,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        UIColor *colorTheme = [[JpApplication sharedManager] colorTheme];
+        UIColor *colorTheme = [[JpApplication sharedManager] colorPrimary];
         
         UIView * backgroundView = [[UIView alloc] initWithFrame:self.bounds];
         [backgroundView setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];

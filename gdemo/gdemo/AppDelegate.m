@@ -7,6 +7,11 @@
 //
 
 #import "AppDelegate.h"
+#import "SimpleTableVC.h"
+#import "JpNC.h"
+#import "JpApplication.h"
+#import "ViewController.h"
+#import "JpSystemUtil.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +22,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [JpSystemUtil initAppLanguage];
+    
+    //set Status bar background color
+    [[JpApplication sharedManager] initWithPrimaryColor:COLOR_BLUE_PRIMARY darkPrimaryColor:COLOR_BLUE_DARK_PRIMARY lightPrimaryColor:COLOR_BLUE_LIGHT_PRIMARY frontColor:[UIColor whiteColor] backgroundColor:COLOR_BLUE_PRIMARY navBackgroundImageName:@""];
+    
+    ViewController *simpleTableViewController = [[ViewController alloc] init];
+    JpNC *simpleTableNC = [[JpNC alloc] initWithRootViewController:simpleTableViewController];
+    [self.window setRootViewController:simpleTableNC];
+    
     return YES;
 }
 

@@ -18,7 +18,7 @@ static NSBundle *bundle = nil;
 #pragma Nav and status bar
 + (void)setNavAndStatusbarStytle:(UINavigationController *)nc
 {
-    UIColor *colorBackground = [JpApplication sharedManager].colorBackground;
+    UIColor *colorBackground = [JpApplication sharedManager].colorDarkPrimary;
     UIColor *colorThemeFront = [JpApplication sharedManager].colorFront;
     NSString *navBackgroundImageName = [JpApplication sharedManager].imageNameNavBackground;
     
@@ -30,6 +30,7 @@ static NSBundle *bundle = nil;
     if ([JpSystemUtil isIOS7orAbove]) {
         if ([navBackgroundImageName length]==0) {
             [[UINavigationBar appearance] setBarTintColor:colorBackground];
+            [[UINavigationBar appearance] setTintColor:colorThemeFront];
         } else {
             UIImage *navBackgroundImage = [UIImage imageNamed:navBackgroundImageName];
             [nc.navigationBar setBackgroundImage:navBackgroundImage forBarMetrics:UIBarMetricsDefault];
@@ -91,14 +92,17 @@ static NSBundle *bundle = nil;
     NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
     NSString *lang = [def valueForKey:KEY_LANG];
     
-    if(lang.length == 0){
-        lang = self.getPreferredLanguage;
-        [def setValue:lang forKey:KEY_LANG];
-        [def synchronize];
-    } else if ([lang isEqualToString:VALUE_LANG_ZH_CN]) {
+    if ([lang isEqualToString:VALUE_LANG_ZH_CN]) {
         lang = VALUE_LANG_ZH_HANS;
     } else if ([lang isEqualToString:VALUE_LANG_EN_SG]) {
         lang = VALUE_LANG_EN;
+    } else {
+        lang = self.getPreferredLanguage;
+        if (![lang isEqualToString:VALUE_LANG_ZH_HANS]) {
+            lang = VALUE_LANG_EN;
+        }
+        [def setValue:lang forKey:KEY_LANG];
+        [def synchronize];
     }
     NSString *path = [[NSBundle mainBundle] pathForResource:lang ofType:@"lproj"];
     bundle = [NSBundle bundleWithPath:path];

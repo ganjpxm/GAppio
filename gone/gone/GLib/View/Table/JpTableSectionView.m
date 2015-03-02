@@ -23,8 +23,8 @@
         // Initialization code
 
         if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
-            [self setBackgroundColor:COLOR_GRAY_LIGHT_JP];
-            _label = [[UILabel alloc] initWithFrame:CGRectMake(15, CGRectGetMaxY(self.bounds)-28,CGRectGetWidth(self.bounds)-30, 22)];
+            [self setBackgroundColor:COLOR_GRAY_LIGHT_PRIMARY];
+            _label = [[UILabel alloc] initWithFrame:CGRectMake(8, CGRectGetMaxY(self.bounds)-28, CGRectGetWidth(self.bounds)-30, 22)];
         } else {
             [self setBackgroundColor:[UIColor colorWithRed:77.0/255.0 green:79.0/255.0 blue:80.0/255.0 alpha:1.0]];
             _label = [[UILabel alloc] initWithFrame:CGRectInset(self.bounds, 10.0, 2.0)];
@@ -44,6 +44,7 @@
         [self.label setTextColor:[UIColor blackColor]];
         [self.label setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin];
         [self addSubview:self.label];
+        
         [self setClipsToBounds:NO];        
     }
     return self;
@@ -60,7 +61,7 @@
     //// General Declarations
     if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
         CGContextRef context = UIGraphicsGetCurrentContext();
-        UIColor * lineColor = COLOR_GRAY_DARK_JP;//[UIColor colorWithRed:94.0/255.0 green:97.0/255.0 blue:99.0/255.0 alpha:1.0];
+        UIColor * lineColor = COLOR_DIVIDER;//[UIColor colorWithRed:94.0/255.0 green:97.0/255.0 blue:99.0/255.0 alpha:1.0];
         CGContextSetStrokeColorWithColor(context, lineColor.CGColor);
         CGContextSetLineWidth(context, 0.3);
         CGContextMoveToPoint(context, CGRectGetMinX(self.bounds), CGRectGetMaxY(self.bounds)-.5); //start at this point

@@ -29,8 +29,6 @@
 //        [backButton setTitle:@"Back" forState:UIControlStateNormal];
 //        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
         
-        
-        
         //icon_back_white
         
         [JpSystemUtil setNavAndStatusbarStytle:self];

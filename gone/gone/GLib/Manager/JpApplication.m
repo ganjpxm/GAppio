@@ -14,21 +14,23 @@
 
 @implementation JpApplication
 
-@synthesize colorTheme,colorFront,colorBackground,imageNameNavBackground;
+@synthesize colorPrimary,colorDarkPrimary,colorLightPrimary,colorFront,colorBackground,imageNameNavBackground;
 
 + (JpApplication *)sharedManager
 {
-    static JpApplication *sharedAccountManagerInstance = nil;
+    static JpApplication *sharedManagerInstance = nil;
     static dispatch_once_t predicate;
     dispatch_once(&predicate, ^{
-        sharedAccountManagerInstance = [[self alloc] init];
+        sharedManagerInstance = [[self alloc] init];
     });
-    return sharedAccountManagerInstance;
+    return sharedManagerInstance;
 }
 
-- (void)initWithThemeColor:(UIColor *)themeColor frontColor:(UIColor *)frontColor backgroundColor:(UIColor *)backgroundColor navBackgroundImageName:(NSString *)navBackgroundImageName
+- (void)initWithPrimaryColor:(UIColor *)primaryColor darkPrimaryColor:(UIColor *)darkPrimaryColor lightPrimaryColor:(UIColor *)lightPrimaryColor frontColor:(UIColor *)frontColor backgroundColor:(UIColor *)backgroundColor navBackgroundImageName:(NSString *)navBackgroundImageName
 {
-    colorTheme = themeColor;
+    colorPrimary = primaryColor;
+    colorDarkPrimary = darkPrimaryColor;
+    colorLightPrimary = lightPrimaryColor;
     colorFront = frontColor;
     colorBackground = backgroundColor;
     imageNameNavBackground = navBackgroundImageName;

@@ -18,7 +18,7 @@
 <div style="padding:10px;background-color: transparent">
   <form id="signInForm" action="#" method="post">
     <label for="tel"><span style="color:red">*</span>Mobile No. : </label>
-    <input type="tel" name="userCd" id="userCd" value="" data-clear-btn="true" style="min-width:300px;">
+    <input type="tel" name="mobileNumber" id="mobileNumber" value="" data-clear-btn="true" style="min-width:300px;">
     <label for="password"><span style="color:red">*</span>Password:</label>
     <input type="password" name="password" id="password" value="" autocomplete="off" data-clear-btn="true">
     <div style="margin-top:30px;">
@@ -49,7 +49,7 @@ function onBridgeReady(event) {
 }
 
 $(document).ready(function(){
-  var telInput = $("#userCd"),
+  var telInput = $("#mobileNumber"),
         errorMsg = $("#error-msg");
   telInput.intlTelInput({preferredCountries: [ "sg", "my", "cn", "hk" ], defaultCountry: "sg", width: 500,
                                         utilsScript: "/resources/intlTelInput/js/utils.js"});
@@ -64,11 +64,11 @@ $(document).ready(function(){
   $('#signInForm').validate({
     focusInvalid: false,
     rules: {
-      userCd: {required: true},
+      mobileNumber: {required: true},
       password: {required: true},
     },
     messages: {
-      userCd: {required: "required"},
+      mobileNumber: {required: "required"},
       password: {required: "required"}
     },
     invalidHandler:function(form, validator) {var errors = validator.numberOfInvalids(); if (errors) {validator.errorList[0].element.focus();}},

@@ -29,8 +29,6 @@
 		BC0C233A1A822308008CD91D /* frutigerltstdroman.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC0C21501A822307008CD91D /* frutigerltstdroman.ttf */; };
 		BC0C233B1A822308008CD91D /* JpLibImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC0C21511A822307008CD91D /* JpLibImage.xcassets */; };
 		BC0C233C1A822308008CD91D /* JpWebSampleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0C21541A822307008CD91D /* JpWebSampleVC.m */; };
-		BC0C235A1A822308008CD91D /* DateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0C21A61A822307008CD91D /* DateUtil.m */; };
-		BC0C235B1A822308008CD91D /* InternationalUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0C21A81A822307008CD91D /* InternationalUtil.m */; };
 		BC0C235C1A822308008CD91D /* JpDataStoreUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0C21AA1A822307008CD91D /* JpDataStoreUtil.m */; };
 		BC0C235D1A822308008CD91D /* JpDataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0C21AC1A822307008CD91D /* JpDataUtil.m */; };
 		BC0C235E1A822308008CD91D /* JpDateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0C21AE1A822307008CD91D /* JpDateUtil.m */; };
@@ -38,11 +36,17 @@
 		BC0C23601A822308008CD91D /* JpLogUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0C21B21A822307008CD91D /* JpLogUtil.m */; };
 		BC0C23611A822308008CD91D /* JpSystemUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0C21B41A822307008CD91D /* JpSystemUtil.m */; };
 		BC0C23621A822308008CD91D /* JpUiUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0C21B61A822307008CD91D /* JpUiUtil.m */; };
-		BC0C23631A822308008CD91D /* SystemUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0C21B81A822307008CD91D /* SystemUtil.m */; };
 		BC0C23641A822308008CD91D /* JpActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0C21BB1A822307008CD91D /* JpActivityIndicatorView.m */; };
 		BC0C23651A822308008CD91D /* JpTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0C21BE1A822307008CD91D /* JpTableCell.m */; };
 		BC0C23661A822308008CD91D /* JpTableSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0C21C01A822307008CD91D /* JpTableSectionView.m */; };
-		BC0C23671A822308008CD91D /* JpTableTwoLevelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0C21C21A822307008CD91D /* JpTableTwoLevelVC.m */; };
+		BC13E62C1AA012B800480A27 /* SimpleTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13E62B1AA012B800480A27 /* SimpleTableVC.m */; };
+		BC13E6301AA04C7900480A27 /* DemoConst.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13E62F1AA04C7900480A27 /* DemoConst.m */; };
+		BC13E63A1AA0924F00480A27 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BC13E63C1AA0924F00480A27 /* InfoPlist.strings */; };
+		BC13E6481AA094F700480A27 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BC13E64A1AA094F700480A27 /* Localizable.strings */; };
+		BC13E64D1AA16AA400480A27 /* Demo.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC13E64C1AA16AA400480A27 /* Demo.xcassets */; };
+		BC13E64F1AA17B2D00480A27 /* CustomizeTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13E64E1AA17B2D00480A27 /* CustomizeTableVC.m */; };
+		BC13E6531AA1BDF000480A27 /* CustomizeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13E6521AA1BDF000480A27 /* CustomizeTableCell.m */; };
+		BC13E6561AA1BF6900480A27 /* JpTableWithSectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13E6551AA1BF6900480A27 /* JpTableWithSectionVC.m */; };
 		BCF0AC5E1A81294E0005E3C6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF0AC5D1A81294E0005E3C6 /* main.m */; };
 		BCF0AC611A81294E0005E3C6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF0AC601A81294E0005E3C6 /* AppDelegate.m */; };
 		BCF0AC641A81294E0005E3C6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF0AC631A81294E0005E3C6 /* ViewController.m */; };
@@ -66,7 +70,7 @@
 		19FA54B037E8C0C5C4615253 /* Pods-gdemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gdemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-gdemo/Pods-gdemo.debug.xcconfig"; sourceTree = "<group>"; };
 		1E25777F104161C421B4EA1B /* libPods-gdemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-gdemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8485F183F6AD7CF572DFB085 /* Pods-gdemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gdemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-gdemo/Pods-gdemo.release.xcconfig"; sourceTree = "<group>"; };
-		BC0C1D141A81B751008CD91D /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		BC0C1D141A81B751008CD91D /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BC0C1D901A81BCCE008CD91D /* gdemo-prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "gdemo-prefix.pch"; sourceTree = "<group>"; };
 		BC0C212B1A822307008CD91D /* NSObject+Jp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Jp.h"; sourceTree = "<group>"; };
 		BC0C212C1A822307008CD91D /* NSObject+Jp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Jp.m"; sourceTree = "<group>"; };
@@ -102,10 +106,6 @@
 		BC0C21511A822307008CD91D /* JpLibImage.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = JpLibImage.xcassets; sourceTree = "<group>"; };
 		BC0C21531A822307008CD91D /* JpWebSampleVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JpWebSampleVC.h; sourceTree = "<group>"; };
 		BC0C21541A822307008CD91D /* JpWebSampleVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JpWebSampleVC.m; sourceTree = "<group>"; };
-		BC0C21A51A822307008CD91D /* DateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateUtil.h; sourceTree = "<group>"; };
-		BC0C21A61A822307008CD91D /* DateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtil.m; sourceTree = "<group>"; };
-		BC0C21A71A822307008CD91D /* InternationalUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternationalUtil.h; sourceTree = "<group>"; };
-		BC0C21A81A822307008CD91D /* InternationalUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternationalUtil.m; sourceTree = "<group>"; };
 		BC0C21A91A822307008CD91D /* JpDataStoreUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JpDataStoreUtil.h; sourceTree = "<group>"; };
 		BC0C21AA1A822307008CD91D /* JpDataStoreUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JpDataStoreUtil.m; sourceTree = "<group>"; };
 		BC0C21AB1A822307008CD91D /* JpDataUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JpDataUtil.h; sourceTree = "<group>"; };
@@ -120,16 +120,31 @@
 		BC0C21B41A822307008CD91D /* JpSystemUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JpSystemUtil.m; sourceTree = "<group>"; };
 		BC0C21B51A822307008CD91D /* JpUiUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JpUiUtil.h; sourceTree = "<group>"; };
 		BC0C21B61A822307008CD91D /* JpUiUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JpUiUtil.m; sourceTree = "<group>"; };
-		BC0C21B71A822307008CD91D /* SystemUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemUtil.h; sourceTree = "<group>"; };
-		BC0C21B81A822307008CD91D /* SystemUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemUtil.m; sourceTree = "<group>"; };
 		BC0C21BA1A822307008CD91D /* JpActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JpActivityIndicatorView.h; sourceTree = "<group>"; };
 		BC0C21BB1A822307008CD91D /* JpActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JpActivityIndicatorView.m; sourceTree = "<group>"; };
 		BC0C21BD1A822307008CD91D /* JpTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JpTableCell.h; sourceTree = "<group>"; };
 		BC0C21BE1A822307008CD91D /* JpTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JpTableCell.m; sourceTree = "<group>"; };
 		BC0C21BF1A822307008CD91D /* JpTableSectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JpTableSectionView.h; sourceTree = "<group>"; };
 		BC0C21C01A822307008CD91D /* JpTableSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JpTableSectionView.m; sourceTree = "<group>"; };
-		BC0C21C11A822307008CD91D /* JpTableTwoLevelVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JpTableTwoLevelVC.h; sourceTree = "<group>"; };
-		BC0C21C21A822307008CD91D /* JpTableTwoLevelVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JpTableTwoLevelVC.m; sourceTree = "<group>"; };
+		BC13E62A1AA012B800480A27 /* SimpleTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTableVC.h; sourceTree = "<group>"; };
+		BC13E62B1AA012B800480A27 /* SimpleTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleTableVC.m; sourceTree = "<group>"; };
+		BC13E62F1AA04C7900480A27 /* DemoConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoConst.m; sourceTree = "<group>"; };
+		BC13E6311AA04C9B00480A27 /* DemoConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoConst.h; sourceTree = "<group>"; };
+		BC13E63B1AA0924F00480A27 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BC13E63E1AA0935E00480A27 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		BC13E63F1AA0935E00480A27 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		BC13E6421AA093B000480A27 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/Main.storyboard"; sourceTree = "<group>"; };
+		BC13E6431AA093B000480A27 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BC13E6451AA093ED00480A27 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		BC13E6491AA094F700480A27 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BC13E64B1AA094F800480A27 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		BC13E64C1AA16AA400480A27 /* Demo.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Demo.xcassets; sourceTree = "<group>"; };
+		BC13E64E1AA17B2D00480A27 /* CustomizeTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomizeTableVC.m; sourceTree = "<group>"; };
+		BC13E6501AA17B4200480A27 /* CustomizeTableVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomizeTableVC.h; sourceTree = "<group>"; };
+		BC13E6511AA1BDDD00480A27 /* CustomizeTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomizeTableCell.h; sourceTree = "<group>"; };
+		BC13E6521AA1BDF000480A27 /* CustomizeTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomizeTableCell.m; sourceTree = "<group>"; };
+		BC13E6541AA1BF6900480A27 /* JpTableWithSectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JpTableWithSectionVC.h; sourceTree = "<group>"; };
+		BC13E6551AA1BF6900480A27 /* JpTableWithSectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JpTableWithSectionVC.m; sourceTree = "<group>"; };
 		BCF0AC581A81294E0005E3C6 /* gdemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gdemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCF0AC5C1A81294E0005E3C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BCF0AC5D1A81294E0005E3C6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -137,7 +152,6 @@
 		BCF0AC601A81294E0005E3C6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		BCF0AC621A81294E0005E3C6 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		BCF0AC631A81294E0005E3C6 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		BCF0AC661A81294E0005E3C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BCF0AC681A81294E0005E3C6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		BCF0AC6B1A81294E0005E3C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		BCF0AC711A81294E0005E3C6 /* gdemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = gdemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -220,6 +234,8 @@
 				BC0C213F1A822307008CD91D /* JpVC.m */,
 				BC0C21401A822307008CD91D /* JpWebVC.h */,
 				BC0C21411A822307008CD91D /* JpWebVC.m */,
+				BC13E6541AA1BF6900480A27 /* JpTableWithSectionVC.h */,
+				BC13E6551AA1BF6900480A27 /* JpTableWithSectionVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -291,10 +307,6 @@
 		BC0C21A41A822307008CD91D /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				BC0C21A51A822307008CD91D /* DateUtil.h */,
-				BC0C21A61A822307008CD91D /* DateUtil.m */,
-				BC0C21A71A822307008CD91D /* InternationalUtil.h */,
-				BC0C21A81A822307008CD91D /* InternationalUtil.m */,
 				BC0C21A91A822307008CD91D /* JpDataStoreUtil.h */,
 				BC0C21AA1A822307008CD91D /* JpDataStoreUtil.m */,
 				BC0C21AB1A822307008CD91D /* JpDataUtil.h */,
@@ -309,8 +321,6 @@
 				BC0C21B41A822307008CD91D /* JpSystemUtil.m */,
 				BC0C21B51A822307008CD91D /* JpUiUtil.h */,
 				BC0C21B61A822307008CD91D /* JpUiUtil.m */,
-				BC0C21B71A822307008CD91D /* SystemUtil.h */,
-				BC0C21B81A822307008CD91D /* SystemUtil.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -332,8 +342,30 @@
 				BC0C21BE1A822307008CD91D /* JpTableCell.m */,
 				BC0C21BF1A822307008CD91D /* JpTableSectionView.h */,
 				BC0C21C01A822307008CD91D /* JpTableSectionView.m */,
-				BC0C21C11A822307008CD91D /* JpTableTwoLevelVC.h */,
-				BC0C21C21A822307008CD91D /* JpTableTwoLevelVC.m */,
+			);
+			path = Table;
+			sourceTree = "<group>";
+		};
+		BC13E6281AA0121E00480A27 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				BC13E6291AA0121E00480A27 /* Table */,
+				BC13E6311AA04C9B00480A27 /* DemoConst.h */,
+				BC13E62F1AA04C7900480A27 /* DemoConst.m */,
+				BC13E64C1AA16AA400480A27 /* Demo.xcassets */,
+			);
+			path = Demo;
+			sourceTree = "<group>";
+		};
+		BC13E6291AA0121E00480A27 /* Table */ = {
+			isa = PBXGroup;
+			children = (
+				BC13E62A1AA012B800480A27 /* SimpleTableVC.h */,
+				BC13E62B1AA012B800480A27 /* SimpleTableVC.m */,
+				BC13E6501AA17B4200480A27 /* CustomizeTableVC.h */,
+				BC13E64E1AA17B2D00480A27 /* CustomizeTableVC.m */,
+				BC13E6511AA1BDDD00480A27 /* CustomizeTableCell.h */,
+				BC13E6521AA1BDF000480A27 /* CustomizeTableCell.m */,
 			);
 			path = Table;
 			sourceTree = "<group>";
@@ -362,6 +394,7 @@
 		BCF0AC5A1A81294E0005E3C6 /* gdemo */ = {
 			isa = PBXGroup;
 			children = (
+				BC13E6281AA0121E00480A27 /* Demo */,
 				BC0C21291A822307008CD91D /* GLib */,
 				BCF0AC5F1A81294E0005E3C6 /* AppDelegate.h */,
 				BCF0AC601A81294E0005E3C6 /* AppDelegate.m */,
@@ -381,6 +414,8 @@
 				BCF0AC5C1A81294E0005E3C6 /* Info.plist */,
 				BCF0AC5D1A81294E0005E3C6 /* main.m */,
 				BC0C1D901A81BCCE008CD91D /* gdemo-prefix.pch */,
+				BC13E63C1AA0924F00480A27 /* InfoPlist.strings */,
+				BC13E64A1AA094F700480A27 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -462,6 +497,7 @@
 				TargetAttributes = {
 					BCF0AC571A81294E0005E3C6 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = JTBLBQ96P4;
 					};
 					BCF0AC701A81294E0005E3C6 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -476,6 +512,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = BCF0AC4F1A81294E0005E3C6;
 			productRefGroup = BCF0AC591A81294E0005E3C6 /* Products */;
@@ -493,7 +530,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC13E64D1AA16AA400480A27 /* Demo.xcassets in Resources */,
 				BC0C23371A822308008CD91D /* Frutiger45Light.ttf in Resources */,
+				BC13E6481AA094F700480A27 /* Localizable.strings in Resources */,
 				BC0C23361A822308008CD91D /* pushNotification.mp3 in Resources */,
 				BC0C233A1A822308008CD91D /* frutigerltstdroman.ttf in Resources */,
 				BC0C23391A822308008CD91D /* frutigerltstdblack.ttf in Resources */,
@@ -502,6 +541,7 @@
 				BCF0AC6C1A81294E0005E3C6 /* LaunchScreen.xib in Resources */,
 				BC0C233B1A822308008CD91D /* JpLibImage.xcassets in Resources */,
 				BC0C1D151A81B751008CD91D /* Podfile in Resources */,
+				BC13E63A1AA0924F00480A27 /* InfoPlist.strings in Resources */,
 				BCF0AC691A81294E0005E3C6 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -559,9 +599,10 @@
 				BC0C235C1A822308008CD91D /* JpDataStoreUtil.m in Sources */,
 				BC0C23651A822308008CD91D /* JpTableCell.m in Sources */,
 				BC0C232D1A822308008CD91D /* UIFont+Jp.m in Sources */,
+				BC13E64F1AA17B2D00480A27 /* CustomizeTableVC.m in Sources */,
 				BC0C23341A822308008CD91D /* JpApplication.m in Sources */,
+				BC13E62C1AA012B800480A27 /* SimpleTableVC.m in Sources */,
 				BC0C23351A822308008CD91D /* JpConst.m in Sources */,
-				BC0C235B1A822308008CD91D /* InternationalUtil.m in Sources */,
 				BC0C232A1A822308008CD91D /* NSString+Jp.m in Sources */,
 				BC0C232E1A822308008CD91D /* UIScrollView+Jp.m in Sources */,
 				BC0C23641A822308008CD91D /* JpActivityIndicatorView.m in Sources */,
@@ -570,18 +611,18 @@
 				BC0C23301A822308008CD91D /* JpTableGroupVC.m in Sources */,
 				BC0C235E1A822308008CD91D /* JpDateUtil.m in Sources */,
 				BC0C23291A822308008CD91D /* NSObject+Jp.m in Sources */,
-				BC0C23631A822308008CD91D /* SystemUtil.m in Sources */,
 				BC0C23601A822308008CD91D /* JpLogUtil.m in Sources */,
 				BCF0AC611A81294E0005E3C6 /* AppDelegate.m in Sources */,
 				BC0C23661A822308008CD91D /* JpTableSectionView.m in Sources */,
 				BC0C23611A822308008CD91D /* JpSystemUtil.m in Sources */,
-				BC0C23671A822308008CD91D /* JpTableTwoLevelVC.m in Sources */,
 				BC0C233C1A822308008CD91D /* JpWebSampleVC.m in Sources */,
 				BC0C23331A822308008CD91D /* JpWebVC.m in Sources */,
-				BC0C235A1A822308008CD91D /* DateUtil.m in Sources */,
 				BC0C23621A822308008CD91D /* JpUiUtil.m in Sources */,
+				BC13E6531AA1BDF000480A27 /* CustomizeTableCell.m in Sources */,
 				BCF0AC5E1A81294E0005E3C6 /* main.m in Sources */,
+				BC13E6561AA1BF6900480A27 /* JpTableWithSectionVC.m in Sources */,
 				BC0C232B1A822308008CD91D /* UIAlertView+Jp.m in Sources */,
+				BC13E6301AA04C7900480A27 /* DemoConst.m in Sources */,
 				BC0C235D1A822308008CD91D /* JpDataUtil.m in Sources */,
 				BC0C235F1A822308008CD91D /* JpFileUtil.m in Sources */,
 			);
@@ -606,10 +647,29 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		BC13E63C1AA0924F00480A27 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BC13E63B1AA0924F00480A27 /* en */,
+				BC13E63F1AA0935E00480A27 /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		BC13E64A1AA094F700480A27 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BC13E6491AA094F700480A27 /* en */,
+				BC13E64B1AA094F800480A27 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		BCF0AC651A81294E0005E3C6 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				BCF0AC661A81294E0005E3C6 /* Base */,
+				BC13E6421AA093B000480A27 /* zh-Hans */,
+				BC13E6431AA093B000480A27 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -618,6 +678,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				BCF0AC6B1A81294E0005E3C6 /* Base */,
+				BC13E63E1AA0935E00480A27 /* zh-Hans */,
+				BC13E6451AA093ED00480A27 /* en */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
@@ -708,18 +770,13 @@
 			baseConfigurationReference = 19FA54B037E8C0C5C4615253 /* Pods-gdemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					/ganjp/cloud/Dropbox/GitHub/GAppio/gone/gone/GLib/Thirdparty/GoogleMaps,
-				);
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/gdemo/gdemo-prefix.pch";
 				INFOPLIST_FILE = gdemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/ganjp/cloud/Dropbox/GitHub/GAppio/gone/gone/GLib/Thirdparty/GoogleAnalytics,
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -729,18 +786,13 @@
 			baseConfigurationReference = 8485F183F6AD7CF572DFB085 /* Pods-gdemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					/ganjp/cloud/Dropbox/GitHub/GAppio/gone/gone/GLib/Thirdparty/GoogleMaps,
-				);
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/gdemo/gdemo-prefix.pch";
 				INFOPLIST_FILE = gdemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/ganjp/cloud/Dropbox/GitHub/GAppio/gone/gone/GLib/Thirdparty/GoogleAnalytics,
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

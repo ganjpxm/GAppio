@@ -1,0 +1,16 @@
+/* 
+  Localizable.strings
+  gdemo
+
+  Created by ganjianping on 27/2/15.
+  Copyright (c) 2015 ganjp. All rights reserved.
+*/
+"IOS_DEMO" = "iOS Demo";
+
+"userInterface" = "  User Interface";
+"defaultTable" = "Default Table";
+"customizeTable" = "Customize Table";
+"tableWithSection" = "Table With Section";
+
+"setting" = "  Setting";
+"changeLang" = "中文";

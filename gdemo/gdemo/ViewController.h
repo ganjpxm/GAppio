@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 ganjp. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "JpVC.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : JpVC
 
 
 @end

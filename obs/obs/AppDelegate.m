@@ -14,9 +14,9 @@
 #import "JpSystemUtil.h"
 #import "JpApplication.h"
 #import "JpConst.h"
-#import "ObsdTabBC.h"
+#import "ObsTabBC.h"
 #import "JpNC.h"
-#import "DriverLoginWebVC.h"
+#import "ObsLoginWebVC.h"
 #import "ObsWebAPIClient.h"
 #import "JpUiUtil.h"
 #import "JpLogUtil.h"
@@ -34,32 +34,33 @@
     [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];// Optional: set Logger to VERBOSE for debug information.
     [[GAI sharedInstance] trackerWithTrackingId:@"UA-52110558-2"];// Initialize tracker. Replace with your tracking ID.
     
+    //---------------------------- Network : reachability ------------------------
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(reachabilityChanged:)
                                                  name:kReachabilityChangedNotification
                                                object:nil];
-    Reachability * reach = [Reachability reachabilityWithHostname:@"119.9.74.121"];
-    reach.reachableBlock = ^(Reachability * reachability)
+    Reachability * reachability = [Reachability reachabilityWithHostname:URL_REACHABILITY];
+    reachability.reachableBlock = ^(Reachability * reachability)
     {
         dispatch_async(dispatch_get_main_queue(), ^{
             NSLog(@"Block Says Reachable");
         });
     };
-    reach.unreachableBlock = ^(Reachability * reachability)
+    reachability.unreachableBlock = ^(Reachability * reachability)
     {
         dispatch_async(dispatch_get_main_queue(), ^{
             NSLog(@"Block Says Unreachable");
         });
     };
-    [reach startNotifier];
-    if (reach.isReachable) {
-        [JpDataUtil saveDataToUDForKey:KEY_NETWORK_STATUS_OBSD  value:VALUE_YES];
+    [reachability startNotifier];
+    if (reachability.isReachable) {
+        [JpDataUtil saveDataToUDForKey:KEY_NETWORK_STATUS  value:VALUE_YES];
     } else {
-        [JpDataUtil saveDataToUDForKey:KEY_NETWORK_STATUS_OBSD  value:VALUE_NO];
+        [JpDataUtil saveDataToUDForKey:KEY_NETWORK_STATUS  value:VALUE_NO];
     }
     
     [JpSystemUtil initAppLanguage];
-    [[JpApplication sharedManager] initWithThemeColor:COLOR_GREEN_JP frontColor:[UIColor whiteColor] backgroundColor:COLOR_BLACK_JP navBackgroundImageName:@""];
+    [[JpApplication sharedManager] initWithPrimaryColor:COLOR_BLACK_JP darkPrimaryColor:COLOR_BLACK_JP lightPrimaryColor:COLOR_BLACK_JP frontColor:[UIColor whiteColor] backgroundColor:COLOR_BLACK_JP navBackgroundImageName:@""];
     
     // Push Notification: Let the device know we want to receive push notifications
 //    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
@@ -77,12 +78,12 @@
 //        }
 //    }
     
-    NSString *userId = [JpDataUtil getValueFromUDByKey:KEY_USER_ID_OBSD];
+    NSString *userId = [JpDataUtil getValueFromUDByKey:KEY_USER_ID];
     if ([userId length]>0) {
-        ObsdTabBC *obsdTabBC = [[ObsdTabBC alloc] init];
+        ObsTabBC *obsdTabBC = [[ObsTabBC alloc] init];
         [self.window setRootViewController:obsdTabBC];
     } else {
-        DriverLoginWebVC *driverLoginWebVC = [[DriverLoginWebVC alloc] init];
+        ObsLoginWebVC *driverLoginWebVC = [[ObsLoginWebVC alloc] init];
         JpNC *driverLoginWebNC = [[JpNC alloc] initWithRootViewController:driverLoginWebVC];
         [self.window setRootViewController:driverLoginWebNC];
     }
@@ -219,13 +220,13 @@
 //}
 
 
--(void)reachabilityChanged:(NSNotification*)note
+-(void)reachabilityChanged:(NSNotification*)notification
 {
-    Reachability *reach = [note object];
-    if([reach isReachable]) {
-        [JpDataUtil saveDataToUDForKey:KEY_NETWORK_STATUS_OBSD  value:VALUE_YES];
+    Reachability *reachability = [notification object];
+    if([reachability isReachable]) {
+        [JpDataUtil saveDataToUDForKey:KEY_NETWORK_STATUS  value:VALUE_YES];
     } else {
-        [JpDataUtil saveDataToUDForKey:KEY_NETWORK_STATUS_OBSD  value:VALUE_NO];
+        [JpDataUtil saveDataToUDForKey:KEY_NETWORK_STATUS  value:VALUE_NO];
     }
 }
 

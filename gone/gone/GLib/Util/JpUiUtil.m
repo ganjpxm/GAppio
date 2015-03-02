@@ -12,11 +12,11 @@
 @implementation JpUiUtil
 
 #pragma mark Window
-+ (float)getWindowHeight   {
++ (float)getScreenHeight   {
     return [UIScreen mainScreen].applicationFrame.size.height;
 }
 
-+ (float)getWindowWidth   {
++ (float)getScreenWidth   {
     return [UIScreen mainScreen].applicationFrame.size.width;
 }
 
@@ -38,6 +38,19 @@
 }
 
 #pragma Image
++ (UIImage *)imageWithColor:(UIColor *)color {
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
 + (UIImage *)resizeImageWithImage:(UIImage *)image width:(int)width height:(int)height
 {
     CGImageRef imageRef = [image CGImage];
