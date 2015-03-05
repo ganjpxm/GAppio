@@ -13,10 +13,10 @@
 #import "ObsData.h"
 #import "JpUiUtil.h"
 #import "JpTableCell.h"
-#import "DBManager.h"
+#import "ObsDBManager.h"
 #import "JpDateUtil.h"
 #import "JpDataUtil.h"
-#import "ObsBookingTableCell.h"
+#import "ObsBookingListTableCell.h"
 #import "ObsBookingDetailVC.h"
 #import "JpConst.h"
 #import "GAI.h"
@@ -62,7 +62,7 @@
 }
 
 - (void)reload:(__unused id)sender {
-    if ([[JpDataUtil getValueFromUDByKey:KEY_NETWORK_STATUS] isEqualToString:VALUE_YES]) {
+//    if ([[JpDataUtil getValueFromUDByKey:KEY_NETWORK_STATUS] isEqualToString:VALUE_YES]) {
         NSURLSessionTask *task = [ObsWebAPIClient getObmBookingItemsFromServerWithBlock:^(NSArray *sections, NSDictionary *sectionCellsDic, NSError *error) {
             if (!error) {
                 NSString *ids = [sectionCellsDic valueForKey:KEY_BROADCAST_BOOKING_VEHICLE_ITEM_IDS];
@@ -71,29 +71,33 @@
                     [self.tableView reloadData];
                 }
                 if ([ids length]>=32) {
-                    ObsBookingAlarmListVC *broadcastBookingVC = [[ObsBookingAlarmListVC alloc] init];
-                    CATransition* transition = [CATransition animation];
-                    transition.duration = 0.3;
-                    transition.type = kCATransitionMoveIn;
-                    transition.subtype = kCATransitionFromTop;
-                    [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
-                    broadcastBookingVC.hidesBottomBarWhenPushed = YES;
-                    [self.navigationController pushViewController:broadcastBookingVC  animated:NO];
+                    NSString *isShowBroadcast = [JpDataUtil getValueFromUDByKey:KEY_IS_SHOW_BROADCAST];
+                    if (![VALUE_NO isEqualToString:isShowBroadcast] ) {
+                        ObsBookingAlarmListVC *broadcastBookingVC = [[ObsBookingAlarmListVC alloc] init];
+                        CATransition* transition = [CATransition animation];
+                        transition.duration = 0.3;
+                        transition.type = kCATransitionMoveIn;
+                        transition.subtype = kCATransitionFromBottom;
+                        [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
+                        broadcastBookingVC.hidesBottomBarWhenPushed = YES;
+                        [self.navigationController pushViewController:broadcastBookingVC  animated:NO];
+                    } else {
+                        [JpDataUtil saveDataToUDForKey:KEY_IS_SHOW_BROADCAST value:VALUE_YES];
+                    }
                 }
-                
             }
         }];
-        [UIAlertView showAlertViewForTaskWithErrorOnCompletion:task delegate:nil];
+        [UIAlertView showAlertViewForTaskWithErrorOnCompletion:task delegate:self];
         [self.refreshControl setRefreshingWithStateOfTask:task];
-    } else {
-        [sender endRefreshing];
-    }
+//    } else {
+//        [sender endRefreshing];
+//    }
 }
 
 - (void)setSectionAndCellValue
 {
-    DBManager *dbManager = [DBManager getSharedInstance];
-    NSString *loginUserId = [JpDataUtil getValueFromUDByKey:KEY_USER_ID];
+    ObsDBManager *dbManager = [ObsDBManager getSharedInstance];
+    NSString *loginUserId = [JpDataUtil getValueFromUDByKey:KEY_OBS_USER_ID];
     NSMutableArray *obmBookingVehicleItems = [dbManager getObmBookingVehicleItemWithDriverUserId:loginUserId search:SearchUPCOMING];
     self.sections = [[NSMutableArray alloc]init];
     self.sectionCellsDic = [[NSMutableDictionary alloc] init];
@@ -117,8 +121,8 @@
 #pragma mark - UITableViewDataSource
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ObsBookingTableCell *cell = (ObsBookingTableCell*)[tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    if (cell == nil) cell = [[ObsBookingTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+    ObsBookingListTableCell *cell = (ObsBookingListTableCell*)[tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    if (cell == nil) cell = [[ObsBookingListTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     NSString *sectionName = [self.sections objectAtIndex:indexPath.section];
     NSMutableArray *obmBookingItems= [self.sectionCellsDic objectForKey:sectionName];
     NSDictionary *obmBookingItem = [obmBookingItems objectAtIndex:indexPath.row];
@@ -153,20 +157,29 @@
     NSString *remark = [obmBookingItem objectForKey:COLUMN_REMARK];
     if (remark && [remark length]>1) {
         cell.commentIV.hidden = NO;
+    } else {
+        cell.commentIV.hidden = YES;
     }
     
     NSString *stop1Address = [obmBookingItem objectForKey:COLUMN_STOP1_ADDRESS];
-    if (stop1Address && [stop1Address length]>1) {
+    if (stop1Address && [stop1Address length]>1 && ![@"<null>" isEqualToString:stop1Address]) {
         cell.stopIV.hidden = NO;
         if (!remark || [remark length]<=1) {
             CGRect oldFrame = cell.stopIV.frame;
             CGRect newFrame = CGRectMake([JpUiUtil getScreenWidth]-24, oldFrame.origin.y, oldFrame.size.width, oldFrame.size.height);
             cell.stopIV.frame = newFrame;
         }
+    } else {
+        cell.stopIV.hidden = YES;
     }
     
     NSString *firstLineHtml = [NSString stringWithFormat:@"<div style='font-size:16px;'>%@ <span style='color:gray;'>- %@</span></div>", [obmBookingItem objectForKey:COLUMN_BOOKING_NUMBER], [obmBookingItem objectForKey:COLUMN_BOOKING_SERVICE]];
+    NSString *stateCd = [obmBookingItem objectForKey:COLUMN_BOOKING_STATUS_CD];
+    if ([VALUE_BOOKING_STATUS_CD_ENQUIREY isEqualToString:stateCd] || [VALUE_BOOKING_STATUS_CD_UNSUCCESSFUL isEqualToString:stateCd] || [VALUE_BOOKING_STATUS_CD_PENDING isEqualToString:stateCd]) {
+        firstLineHtml = [NSString stringWithFormat:@"<div style='font-size:18px;color:red'>%@</div>", @"Booking Enquiry"];
+    }
     NSAttributedString *firstLineAS = [[NSAttributedString alloc] initWithData:[firstLineHtml dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+    
     cell.rightTopTV.attributedText = firstLineAS;
     
     NSString *pickupAddress = [obmBookingItem objectForKey:COLUMN_PICKUP_ADDRESS];
@@ -202,5 +215,6 @@
     [self setSectionAndCellValue];
     [self.tableView reloadData];
 }
+
 
 @end

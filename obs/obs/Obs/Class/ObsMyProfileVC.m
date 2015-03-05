@@ -9,6 +9,7 @@
 #import "ObsMyProfileVC.h"
 #import "JpDataUtil.h"
 #import "NSString+Jp.h"
+#import "JpUiUtil.h"
 
 @interface ObsMyProfileVC ()
 
@@ -33,9 +34,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.iWebView setFrame:CGRectMake(0, 5, [JpUiUtil getScreenWidth], [JpUiUtil getScreenHeight]-35)];
     // Do any additional setup after loading the view.
-    [self.navigationItem setLeftBarButtonItem:nil animated:YES];
-    [super loadPage:@"Web/obsdMyProfile"];
+    [super loadPage:[NSString stringWithFormat:@"%@free/01/driver/profile?isApp=yes&driverUserId=%@", URL_HOST, [JpDataUtil getValueFromUDByKey:KEY_OBS_USER_ID]] ];
     self.iWebView.delegate = self;
 }
 
@@ -43,29 +44,28 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     [super webView:webView shouldStartLoadWithRequest:request navigationType:navigationType];
+    NSString *url = [[request URL] absoluteString];
+    if ([url containsString:@"driver/profile"]) {
+        self.navigationItem.leftBarButtonItem = nil;
+    } else {
+        self.navigationItem.leftBarButtonItem = [self getBackButtonItem];
+    }
     return YES;
 }
-
-//UIWebViewDelegate method
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [super webViewDidFinishLoad:webView];
-    NSMutableString* js = [NSMutableString stringWithFormat:@"%@",@"function mainF() { "];
     
-    NSString *userCd = [JpDataUtil getValueFromUDByKey:KEY_USER_CD];
-    NSDictionary *userDic = [JpDataUtil getDicFromUDByKey:userCd];
-    js = [NSMutableString stringWithFormat:@"%@ document.getElementById('myName').innerHTML='%@';",js,[userDic objectForKey:KEY_USER_NAME]];
-    js = [NSMutableString stringWithFormat:@"%@ document.getElementById('mobileNumber').innerHTML='%@';",js,[userDic objectForKey:KEY_USER_MOBILE_PHONE_OBSD]];
-    js = [NSMutableString stringWithFormat:@"%@ document.getElementById('email').innerHTML='%@';",js,[userDic objectForKey:KEY_USER_EMAIL_OBSD]];
-    NSString *items = [userDic objectForKey:KEY_USER_EXTEND_ITEMS_OBSD];
-    NSDictionary *itemDic = [items toDic];
-    js = [NSMutableString stringWithFormat:@"%@ document.getElementById('make').innerHTML='%@';",js,[itemDic objectForKey:@"vehicleMake"]];
-    js = [NSMutableString stringWithFormat:@"%@ document.getElementById('model').innerHTML='%@';",js,[itemDic objectForKey:@"vehicleModel"]];
-    js = [NSMutableString stringWithFormat:@"%@ document.getElementById('vehicleNumber').innerHTML='%@';",js,[itemDic objectForKey:@"vehicleNo"]];
-    js = [NSMutableString stringWithFormat:@"%@ document.getElementById('color').innerHTML='%@';",js,[itemDic objectForKey:@"vehicleColor"]];
-    
-    js = [NSMutableString stringWithFormat:@"%@%@",js,@"} mainF();"];
-    [webView  stringByEvaluatingJavaScriptFromString:js];
+//    NSString *userCd = [JpDataUtil getValueFromUDByKey:KEY_USER_CD];
+//    NSDictionary *userDic = [JpDataUtil getDicFromUDByKey:userCd];
+//    [userDic objectForKey:KEY_USER_NAME]
+}
+
+- (IBAction)onClickBackBtn:(id)sender
+{
+    if ([self.iWebView canGoBack]) {
+        [self.iWebView goBack];
+    }
 }
 
 @end

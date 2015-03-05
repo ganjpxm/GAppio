@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 ganjp. All rights reserved.
 //
 
-@interface ObsBookingTableCell : UITableViewCell
+@interface ObsBookingListTableCell : UITableViewCell
 
 @property(nonatomic,strong)UILabel *leftTopTV;
 @property(nonatomic,strong)UILabel *leftBottomTV;

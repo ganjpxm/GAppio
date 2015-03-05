@@ -5,9 +5,9 @@
 //  Created by ganjianping on 26/2/15.
 //  Copyright (c) 2015 lt. All rights reserved.
 //
-#import "BookingTableVC.h"
+#import "JpTableVC.h"
 
-@interface ObsBookingAlarmListVC : BookingTableVC
+@interface ObsBookingAlarmListVC : JpTableVC
 
 
 @end

@@ -7,7 +7,7 @@
 //
 #import "JpTableSectionView.h"
 
-@interface BookingTableSectionView : JpTableSectionView
+@interface ObsBookingTableSectionView : JpTableSectionView
 
 @property (nonatomic, strong) UIImageView * iImageView;
 

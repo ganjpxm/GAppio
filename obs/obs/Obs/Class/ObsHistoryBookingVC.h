@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 ganjp. All rights reserved.
 //
 
-#import "BookingTableVC.h"
+#import "ObsBookingTableWithSectionVC.h"
 
-@interface ObsHistoryBookingVC : BookingTableVC
+@interface ObsHistoryBookingVC : ObsBookingTableWithSectionVC
 
 @end

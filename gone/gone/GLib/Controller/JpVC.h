@@ -23,4 +23,6 @@
  */
 - (NSArray *)listNotificationInterests;
 
+- (UIBarButtonItem *) getBackButtonItem;
+
 @end

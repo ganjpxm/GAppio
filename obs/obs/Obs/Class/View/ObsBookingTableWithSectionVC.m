@@ -5,13 +5,13 @@
 //  Created by ganjianping on 5/2/15.
 //  Copyright (c) 2015 lt. All rights reserved.
 //
-#import "BookingTableVC.h"
+#import "ObsBookingTableWithSectionVC.h"
 #import "JpDateUtil.h"
-#import "BookingTableSectionView.h"
+#import "ObsBookingTableSectionView.h"
 #import "JpUiUtil.h"
 
 
-@implementation BookingTableVC
+@implementation ObsBookingTableWithSectionVC
 
 - (id)init
 {
@@ -40,11 +40,11 @@
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    BookingTableSectionView * headerView;
+    ObsBookingTableSectionView * headerView;
     if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1)
-        headerView =  [[BookingTableSectionView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), 46.0)];
+        headerView =  [[ObsBookingTableSectionView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), 46.0)];
     else
-        headerView =  [[BookingTableSectionView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), 23.0)];
+        headerView =  [[ObsBookingTableSectionView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), 23.0)];
     [headerView setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];
     [headerView setTitle:[tableView.dataSource tableView:tableView titleForHeaderInSection:section]];
     

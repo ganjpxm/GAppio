@@ -46,16 +46,7 @@
     [JpSystemUtil setNavAndStatusbarStytle:self];
     
     [[self navigationController] setNavigationBarHidden:NO animated:NO];
-    
-    //Setup common back button
-    //UIButton *backButton = [UIButton createNavBarBtnWithTitle:@"" imgName:@"icon_back_white" target:self action:@selector(onClickBackBtn:)];
-
-    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-    [backButton setImage:[UIImage imageNamed:@"icon_back_white"] forState:UIControlStateNormal];
-    [backButton addTarget:self action:@selector(onClickBackBtn:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    self.navigationItem.leftBarButtonItem = backButtonItem;
+    //self.navigationItem.leftBarButtonItem = [self getBackButtonItem];
     
     //Register with NSNotificationCenter
     for (NSString *notification in [self listNotificationInterests]) {
@@ -63,6 +54,16 @@
     }
 }
 
+- (UIBarButtonItem *) getBackButtonItem
+{
+    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 65, 30)];
+    [backButton setImage:[UIImage imageNamed:@"icon_back_white"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(onClickBackBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [backButton setTitle:@" Back" forState:UIControlStateNormal];
+    
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    return backButtonItem;
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

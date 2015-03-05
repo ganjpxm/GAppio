@@ -14,10 +14,10 @@
 #import "JpUiUtil.h"
 #import "JpTableSectionView.h"
 #import "JpTableCell.h"
-#import "DBManager.h"
+#import "ObsDBManager.h"
 #import "JpDateUtil.h"
 #import "JpDataUtil.h"
-#import "ObsBookingTableCell.h"
+#import "ObsBookingListTableCell.h"
 #import "ObsBookingDetailVC.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
@@ -43,9 +43,20 @@
 }
 
 - (void)reload:(__unused id)sender {
-    [self setSectionAndCellValue];
-    [self.tableView reloadData];
-    [sender endRefreshing];
+    if ([[JpDataUtil getValueFromUDByKey:KEY_NETWORK_STATUS] isEqualToString:VALUE_YES]) {
+        NSURLSessionTask *task = [ObsWebAPIClient getObmBookingItemsFromServerWithBlock:^(NSArray *sections, NSDictionary *sectionCellsDic, NSError *error) {
+            if (!error) {
+                if ([sections count]>0) {
+                    [self setSectionAndCellValue];
+                    [self.tableView reloadData];
+                }
+            }
+        }];
+        [UIAlertView showAlertViewForTaskWithErrorOnCompletion:task delegate:nil];
+        [self.refreshControl setRefreshingWithStateOfTask:task];
+    } else {
+        [sender endRefreshing];
+    }
 }
 - (void)viewDidLoad
 {
@@ -60,8 +71,8 @@
 
 - (void)setSectionAndCellValue
 {
-    DBManager *dbManager = [DBManager getSharedInstance];
-    NSString *loginUserId = [JpDataUtil getValueFromUDByKey:KEY_USER_ID];
+    ObsDBManager *dbManager = [ObsDBManager getSharedInstance];
+    NSString *loginUserId = [JpDataUtil getValueFromUDByKey:KEY_OBS_USER_ID];
     NSMutableArray *obmBookingVehicleItems = [dbManager getObmBookingVehicleItemWithDriverUserId:loginUserId search:SearchPAST];
     self.sections = [[NSMutableArray alloc]init];
     self.sectionCellsDic = [[NSMutableDictionary alloc] init];
@@ -87,8 +98,8 @@
 #pragma mark - UITableViewDataSource
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ObsBookingTableCell *cell = (ObsBookingTableCell*)[tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    if (cell == nil) cell = [[ObsBookingTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+    ObsBookingListTableCell *cell = (ObsBookingListTableCell*)[tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    if (cell == nil) cell = [[ObsBookingListTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     NSString *sectionName = [self.sections objectAtIndex:indexPath.section];
     NSMutableArray *obmBookingItems= [self.sectionCellsDic objectForKey:sectionName];
     NSDictionary *obmBookingItem = [obmBookingItems objectAtIndex:indexPath.row];
@@ -123,6 +134,8 @@
     NSString *remark = [obmBookingItem objectForKey:COLUMN_REMARK];
     if (remark && [remark length]>1) {
         cell.commentIV.hidden = NO;
+    } else {
+        cell.commentIV.hidden = YES;
     }
     
     NSString *stop1Address = [obmBookingItem objectForKey:COLUMN_STOP1_ADDRESS];
@@ -165,30 +178,6 @@
     [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
     bookingVehicleDetailVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:bookingVehicleDetailVC  animated:NO];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 35.0;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 80.0;
-}
-
--(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    JpTableSectionView * headerView;
-    if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1)
-        headerView =  [[JpTableSectionView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), 46.0)];
-    else
-        headerView =  [[JpTableSectionView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), 23.0)];
-    headerView.label.font = [UIFont boldSystemFontOfSize:16];
-    headerView.label.textColor = [UIColor blackColor];
-    [headerView setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];
-    [headerView setTitle:[tableView.dataSource tableView:tableView titleForHeaderInSection:section]];
-    return headerView;
 }
 
 - (void)updateBookingTableView

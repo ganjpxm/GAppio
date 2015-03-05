@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 ganjp. All rights reserved.
 //
 
-#import "ObsBookingTableCell.h"
+#import "ObsBookingListTableCell.h"
 #import "JpApplication.h"
 #import "JpUiUtil.h"
 
-@implementation ObsBookingTableCell
+@implementation ObsBookingListTableCell
 
 @synthesize leftTopTV,leftBottomTV,middleView,rightTopTV,rightMiddleTV,rightBottomTV,commentIV,stopIV;
 

@@ -11,6 +11,8 @@
 #import "JpDateUtil.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import <CoreLocation/CoreLocation.h>
+#import "JpConst.h"
+#import "JpUtil.h"
 
 
 @interface ObsBookingDetailVC ()
@@ -44,12 +46,11 @@
     
     // Do any additional setup after loading the view.
     [self setTitle:[_bookingVehicleDetail objectForKey:COLUMN_BOOKING_NUMBER]];
-    [self.view setBackgroundColor:LIGHT_GRAY_COLOR];
+    [self.view setBackgroundColor:COLOR_GRAY_LIGHT_PRIMARY];
     
     
     NSInteger startHeightOffset = [JpUiUtil getStartHeightOffset];
     UIScrollView  *scrollView = [[UIScrollView alloc] init];
-    
     scrollView.frame = CGRectMake(0, 5, [JpUiUtil getScreenWidth], [JpUiUtil getScreenHeight]+startHeightOffset);
     scrollView.backgroundColor = [UIColor clearColor];
     scrollView.showsVerticalScrollIndicator = YES;
@@ -58,29 +59,45 @@
     [self.view addSubview:scrollView];
     
     long y = 0;
+    //pickup time
     NSString *service = [self.bookingVehicleDetail objectForKey:COLUMN_BOOKING_SERVICE];
     unsigned long long pickupDatetimeLong = [[self.bookingVehicleDetail objectForKey:COLUMN_PICKUP_DATE_TIME] longLongValue];
     NSString *pickupDatetime = [JpDateUtil getDateTimeStrByMilliSecond:pickupDatetimeLong dateFormate:@"EEE, dd MMM yyyy, HH:mm"];
-    
     UIView *view1 = [self createBoxViewWithStartY:y firstText:service secondText:pickupDatetime tag:0];
     [scrollView addSubview:view1];
     
-    NSString *pickupAddress = [self.bookingVehicleDetail objectForKey:COLUMN_PICKUP_ADDRESS];
     
+    //FROM
+    NSString *pickupAddress = [self.bookingVehicleDetail objectForKey:COLUMN_PICKUP_ADDRESS];
     NSString *serviceCd = [self.bookingVehicleDetail objectForKey:COLUMN_BOOKING_SERVICE_CD];
     NSString *flightNumber = [self.bookingVehicleDetail objectForKey:COLUMN_FLIGHT_NUMBER];
     if ([serviceCd length]>0 && [VALUE_BOOKING_SERVICE_CD_ARRIVAL isEqualToString:serviceCd]) {
-        pickupAddress = [NSString stringWithFormat:@"%@ %@", flightNumber, pickupAddress];
+        pickupAddress = [NSString stringWithFormat:@"<span style='font-size:18px;'><b>%@</b> %@ </span>", flightNumber, pickupAddress];
     }
     y += view1.frame.size.height + 5;
     UIView *view2 = [self createBoxViewWithStartY:y firstText:@"From" secondText:pickupAddress tag:MAP_DIRECTION];
     [scrollView addSubview:view2];
+    y += view2.frame.size.height + 5;
     
+    NSString *stop1Address = [self.bookingVehicleDetail objectForKey:COLUMN_STOP1_ADDRESS];
+    if (stop1Address && [stop1Address length]>8) {
+        UIView *view2s1 = [self createBoxViewWithStartY:y firstText:@"Stop 1 Address" secondText:stop1Address tag:MAP_ROUTE_STOP1];
+        [scrollView addSubview:view2s1];
+         y += view2s1.frame.size.height + 5;
+    }
+    NSString *stop2Address = [self.bookingVehicleDetail objectForKey:COLUMN_STOP2_ADDRESS];
+    if (stop2Address && [stop2Address length]>8) {
+        UIView *view2s2 = [self createBoxViewWithStartY:y firstText:@"Stop 2 Address" secondText:stop2Address tag:MAP_ROUTE_STOP2];
+        [scrollView addSubview:view2s2];
+        y += view2s2.frame.size.height + 5;
+    }
+    
+    //TO
     NSString *destination = [self.bookingVehicleDetail objectForKey:COLUMN_DESTINATION];
     if ([serviceCd length]>0 && [VALUE_BOOKING_SERVICE_CD_DEPARTURE isEqualToString:serviceCd]) {
-        pickupAddress = [NSString stringWithFormat:@"%@ %@", flightNumber, destination];
+        pickupAddress = [NSString stringWithFormat:@"<b>%@</b> %@", flightNumber, destination];
     }
-    y += view2.frame.size.height + 5;
+    
     UIView *view3 = [self createBoxViewWithStartY:y firstText:@"To" secondText:destination tag:MAP_ROUTE];
     [scrollView addSubview:view3];
     
@@ -95,9 +112,7 @@
     [scrollView addSubview:view4];
     
     NSString *bookByPerson = [NSString stringWithFormat:@"%@ %@ %@", [self.bookingVehicleDetail objectForKey:COLUMN_BOOKING_USER_GENDER], [self.bookingVehicleDetail objectForKey:COLUMN_BOOKING_USER_FIRST_NAME],[self.bookingVehicleDetail objectForKey:COLUMN_BOOKING_USER_LAST_NAME]];
-    
    
-    
     y += view4.frame.size.height + 5;
     UIView *view5 = [self createBoxViewWithStartY:y firstText:@"Book by" secondText:bookByPerson tag:CALL_BOOK_BY_USER];
     [scrollView addSubview:view5];
@@ -117,7 +132,7 @@
 //    y += view6.frame.size.height + 5;
     NSString *remark = [self.bookingVehicleDetail objectForKey:COLUMN_REMARK];
     if ([remark length]>1 && ![remark isEqualToString:@"<null>"]) {
-        UILabel *remarkLabel = [[UILabel alloc]initWithFrame:CGRectMake(8, 10, [JpUiUtil getScreenWidth]-16, 30)];
+        UILabel *remarkLabel = [[UILabel alloc]initWithFrame:CGRectMake(8, 10, [JpUiUtil getScreenWidth]-32, 30)];
         remarkLabel.text = remark;
         remarkLabel.numberOfLines = 0;
         remarkLabel.backgroundColor = [UIColor clearColor];
@@ -156,7 +171,8 @@
 //    y += gmsMapView.frame.size.height + 5;
     
 //    [scrollView addSubview:gmsMapView];
-//    [scrollView setContentSize:CGSizeMake(scrollView.frame.size.width, y)];
+    [scrollView setContentSize:CGSizeMake(scrollView.frame.size.width, y)];
+    [[self.navigationController navigationBar] setTintColor:[UIColor whiteColor]];
    
 }
 
@@ -179,18 +195,27 @@
     [firstLabel sizeToFit];
     long firstLabelHeight = firstLabel.frame.size.height;
 
-    UILabel *secondLabel = [[UILabel alloc]initWithFrame:CGRectMake(8, firstLabelHeight+10, width, 30)];
-    secondLabel.text = secondText;
-    secondLabel.numberOfLines = 0;
-    secondLabel.backgroundColor = [UIColor clearColor];
-    secondLabel.textColor = [UIColor blackColor];
-    secondLabel.textAlignment = NSTextAlignmentLeft;
-    secondLabel.font = [UIFont fontWithName:@"Helvetica" size:17.0];
-    secondLabel.lineBreakMode = YES;
-    secondLabel.textAlignment = NSTextAlignmentLeft;
-    [secondLabel setLineBreakMode:NSLineBreakByCharWrapping];
-    [secondLabel sizeToFit];
-    long secondLabelHeight = secondLabel.frame.size.height;
+    UILabel *secondLabel = [[UILabel alloc]initWithFrame:CGRectMake(8, firstLabelHeight+10, width+10, 30)];
+    
+    long secondLabelHeight;
+    if ([secondText containsString:@"<b>"]) {
+        NSMutableAttributedString *attributedText = [JpUtil getHtmlAttributedString:secondText];
+        secondLabel.attributedText = attributedText;
+        secondLabelHeight = [JpUtil getRealHeight:attributedText width:width];
+    } else {
+        secondLabel.text = secondText;
+        
+        secondLabel.numberOfLines = 0;
+        secondLabel.backgroundColor = [UIColor clearColor];
+        secondLabel.textColor = [UIColor blackColor];
+        secondLabel.textAlignment = NSTextAlignmentLeft;
+        secondLabel.font = [UIFont fontWithName:@"Helvetica" size:17.0];
+        secondLabel.lineBreakMode = YES;
+        secondLabel.textAlignment = NSTextAlignmentLeft;
+        [secondLabel setLineBreakMode:NSLineBreakByCharWrapping];
+        [secondLabel sizeToFit];
+        secondLabelHeight = secondLabel.frame.size.height;
+    }
     
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(8, y, [JpUiUtil getScreenWidth]-16, firstLabelHeight + secondLabelHeight + 20)];
     [view setBackgroundColor:[UIColor whiteColor]];
@@ -205,7 +230,7 @@
         if (tag==MAP_DIRECTION) {
             [callBtn setImage:[UIImage imageNamed:@"icon_direction_blue"] forState:UIControlStateNormal];
             [callBtn addTarget:self action:@selector(onOpenMapBtn:) forControlEvents:UIControlEventTouchUpInside];
-        } else if (tag==MAP_ROUTE) {
+        } else if (tag==MAP_ROUTE || tag==MAP_ROUTE_STOP1 || tag==MAP_ROUTE_STOP2) {
             [callBtn setImage:[UIImage imageNamed:@"icon_route_red"] forState:UIControlStateNormal];
             [callBtn addTarget:self action:@selector(onOpenMapBtn:) forControlEvents:UIControlEventTouchUpInside];
         } else {
@@ -224,14 +249,31 @@
     NSURL *testURL = [NSURL URLWithString:@"comgooglemaps-x-callback://"];
     if ([[UIApplication sharedApplication] canOpenURL:testURL]) {
         NSString *pickupAddress = [self.bookingVehicleDetail objectForKey:COLUMN_PICKUP_ADDRESS];
+        NSString *stop1Address = [self.bookingVehicleDetail objectForKey:COLUMN_STOP1_ADDRESS];
+        NSString *stop2Address = [self.bookingVehicleDetail objectForKey:COLUMN_STOP2_ADDRESS];
         NSString *destinationAddress = [self.bookingVehicleDetail objectForKey:COLUMN_DESTINATION];
+        
         pickupAddress = [pickupAddress stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+        stop1Address = [stop1Address stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+        stop2Address = [stop2Address stringByReplacingOccurrencesOfString:@" " withString:@"+"];
         destinationAddress = [destinationAddress stringByReplacingOccurrencesOfString:@" " withString:@"+"];
 
         //Google Maps URL Scheme
         
         NSString *directionsRequest = [NSString stringWithFormat:@"comgooglemaps-x-callback://?daddr=%@&zoom=17&x-success=obsd://page/one?token=1&domain=org.ganjp&x-source=Driver+App&directionsmode=driving", pickupAddress];//driving
-        if (tag==MAP_ROUTE) {
+        
+        if (tag==MAP_ROUTE_STOP1) {
+            directionsRequest = [NSString stringWithFormat:@"comgooglemaps-x-callback://?saddr=%@&daddr=%@&x-success=obsd://page/one?token=1&domain=org.ganjp&x-source=Driver+App&directionsmode=driving", pickupAddress, stop1Address];
+        } else if (tag==MAP_ROUTE_STOP2) {
+            directionsRequest = [NSString stringWithFormat:@"comgooglemaps-x-callback://?saddr=%@&daddr=%@&x-success=obsd://page/one?token=1&domain=org.ganjp&x-source=Driver+App&directionsmode=driving", stop1Address, stop2Address];
+        } else if (tag==MAP_ROUTE) {
+            if (stop1Address && [stop1Address length]>8) {
+                if (stop2Address && [stop2Address length]>8) {
+                    pickupAddress = stop2Address;
+                } else {
+                    pickupAddress = stop1Address;
+                }
+            }
             directionsRequest = [NSString stringWithFormat:@"comgooglemaps-x-callback://?saddr=%@&daddr=%@&x-success=obsd://page/one?token=1&domain=org.ganjp&x-source=Driver+App&directionsmode=driving", pickupAddress, destinationAddress];
         }
         

@@ -20,6 +20,8 @@
 #import "ObsWebAPIClient.h"
 #import "JpUiUtil.h"
 #import "JpLogUtil.h"
+#import "UIAlertView+AFNetworking.h"
+#import "ObsBookingAlarmListVC.h"
 
 @interface AppDelegate ()
 
@@ -62,23 +64,32 @@
     [JpSystemUtil initAppLanguage];
     [[JpApplication sharedManager] initWithPrimaryColor:COLOR_BLACK_JP darkPrimaryColor:COLOR_BLACK_JP lightPrimaryColor:COLOR_BLACK_JP frontColor:[UIColor whiteColor] backgroundColor:COLOR_BLACK_JP navBackgroundImageName:@""];
     
-    // Push Notification: Let the device know we want to receive push notifications
-//    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
-//     (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
-//    if (launchOptions) {
-//        NSDictionary *pushInfoDic = [launchOptions objectForKey:@"UIApplicationLaunchOptionsRemoteNotificationKey"];
-//        if (pushInfoDic!=Nil && [pushInfoDic count]>0) {
-//            NSDictionary *dic = [pushInfoDic valueForKey:@"aps"];
-//            NSString *alertMessage = [dic objectForKey:@"alert"];
-//            NSString *bookingVehicleItemId = [pushInfoDic valueForKey:@"content"];
-//            [JpDataUtil saveDataToUDForKey:KEY_BOOKING_VEHICLE_ITEM_ID_OBSD value:bookingVehicleItemId];
-//            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Notification" message:alertMessage delegate:self
-//                                                      cancelButtonTitle:@"Ignore" otherButtonTitles:@"Accept", nil];
-//            [alertView show];
-//        }
-//    }
+    // Push Notification [[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0
+    if ([application respondsToSelector:@selector(isRegisteredForRemoteNotifications)]) {
+        // iOS 8 Notifications
+        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+        [application registerForRemoteNotifications];
+    } else {
+        // iOS < 8 Notifications
+        [application registerForRemoteNotificationTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
+    }
+
+    if (launchOptions) {
+        NSDictionary *pushInfoDic = [launchOptions objectForKey:@"UIApplicationLaunchOptionsRemoteNotificationKey"];
+        if (pushInfoDic!=Nil && [pushInfoDic count]>0) {
+            NSURLSessionTask *task = [ObsWebAPIClient getObmBookingItemsFromServerWithBlock:^(NSArray *sections, NSDictionary *sectionCellsDic, NSError *error) {
+                if (!error) {
+                    ObsBookingAlarmListVC *bookingAlarmListVC = [[ObsBookingAlarmListVC alloc] init];
+                    JpNC *bookingAlarmListNC = [[JpNC alloc] initWithRootViewController:bookingAlarmListVC];
+                    [self.window setRootViewController:bookingAlarmListNC];
+                }
+            }];
+            [UIAlertView showAlertViewForTaskWithErrorOnCompletion:task delegate:nil];
+        }
+    }
     
-    NSString *userId = [JpDataUtil getValueFromUDByKey:KEY_USER_ID];
+    [JpDataUtil saveDataToUDForKey:KEY_IS_SHOW_BROADCAST value:VALUE_YES];
+    NSString *userId = [JpDataUtil getValueFromUDByKey:KEY_OBS_USER_ID];
     if ([userId length]>0) {
         ObsTabBC *obsdTabBC = [[ObsTabBC alloc] init];
         [self.window setRootViewController:obsdTabBC];
@@ -114,58 +125,64 @@
 }
 
 //#pragma mark - Push notification
-//- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken {
-//    NSString * deviceTokenStr = [deviceToken description];
-//    deviceTokenStr = [deviceTokenStr stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
-//    deviceTokenStr = [deviceTokenStr stringByReplacingOccurrencesOfString:@" " withString:@""];
-//    
-//    [JpLogUtil log:@"Device token string is:" append:deviceTokenStr];
-//    [JpDataUtil saveDataToUDForKey:KEY_DEVICE_TOKEN_OBSD value:deviceTokenStr];
-//}
-//
-//- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
-//{
-//    [JpLogUtil log:@"Register Remote Notifications error"];
-//}
-//
-//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
-//{
-//    NSLog(@"Receive remote notification : %@",userInfo);
-//    
+- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken {
+    NSString * deviceTokenStr = [deviceToken description];
+    deviceTokenStr = [deviceTokenStr stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    deviceTokenStr = [deviceTokenStr stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    [JpLogUtil log:@"Device token string is:" append:deviceTokenStr];
+    [JpDataUtil saveDataToUDForKey:KEY_DEVICE_TOKEN_OBS value:deviceTokenStr];
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+    [JpLogUtil log:@"Register Remote Notifications error"];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    NSLog(@"Receive remote notification : %@",userInfo);
+    
 //    NSDictionary *dic = [userInfo valueForKey:@"aps"];
 //    NSString *alertMessage = [dic objectForKey:@"alert"];
 //    NSString *bookingVehicleItemId = [userInfo valueForKey:@"content"];
 //    [JpDataUtil saveDataToUDForKey:KEY_BOOKING_VEHICLE_ITEM_ID_OBSD value:bookingVehicleItemId];
-//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Notification" message:alertMessage delegate:self
-//                                              cancelButtonTitle:@"Ignore" otherButtonTitles:@"Accept", nil];
-//    [alertView show];
-//}
-//
-////Mutiple task fetch data at background
+    
+    NSURLSessionTask *task = [ObsWebAPIClient getObmBookingItemsFromServerWithBlock:^(NSArray *sections, NSDictionary *sectionCellsDic, NSError *error) {
+        if (!error) {
+            ObsBookingAlarmListVC *bookingAlarmListVC = [[ObsBookingAlarmListVC alloc] init];
+            JpNC *bookingAlarmListNC = [[JpNC alloc] initWithRootViewController:bookingAlarmListVC];
+            [self.window setRootViewController:bookingAlarmListNC];
+        }
+    }];
+    [UIAlertView showAlertViewForTaskWithErrorOnCompletion:task delegate:nil];
+}
+
+//Mutiple task fetch data at background
 //- (void) application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler NS_AVAILABLE_IOS(7_0)
 //{
-//    //    UINavigationController *navigationController = (UINavigationController*)self.window.rootViewController;
-//    //
-//    //    id fetchViewController = navigationController.topViewController;
-//    //    if ([fetchViewController respondsToSelector:@selector(fetchDataResult:)]) {
-//    //        [fetchViewController fetchDataResult:^(NSError *error, NSArray *results){
-//    //            if (!error) {
-//    //                if (results.count != 0) {
-//    //                    //Update UI with results.
-//    //                    //Tell system all done.
-//    //                    completionHandler(UIBackgroundFetchResultNewData);
-//    //                } else {
-//    //                    completionHandler(UIBackgroundFetchResultNoData);
-//    //                }
-//    //            } else {
-//    //                completionHandler(UIBackgroundFetchResultFailed);
-//    //            }
-//    //        }];
-//    //    } else {
-//    //        completionHandler(UIBackgroundFetchResultFailed);
-//    //    }
+//        UINavigationController *navigationController = (UINavigationController*)self.window.rootViewController;
+//    
+//        id fetchViewController = navigationController.topViewController;
+//        if ([fetchViewController respondsToSelector:@selector(fetchDataResult:)]) {
+//            [fetchViewController fetchDataResult:^(NSError *error, NSArray *results){
+//                if (!error) {
+//                    if (results.count != 0) {
+//                        //Update UI with results.
+//                        //Tell system all done.
+//                        completionHandler(UIBackgroundFetchResultNewData);
+//                    } else {
+//                        completionHandler(UIBackgroundFetchResultNoData);
+//                    }
+//                } else {
+//                    completionHandler(UIBackgroundFetchResultFailed);
+//                }
+//            }];
+//        } else {
+//            completionHandler(UIBackgroundFetchResultFailed);
+//        }
 //}
-//
+
 //- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
 //    if (buttonIndex==1) {
 //        NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
@@ -193,32 +210,31 @@
 //        }];
 //    }
 //}
-//
-//- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
-//{
-//    NSLog(@"url recieved: %@", url);
-//    NSLog(@"query string: %@", [url query]);
-//    NSLog(@"host: %@", [url host]);
-//    NSLog(@"url path: %@", [url path]);
-//    NSDictionary *dict = [self parseQueryString:[url query]];
-//    NSLog(@"query dict: %@", dict);
-//    return YES;
-//}
-//
-//- (NSDictionary *)parseQueryString:(NSString *)query {
-//    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithCapacity:6];
-//    NSArray *pairs = [query componentsSeparatedByString:@"&"];
-//    
-//    for (NSString *pair in pairs) {
-//        NSArray *elements = [pair componentsSeparatedByString:@"="];
-//        NSString *key = [[elements objectAtIndex:0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//        NSString *val = [[elements objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//        
-//        [dict setObject:val forKey:key];
-//    }
-//    return dict;
-//}
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    NSLog(@"url recieved: %@", url);
+    NSLog(@"query string: %@", [url query]);
+    NSLog(@"host: %@", [url host]);
+    NSLog(@"url path: %@", [url path]);
+    NSDictionary *dict = [self parseQueryString:[url query]];
+    NSLog(@"query dict: %@", dict);
+    return YES;
+}
+
+- (NSDictionary *)parseQueryString:(NSString *)query {
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithCapacity:6];
+    NSArray *pairs = [query componentsSeparatedByString:@"&"];
+    
+    for (NSString *pair in pairs) {
+        NSArray *elements = [pair componentsSeparatedByString:@"="];
+        NSString *key = [[elements objectAtIndex:0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *val = [[elements objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        [dict setObject:val forKey:key];
+    }
+    return dict;
+}
 
 -(void)reachabilityChanged:(NSNotification*)notification
 {

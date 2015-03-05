@@ -15,6 +15,7 @@
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
+#import "ObsWebAPIClient.h"
 
 @interface ObsLoginWebVC ()
 
@@ -36,7 +37,7 @@
     
     [WebViewJavascriptBridge enableLogging];
     _mWebViewJsBridge = [WebViewJavascriptBridge bridgeForWebView:super.iWebView webViewDelegate:self handler:^(id data, WVJBResponseCallback responseCallback) {
-        if ([[JpDataUtil getValueFromUDByKey:KEY_NETWORK_STATUS] isEqualToString:VALUE_YES]) {
+            //if ([[JpDataUtil getValueFromUDByKey:KEY_NETWORK_STATUS] isEqualToString:VALUE_YES]) {
             [super showMaskView:@"Processing.."];
             NSDictionary *dic = data;
             if ([dic count]>0 && [[dic objectForKey:@"action"] isEqualToString:@"login"]) {
@@ -49,7 +50,7 @@
                     if ([result isEqualToString:VALUE_SUCCESS]) {
                         NSString *userCd = [respondDic objectForKey:KEY_USER_CD];
                         [JpDataUtil saveDataToUDForKey:KEY_USER_CD value:userCd];
-                        [JpDataUtil saveDataToUDForKey:KEY_USER_ID value:[respondDic objectForKey:KEY_USER_ID]];
+                        [JpDataUtil saveDataToUDForKey:KEY_OBS_USER_ID value:[respondDic objectForKey:KEY_OBS_USER_ID]];
                         [JpDataUtil saveDataToUDForKey:KEY_USER_NAME value:[respondDic objectForKey:KEY_USER_NAME]];
                         
                         ObsTabBC *tabBC = [[ObsTabBC alloc] init];
@@ -65,11 +66,8 @@
                 }];
             } else {
                 [super hideMaskView];
-                [JpUiUtil showAlertWithMessage:@"Login Fail" title:@"Alert"];
+                [JpUiUtil showAlertWithMessage:@"Login Fail, please check your network." title:@"Alert"];
             }
-        } else {
-            [JpUiUtil showAlertWithMessage:@"Network is not available" title:@"Alert"];
-        }
     }];
     
     [super loadPage:@"Web/driverLogin"];
@@ -87,7 +85,6 @@
 {
     [super webViewDidFinishLoad:webView];
 }
-
 
 
 @end

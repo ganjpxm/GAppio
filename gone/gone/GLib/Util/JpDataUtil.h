@@ -14,4 +14,5 @@
 
 + (NSArray *) getJsonArr:(id)aJsonStr;
 
++ (void)resetDefaults;
 @end

@@ -6,14 +6,14 @@
 //  Copyright (c) 2015 lt. All rights reserved.
 //
 
-#import "BookingTableSectionView.h"
+#import "ObsBookingTableSectionView.h"
 
 
-@interface BookingTableSectionView ()
+@interface ObsBookingTableSectionView ()
 
 @end
 
-@implementation BookingTableSectionView
+@implementation ObsBookingTableSectionView
 
 - (id)initWithFrame:(CGRect)frame
 {

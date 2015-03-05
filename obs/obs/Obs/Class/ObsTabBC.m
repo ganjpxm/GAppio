@@ -14,6 +14,8 @@
 #import "ObsMyProfileVC.h"
 #import "JpApplication.h"
 #import "JpUiUtil.h"
+#import "JpDataUtil.h"
+#import "ObsWebAPIClient.h"
 
 @interface ObsTabBC ()
 
@@ -32,6 +34,12 @@
 	[self configureTabsAndNavigationControllers];
     [self.view addSubview:self.mTabBarController.view];
     [self.view setBackgroundColor:[UIColor whiteColor]];
+    
+    
+    NSString* isRegist = [JpDataUtil getValueFromUDByKey:KEY_IS_REGIST_DEVICE_OBS];
+    if (![VALUE_YES isEqualToString:isRegist]) {
+        [self registDevice];
+    }
 }
 
 - (void) configureTabsAndNavigationControllers {
@@ -108,6 +116,33 @@
     tabImageView.tag = 222;
     [tabBarControllerIn.tabBar addSubview:tabImageView];
     [tabBarControllerIn.tabBar bringSubviewToFront:tabImageView];
+}
+
+- (void)registDevice
+{
+    //if ([[JpDataUtil getValueFromUDByKey:KEY_NETWORK_STATUS] isEqualToString:VALUE_YES]) {
+        NSString *deviceToken = [JpDataUtil getValueFromUDByKey:KEY_DEVICE_TOKEN_OBS];
+        if (deviceToken) {
+            NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+            [parameters setObject:[JpDataUtil getDicFromUDByKey:KEY_OBS_USER_ID] forKey:@"userId"];
+            [parameters setObject:deviceToken forKey:@"deviceToken"];
+            [parameters setObject:@"iOS" forKey:@"platform"];
+            [parameters setObject:VALUE_YES forKey:@"usePushNotification"];
+            
+            [parameters setObject:[UIDevice currentDevice].systemVersion forKey:@"osVersion"];
+            [parameters setObject:@"Apple" forKey:@"deviceBrand"];
+            [parameters setObject:[UIDevice currentDevice].model forKey:@"deviceModel"];
+            
+            [[ObsWebAPIClient sharedClient] GET:@"free/device/regist" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+                NSDictionary *respondDic = responseObject;
+                NSString *result = [respondDic valueForKey:KEY_RESULT];
+                if ([VALUE_SUCCESS isEqualToString:result]) {
+                    [JpDataUtil saveDataToUDForKey:KEY_IS_REGIST_DEVICE_OBS value:VALUE_YES];
+                }
+            } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                
+            }];
+        }
 }
 
 @end

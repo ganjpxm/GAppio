@@ -7,6 +7,6 @@
 //
 #import "JpTableWithSectionVC.h"
 
-@interface BookingTableVC : JpTableWithSectionVC
+@interface ObsBookingTableWithSectionVC : JpTableWithSectionVC
 
 @end

@@ -13,7 +13,7 @@
 
 static NSString * const URL_HOST                   = @"http://119.9.74.121/";
 static NSString * const URL_REACHABILITY           = @"http://1.lt.sg";
-//static NSString * const URL_HOST                   = @"http://192.168.0.109:8080/obs/";
+//static NSString * const URL_HOST                   = @"http://192.168.1.4:8080/obs/";
 static NSString * const LOGIN_ORG_CD               = @"01";
 
 // Time
@@ -27,6 +27,8 @@ static NSInteger const MAP_ROUTE = 2;
 static NSInteger const CALL_LEAD_PASSENGER = 3;
 static NSInteger const CALL_BOOK_BY_USER = 4;
 static NSInteger const CALL_ASSIGNER = 5;
+static NSInteger const MAP_ROUTE_STOP1 = 6;
+static NSInteger const MAP_ROUTE_STOP2 = 7;
 
 //GOOGLE ANALYTICS
 static NSString * const GOOGLE_ANALYTICS_TRACKING_ID = @"UA-49817046-1";
@@ -46,8 +48,8 @@ static NSString * const KEY_NETWORK_STATUS    = @"ObsNetworkState";
 static NSString * const KEY_DB_VERSION_OBSD        = @"OBSCDbVersion";
 static NSString * const KEY_USER_CD                = @"ObsUserCd";
 static NSString * const KEY_PASSWORD_OBSD          = @"ObsPassword";
-static NSString * const KEY_USER_ID                = @"ObsUserId";
-static NSString * const KEY_USER_NAME         = @"ObsUserName";
+static NSString * const KEY_OBS_USER_ID            = @"ObsUserId";
+static NSString * const KEY_USER_NAME              = @"ObsUserName";
 static NSString * const KEY_USER_MOBILE_PHONE_OBSD = @"ObsdUserMobilePhone";
 static NSString * const KEY_USER_EMAIL_OBSD        = @"ObsdUserEmail";
 static NSString * const KEY_USER_PHOTO_URL_OBSD    = @"ObsdUserPhotoUrl";
@@ -61,16 +63,19 @@ static NSString * const KEY_ORG_ADDRESS_OBSD       = @"ObsdOrgAddress";
 static NSString * const KEY_BOOKING_VEHICLE_ITEM_ID_OBSD = @"ObsdBookingVehicleItemId";
 static NSString * const KEY_LOGIN_USER_CD_OR_EMAIL_OR_MOBILE_NUMBER = @"userCdOrEmailOrMobileNumber";
 static NSString * const KEY_LOGIN_USER_PASSWORD    = @"userPassword";
+static NSString * const KEY_USER_ID                = @"userId";
+static NSString * const KEY_BOOKING_VEHICLE_ITEM_ID = @"bookingVehicleItemId";
+static NSString * const KEY_ACTION                  = @"action";
 
-static NSString * const KEY_UDID_OBSD              = @"ObsdUDID";
-static NSString * const KEY_DEVICE_TOKEN_OBSD      = @"ObsdDeviceToken";
-static NSString * const KEY_PUSH_NOTIFICATION_OBSD = @"ObsdPushNotification";
+static NSString * const KEY_UDID_OBS              = @"ObsUDID";
+static NSString * const KEY_DEVICE_TOKEN_OBS      = @"ObsDeviceToken";
+static NSString * const KEY_IS_REGIST_DEVICE_OBS = @"ObsIsRegistDevice";
 
 static NSString * const KEY_RESULT                 = @"result";
 static NSString * const KEY_DATA                   = @"data";
 static NSString * const KEY_START_DATE             = @"startDate";
 static NSString * const KEY_BROADCAST_BOOKING_VEHICLE_ITEM_IDS = @"broadcastBookingVehicleItemIds";
-
+static NSString * const KEY_IS_SHOW_BROADCAST      = @"isShowBroadcast";
 
 static NSString * const VALUE_SUCCESS               = @"success";
 static NSString * const VALUE_FAIL                 = @"fail";
@@ -79,8 +84,22 @@ static NSString * const VALUE_YES                  = @"YES";
 static NSString * const VALUE_NO                   = @"NO";
 static NSString * const VALUE_ACCEPTED             = @"accepted";
 
-static NSString * const VALUE_BOOKING_SERVICE_CD_ARRIVAL   = @"0101";
-static NSString * const VALUE_BOOKING_SERVICE_CD_DEPARTURE = @"0102";
+static NSString * const VALUE_BOOKING_SERVICE_CD_ARRIVAL    = @"0101";
+static NSString * const VALUE_BOOKING_SERVICE_CD_DEPARTURE  = @"0102";
+static NSString * const VALUE_BOOKING_SERVICE_CD_POINT_TO_POINT = @"0103";
+static NSString * const VALUE_BOOKING_SERVICE_CD_HOURLY     = @"0104";
+static NSString * const VALUE_BOOKING_STATUS_CD_PENDING     = @"0800";
+static NSString * const VALUE_BOOKING_STATUS_CD_PROCESSING  = @"0801";
+static NSString * const VALUE_BOOKING_STATUS_CD_CONFIRMED   = @"0802";
+static NSString * const VALUE_BOOKING_STATUS_CD_ASSIGNED    = @"0803";
+static NSString * const VALUE_BOOKING_STATUS_CD_DRIVER_INFO_SNET = @"0804";
+static NSString * const VALUE_BOOKING_STATUS_CD_UPDATE      = @"0805";
+static NSString * const VALUE_BOOKING_STATUS_CD_REFUND      = @"0807";
+static NSString * const VALUE_BOOKING_STATUS_CD_UNSUCCESSFUL= @"0808";
+static NSString * const VALUE_BOOKING_STATUS_CD_CANCELLED   = @"0809";
+static NSString * const VALUE_BOOKING_STATUS_CD_MISSED      = @"0810";
+static NSString * const VALUE_BOOKING_STATUS_CD_COMPLETED   = @"0811";
+static NSString * const VALUE_BOOKING_STATUS_CD_ENQUIREY    = @"0821";
 
 static NSString * const DB_VERSION                 = @"1.0";
 static NSString * const DB_NAME                    = @"obsc.sqlite";
@@ -161,7 +180,16 @@ static NSString * const COLUMN_SEND_DATE_TIME      = @"sendDateTime";
 static NSString * const COLUMN_RECIEVE_DATE_TIME   = @"recieveDateTime";
 static NSString * const COLUMN_QUERY_FILTERS       = @"queryFilters";
 
-typedef enum 
+static NSString * const ACTION_ACCEPT_ENQUIRY_BOOKING = @"AcceptEnquiryBooking";
+static NSString * const ACTION_REJECT_ENQUIRY_BOOKING = @"RejectEnquiryBooking";
+static NSString * const ACTION_ACCEPT_NEW_BOOKING = @"AcceptNewBooking";
+static NSString * const ACTION_REJECT_NEW_BOOKING = @"RejectNewBooking";
+static NSString * const ACTION_ACCEPT_UPDATE_BOOKING = @"AcceptUpdateBooking";
+static NSString * const ACTION_REJECT_UPDATE_BOOKING = @"RejectUpdateBooking";
+static NSString * const ACTION_ACCEPT_CANCEL_BOOKING = @"AcceptCancelBooking";
+static NSString * const ACTION_REJECT_CANCEL_BOOKING = @"RejectCancelBooking";
+
+typedef enum
 {
     ALL,
     UPCOMING,

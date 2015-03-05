@@ -8,18 +8,10 @@
 
 @interface ObsBookingAlertTableCell : UITableViewCell
 
-@property(nonatomic,strong)UILabel *leftTopTV;
-@property(nonatomic,strong)UILabel *leftBottomTV;
-@property(nonatomic,strong)UIView *middleView;
-@property(nonatomic,strong)UILabel *rightTopTV;
-@property(nonatomic,strong)UILabel *rightMiddleTV;
-@property(nonatomic,strong)UILabel *rightBottomTV;
+@property(nonatomic,strong)UILabel *bookingInfoTV;
 
-@property(nonatomic,strong)UIImageView *commentIV;
-@property(nonatomic,strong)UIImageView *stopIV;
-
-@property (nonatomic, strong) UIColor * accessoryCheckmarkColor;
-@property (nonatomic, strong) UIColor * disclosureIndicatorColor;
+@property(nonatomic,strong)UIButton *acceptBtn;
+@property(nonatomic,strong)UIButton *rejectBtn;
 
 - (void)updateContentForNewContentSize;
 

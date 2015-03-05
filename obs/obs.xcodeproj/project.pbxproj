@@ -49,13 +49,14 @@
 		BC0C27A51A8312B8008CD91D /* obs.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC0C27A41A8312B8008CD91D /* obs.xcassets */; };
 		BC13E61E1A9F42A100480A27 /* ObsBookingAlarmListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13E61D1A9F42A100480A27 /* ObsBookingAlarmListVC.m */; };
 		BC13E6591AA1BFA500480A27 /* JpTableWithSectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13E6581AA1BFA500480A27 /* JpTableWithSectionVC.m */; };
+		BC7F2C9C1AA56CB3001E4416 /* JpUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BC7F2C9B1AA56CB3001E4416 /* JpUtil.m */; };
 		BCAB93D21AA3F5680059DC10 /* ObsBookingAlertTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCAB93CF1AA3F5680059DC10 /* ObsBookingAlertTableCell.m */; };
-		BCAB93D31AA3F5680059DC10 /* ObsBookingTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCAB93D11AA3F5680059DC10 /* ObsBookingTableCell.m */; };
-		BCAB93E01AA3F58C0059DC10 /* BookingTableSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCAB93D61AA3F58C0059DC10 /* BookingTableSectionView.m */; };
-		BCAB93E11AA3F58C0059DC10 /* BookingTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BCAB93D81AA3F58C0059DC10 /* BookingTableVC.m */; };
-		BCAB93E21AA3F58C0059DC10 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BCAB93DA1AA3F58C0059DC10 /* DBManager.m */; };
+		BCAB93D31AA3F5680059DC10 /* ObsBookingListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCAB93D11AA3F5680059DC10 /* ObsBookingListTableCell.m */; };
+		BCAB93E21AA3F58C0059DC10 /* ObsDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BCAB93DA1AA3F58C0059DC10 /* ObsDBManager.m */; };
 		BCAB93E31AA3F58C0059DC10 /* ObsData.m in Sources */ = {isa = PBXBuildFile; fileRef = BCAB93DD1AA3F58C0059DC10 /* ObsData.m */; };
 		BCAB93E41AA3F58C0059DC10 /* ObsWebAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = BCAB93DF1AA3F58C0059DC10 /* ObsWebAPIClient.m */; };
+		BCAB93E91AA3FD0E0059DC10 /* ObsBookingTableSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCAB93E61AA3FD0E0059DC10 /* ObsBookingTableSectionView.m */; };
+		BCAB93EA1AA3FD0E0059DC10 /* ObsBookingTableWithSectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BCAB93E81AA3FD0E0059DC10 /* ObsBookingTableWithSectionVC.m */; };
 		BCF0AC2C1A8128510005E3C6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF0AC2B1A8128510005E3C6 /* main.m */; };
 		BCF0AC2F1A8128510005E3C6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF0AC2E1A8128510005E3C6 /* AppDelegate.m */; };
 		BCF0AC321A8128510005E3C6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF0AC311A8128510005E3C6 /* ViewController.m */; };
@@ -63,6 +64,7 @@
 		BCF0AC371A8128510005E3C6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCF0AC361A8128510005E3C6 /* Images.xcassets */; };
 		BCF0AC3A1A8128510005E3C6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCF0AC381A8128510005E3C6 /* LaunchScreen.xib */; };
 		BCF0AC461A8128520005E3C6 /* obsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF0AC451A8128520005E3C6 /* obsTests.m */; };
+		BCF38F571AA7536600DF6F3C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCF38F561AA7536600DF6F3C /* AudioToolbox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,10 +113,6 @@
 		BC0C1DBB1A821A66008CD91D /* frutigerltstdblack.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = frutigerltstdblack.ttf; sourceTree = "<group>"; };
 		BC0C1DBC1A821A66008CD91D /* frutigerltstdroman.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = frutigerltstdroman.ttf; sourceTree = "<group>"; };
 		BC0C1DBD1A821A66008CD91D /* JpLibImage.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = JpLibImage.xcassets; sourceTree = "<group>"; };
-		BC0C1E111A821A66008CD91D /* DateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateUtil.h; sourceTree = "<group>"; };
-		BC0C1E121A821A66008CD91D /* DateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtil.m; sourceTree = "<group>"; };
-		BC0C1E131A821A66008CD91D /* InternationalUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternationalUtil.h; sourceTree = "<group>"; };
-		BC0C1E141A821A66008CD91D /* InternationalUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternationalUtil.m; sourceTree = "<group>"; };
 		BC0C1E151A821A66008CD91D /* JpDataStoreUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JpDataStoreUtil.h; sourceTree = "<group>"; };
 		BC0C1E161A821A66008CD91D /* JpDataStoreUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JpDataStoreUtil.m; sourceTree = "<group>"; };
 		BC0C1E171A821A66008CD91D /* JpDataUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JpDataUtil.h; sourceTree = "<group>"; };
@@ -129,8 +127,6 @@
 		BC0C1E201A821A66008CD91D /* JpSystemUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JpSystemUtil.m; sourceTree = "<group>"; };
 		BC0C1E211A821A66008CD91D /* JpUiUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JpUiUtil.h; sourceTree = "<group>"; };
 		BC0C1E221A821A66008CD91D /* JpUiUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JpUiUtil.m; sourceTree = "<group>"; };
-		BC0C1E231A821A66008CD91D /* SystemUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemUtil.h; sourceTree = "<group>"; };
-		BC0C1E241A821A66008CD91D /* SystemUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemUtil.m; sourceTree = "<group>"; };
 		BC0C1E261A821A66008CD91D /* JpActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JpActivityIndicatorView.h; sourceTree = "<group>"; };
 		BC0C1E271A821A66008CD91D /* JpActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JpActivityIndicatorView.m; sourceTree = "<group>"; };
 		BC0C1E291A821A66008CD91D /* JpTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JpTableCell.h; sourceTree = "<group>"; };
@@ -157,21 +153,23 @@
 		BC13E61F1A9F42B400480A27 /* ObsBookingAlarmListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObsBookingAlarmListVC.h; sourceTree = "<group>"; };
 		BC13E6571AA1BFA500480A27 /* JpTableWithSectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JpTableWithSectionVC.h; sourceTree = "<group>"; };
 		BC13E6581AA1BFA500480A27 /* JpTableWithSectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JpTableWithSectionVC.m; sourceTree = "<group>"; };
+		BC7F2C9A1AA56CB3001E4416 /* JpUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JpUtil.h; sourceTree = "<group>"; };
+		BC7F2C9B1AA56CB3001E4416 /* JpUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JpUtil.m; sourceTree = "<group>"; };
 		BCAB93CE1AA3F5680059DC10 /* ObsBookingAlertTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObsBookingAlertTableCell.h; sourceTree = "<group>"; };
 		BCAB93CF1AA3F5680059DC10 /* ObsBookingAlertTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObsBookingAlertTableCell.m; sourceTree = "<group>"; };
-		BCAB93D01AA3F5680059DC10 /* ObsBookingTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObsBookingTableCell.h; sourceTree = "<group>"; };
-		BCAB93D11AA3F5680059DC10 /* ObsBookingTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObsBookingTableCell.m; sourceTree = "<group>"; };
-		BCAB93D51AA3F58C0059DC10 /* BookingTableSectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookingTableSectionView.h; sourceTree = "<group>"; };
-		BCAB93D61AA3F58C0059DC10 /* BookingTableSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookingTableSectionView.m; sourceTree = "<group>"; };
-		BCAB93D71AA3F58C0059DC10 /* BookingTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookingTableVC.h; sourceTree = "<group>"; };
-		BCAB93D81AA3F58C0059DC10 /* BookingTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookingTableVC.m; sourceTree = "<group>"; };
-		BCAB93D91AA3F58C0059DC10 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
-		BCAB93DA1AA3F58C0059DC10 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
+		BCAB93D01AA3F5680059DC10 /* ObsBookingListTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObsBookingListTableCell.h; sourceTree = "<group>"; };
+		BCAB93D11AA3F5680059DC10 /* ObsBookingListTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObsBookingListTableCell.m; sourceTree = "<group>"; };
+		BCAB93D91AA3F58C0059DC10 /* ObsDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObsDBManager.h; sourceTree = "<group>"; };
+		BCAB93DA1AA3F58C0059DC10 /* ObsDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObsDBManager.m; sourceTree = "<group>"; };
 		BCAB93DB1AA3F58C0059DC10 /* OBSConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBSConst.h; sourceTree = "<group>"; };
 		BCAB93DC1AA3F58C0059DC10 /* ObsData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObsData.h; sourceTree = "<group>"; };
 		BCAB93DD1AA3F58C0059DC10 /* ObsData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObsData.m; sourceTree = "<group>"; };
 		BCAB93DE1AA3F58C0059DC10 /* ObsWebAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObsWebAPIClient.h; sourceTree = "<group>"; };
 		BCAB93DF1AA3F58C0059DC10 /* ObsWebAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObsWebAPIClient.m; sourceTree = "<group>"; };
+		BCAB93E51AA3FD0E0059DC10 /* ObsBookingTableSectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObsBookingTableSectionView.h; sourceTree = "<group>"; };
+		BCAB93E61AA3FD0E0059DC10 /* ObsBookingTableSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObsBookingTableSectionView.m; sourceTree = "<group>"; };
+		BCAB93E71AA3FD0E0059DC10 /* ObsBookingTableWithSectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObsBookingTableWithSectionVC.h; sourceTree = "<group>"; };
+		BCAB93E81AA3FD0E0059DC10 /* ObsBookingTableWithSectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObsBookingTableWithSectionVC.m; sourceTree = "<group>"; };
 		BCF0AC261A8128510005E3C6 /* obs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = obs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCF0AC2A1A8128510005E3C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BCF0AC2B1A8128510005E3C6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -185,6 +183,8 @@
 		BCF0AC3F1A8128520005E3C6 /* obsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = obsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCF0AC441A8128520005E3C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BCF0AC451A8128520005E3C6 /* obsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = obsTests.m; sourceTree = "<group>"; };
+		BCF38F531AA7531700DF6F3C /* obs.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = obs.entitlements; sourceTree = "<group>"; };
+		BCF38F561AA7536600DF6F3C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		C15FFD29D91CE7B086340906 /* Pods-obs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-obs.debug.xcconfig"; path = "Pods/Target Support Files/Pods-obs/Pods-obs.debug.xcconfig"; sourceTree = "<group>"; };
 		C7B29E8890A1FA542C22F5D5 /* Pods-obs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-obs.release.xcconfig"; path = "Pods/Target Support Files/Pods-obs/Pods-obs.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -195,6 +195,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DE6773DE87DAC641A4ECDD7 /* libPods-obs.a in Frameworks */,
+				BCF38F571AA7536600DF6F3C /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,10 +329,8 @@
 		BC0C1E101A821A66008CD91D /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				BC0C1E111A821A66008CD91D /* DateUtil.h */,
-				BC0C1E121A821A66008CD91D /* DateUtil.m */,
-				BC0C1E131A821A66008CD91D /* InternationalUtil.h */,
-				BC0C1E141A821A66008CD91D /* InternationalUtil.m */,
+				BC7F2C9A1AA56CB3001E4416 /* JpUtil.h */,
+				BC7F2C9B1AA56CB3001E4416 /* JpUtil.m */,
 				BC0C1E151A821A66008CD91D /* JpDataStoreUtil.h */,
 				BC0C1E161A821A66008CD91D /* JpDataStoreUtil.m */,
 				BC0C1E171A821A66008CD91D /* JpDataUtil.h */,
@@ -346,8 +345,6 @@
 				BC0C1E201A821A66008CD91D /* JpSystemUtil.m */,
 				BC0C1E211A821A66008CD91D /* JpUiUtil.h */,
 				BC0C1E221A821A66008CD91D /* JpUiUtil.m */,
-				BC0C1E231A821A66008CD91D /* SystemUtil.h */,
-				BC0C1E241A821A66008CD91D /* SystemUtil.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -419,10 +416,14 @@
 		BCAB93CD1AA3F5680059DC10 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BCAB93E51AA3FD0E0059DC10 /* ObsBookingTableSectionView.h */,
+				BCAB93E61AA3FD0E0059DC10 /* ObsBookingTableSectionView.m */,
+				BCAB93E71AA3FD0E0059DC10 /* ObsBookingTableWithSectionVC.h */,
+				BCAB93E81AA3FD0E0059DC10 /* ObsBookingTableWithSectionVC.m */,
 				BCAB93CE1AA3F5680059DC10 /* ObsBookingAlertTableCell.h */,
 				BCAB93CF1AA3F5680059DC10 /* ObsBookingAlertTableCell.m */,
-				BCAB93D01AA3F5680059DC10 /* ObsBookingTableCell.h */,
-				BCAB93D11AA3F5680059DC10 /* ObsBookingTableCell.m */,
+				BCAB93D01AA3F5680059DC10 /* ObsBookingListTableCell.h */,
+				BCAB93D11AA3F5680059DC10 /* ObsBookingListTableCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -430,12 +431,8 @@
 		BCAB93D41AA3F58C0059DC10 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				BCAB93D51AA3F58C0059DC10 /* BookingTableSectionView.h */,
-				BCAB93D61AA3F58C0059DC10 /* BookingTableSectionView.m */,
-				BCAB93D71AA3F58C0059DC10 /* BookingTableVC.h */,
-				BCAB93D81AA3F58C0059DC10 /* BookingTableVC.m */,
-				BCAB93D91AA3F58C0059DC10 /* DBManager.h */,
-				BCAB93DA1AA3F58C0059DC10 /* DBManager.m */,
+				BCAB93D91AA3F58C0059DC10 /* ObsDBManager.h */,
+				BCAB93DA1AA3F58C0059DC10 /* ObsDBManager.m */,
 				BCAB93DB1AA3F58C0059DC10 /* OBSConst.h */,
 				BCAB93DC1AA3F58C0059DC10 /* ObsData.h */,
 				BCAB93DD1AA3F58C0059DC10 /* ObsData.m */,
@@ -469,6 +466,7 @@
 		BCF0AC281A8128510005E3C6 /* obs */ = {
 			isa = PBXGroup;
 			children = (
+				BCF38F531AA7531700DF6F3C /* obs.entitlements */,
 				BC0C24BE1A82285B008CD91D /* Obs */,
 				BC0C1D951A821A66008CD91D /* GLib */,
 				BCF0AC2D1A8128510005E3C6 /* AppDelegate.h */,
@@ -513,6 +511,7 @@
 		DE15EE7DC3ED653AF632525A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BCF38F561AA7536600DF6F3C /* AudioToolbox.framework */,
 				7A490DC9A151797D4EC650A3 /* libPods-obs.a */,
 			);
 			name = Frameworks;
@@ -569,7 +568,15 @@
 				TargetAttributes = {
 					BCF0AC251A8128510005E3C6 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = JTBLBQ96P4;
+						DevelopmentTeam = X9YD4PLKSZ;
+						SystemCapabilities = {
+							com.apple.InterAppAudio = {
+								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 					BCF0AC3E1A8128520005E3C6 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -665,16 +672,16 @@
 			files = (
 				BC0C24E41A82293D008CD91D /* ObsMyProfileVC.m in Sources */,
 				BC0C24E51A82293D008CD91D /* ObsTabBC.m in Sources */,
-				BCAB93E11AA3F58C0059DC10 /* BookingTableVC.m in Sources */,
 				BC0C24E21A82293D008CD91D /* ObsUpcomingBookingVC.m in Sources */,
 				BC0C1F9E1A821A66008CD91D /* JpVC.m in Sources */,
 				BC0C1F9B1A821A66008CD91D /* JpNC.m in Sources */,
 				BC0C1F9D1A821A66008CD91D /* JpTableVC.m in Sources */,
-				BCAB93D31AA3F5680059DC10 /* ObsBookingTableCell.m in Sources */,
+				BCAB93D31AA3F5680059DC10 /* ObsBookingListTableCell.m in Sources */,
 				BC0C1FC81A821A66008CD91D /* JpDataStoreUtil.m in Sources */,
 				BC0C24E11A82293D008CD91D /* ObsHistoryBookingVC.m in Sources */,
 				BC0C1FD11A821A66008CD91D /* JpTableCell.m in Sources */,
 				BC0C1F991A821A66008CD91D /* UIFont+Jp.m in Sources */,
+				BCAB93EA1AA3FD0E0059DC10 /* ObsBookingTableWithSectionVC.m in Sources */,
 				BC0C1FA01A821A66008CD91D /* JpApplication.m in Sources */,
 				BC0C1FA11A821A66008CD91D /* JpConst.m in Sources */,
 				BC0C24C31A82285B008CD91D /* ObsLoginWebVC.m in Sources */,
@@ -690,12 +697,13 @@
 				BC0C1FCA1A821A66008CD91D /* JpDateUtil.m in Sources */,
 				BC0C1F951A821A66008CD91D /* NSObject+Jp.m in Sources */,
 				BC0C24DF1A82293D008CD91D /* ObsBookingDetailVC.m in Sources */,
+				BCAB93E91AA3FD0E0059DC10 /* ObsBookingTableSectionView.m in Sources */,
 				BC0C1FCC1A821A66008CD91D /* JpLogUtil.m in Sources */,
 				BCF0AC2F1A8128510005E3C6 /* AppDelegate.m in Sources */,
 				BC0C1FD21A821A66008CD91D /* JpTableSectionView.m in Sources */,
+				BC7F2C9C1AA56CB3001E4416 /* JpUtil.m in Sources */,
 				BC0C1FCD1A821A66008CD91D /* JpSystemUtil.m in Sources */,
 				BC0C1F9F1A821A66008CD91D /* JpWebVC.m in Sources */,
-				BCAB93E01AA3F58C0059DC10 /* BookingTableSectionView.m in Sources */,
 				BC0C1FCE1A821A66008CD91D /* JpUiUtil.m in Sources */,
 				BC0C24E31A82293D008CD91D /* ObsMoreVC.m in Sources */,
 				BCF0AC2C1A8128510005E3C6 /* main.m in Sources */,
@@ -704,7 +712,7 @@
 				BC13E6591AA1BFA500480A27 /* JpTableWithSectionVC.m in Sources */,
 				BC0C1FCB1A821A66008CD91D /* JpFileUtil.m in Sources */,
 				BC13E61E1A9F42A100480A27 /* ObsBookingAlarmListVC.m in Sources */,
-				BCAB93E21AA3F58C0059DC10 /* DBManager.m in Sources */,
+				BCAB93E21AA3F58C0059DC10 /* ObsDBManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -829,6 +837,7 @@
 			baseConfigurationReference = C15FFD29D91CE7B086340906 /* Pods-obs.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = obs/obs.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -847,6 +856,7 @@
 			baseConfigurationReference = C7B29E8890A1FA542C22F5D5 /* Pods-obs.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = obs/obs.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";

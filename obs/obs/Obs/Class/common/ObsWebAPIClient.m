@@ -23,7 +23,7 @@
 #import "ObsWebAPIClient.h"
 #import "JpDataUtil.h"
 #import "JpDateUtil.h"
-#import "DBManager.h"
+#import "ObsDBManager.h"
 
 @implementation ObsWebAPIClient
 
@@ -39,7 +39,7 @@
 }
 
 + (NSURLSessionDataTask *)getObmBookingItemsFromServerWithBlock:(void (^)(NSArray *sections, NSDictionary *sectionCellsDic, NSError *error))block {
-    NSString *loginUserId = [JpDataUtil getValueFromUDByKey:KEY_USER_ID];
+    NSString *loginUserId = [JpDataUtil getValueFromUDByKey:KEY_OBS_USER_ID];
     NSString *lastUpdateTimeKey = [loginUserId stringByAppendingString:TABLE_OBM_BOOKING_VEHICLE_ITEM];
     NSString *lastUpdateTimeIntStr = [JpDataUtil getValueFromUDByKey:lastUpdateTimeKey];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
@@ -49,7 +49,7 @@
         NSLog(@"%@'s last update date is %@", [JpDataUtil getValueFromUDByKey:KEY_USER_NAME], lastUpdateTimeStr);
     }
     
-    return [[ObsWebAPIClient sharedClient] GET:[@"free/driver/booking/" stringByAppendingString:[JpDataUtil getValueFromUDByKey:KEY_USER_ID]] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    return [[ObsWebAPIClient sharedClient] GET:[@"free/driver/booking/" stringByAppendingString:[JpDataUtil getValueFromUDByKey:KEY_OBS_USER_ID]] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
             NSDictionary *respondDic = responseObject;
             NSString *result = [respondDic valueForKey:KEY_RESULT];
         
@@ -64,7 +64,7 @@
             if ([result isEqualToString:VALUE_SUCCESS]) {
                 NSArray *obmBookingItems = [respondDic valueForKeyPath:KEY_DATA];
                 NSString *newLastUpdateTimeIntStr = lastUpdateTimeIntStr;
-                DBManager *dbManager = [DBManager getSharedInstance];
+                ObsDBManager *dbManager = [ObsDBManager getSharedInstance];
                 for (NSDictionary *obmBookingItem in obmBookingItems) {
                     NSString *pickupDateIntStr = [obmBookingItem objectForKey:COLUMN_PICKUP_DATE];
                     NSString *pickupTimeStr = [obmBookingItem objectForKey:COLUMN_PICKUP_TIME];
@@ -115,5 +115,6 @@
             }
         }];
 }
+
 
 @end

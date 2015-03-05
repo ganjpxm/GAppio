@@ -54,7 +54,7 @@
     if ([[UIFont class] respondsToSelector:@selector(preferredFontForTextStyle:)]) {
         [self.textLabel setFont:[UIFont preferredFontForTextStyle:UIFontTextStyleBody]];
     } else {
-        [self.textLabel setFont:[UIFont boldSystemFontOfSize:16.0]];
+        //[self.textLabel setFont:[UIFont systemFontOfSize:14.0]];
     }
 }
 

@@ -32,19 +32,19 @@
     
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
     NSInteger startHeightOffset = [JpUiUtil getStartHeightOffset];
-    iWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, [JpUiUtil getScreenWidth], [JpUiUtil getScreenHeight]+startHeightOffset)];
+    iWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, [JpUiUtil getScreenWidth], [JpUiUtil getScreenHeight]-startHeightOffset)];
     iWebView.scalesPageToFit = YES;
     [iWebView.scrollView setContentSize: CGSizeMake(iWebView.frame.size.width, iWebView.scrollView.contentSize.height)];
     [iWebView setUserInteractionEnabled:YES];
     iWebView.backgroundColor = [UIColor clearColor];
     [iWebView setOpaque:NO];
-    iWebView.scrollView.scrollEnabled = NO;
+    iWebView.scrollView.scrollEnabled = YES;
     [self.view addSubview:iWebView];
     
     // Create a mMaskView
     _mMaskView = [[UIView alloc] initWithFrame:self.view.bounds];
-    _mMaskView.backgroundColor = [UIColor whiteColor];
-    _mMaskView.alpha = 0.1;
+    _mMaskView.backgroundColor = [UIColor blackColor];
+    _mMaskView.alpha = 0.3;
     _mMaskView.hidden = YES;
     [self.view addSubview:_mMaskView];
 
@@ -57,7 +57,6 @@
     _mActivityIndicatorView.hidden = YES;
     [self.view addSubview:_mActivityIndicatorView];
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    [self showMaskView];
     
     [self loadPage:_iCurrenURL];
 }
@@ -112,20 +111,17 @@
     _mMaskView.hidden = NO;
 }
 
-
 //UIWebViewDelegate method
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    if (!_mFirstLoad) {
-        [self showMaskView];
-    }
+    [self showMaskView];
     if (![_mWebViewTimeoutTimer isValid]) {
         _mWebViewTimeoutTimer = [NSTimer scheduledTimerWithTimeInterval:90 target:self selector:@selector(doTimeout) userInfo:nil repeats:NO];
     }
     
-    NSString *requestString = [[[request URL]  absoluteString] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding ];
+    NSString *requestString = [[[request URL] absoluteString] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding ];
     NSLog(@"%@", requestString);
-//    NSString *mUserId = [_webView  stringByEvaluatingJavaScriptFromString:@"document.getElementById('mUserId').value"];
+    
     return YES;
 }
 
@@ -137,6 +133,11 @@
     _mFirstLoad = NO;
     [aWebView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitTouchCallout='none';"];
     [aWebView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitUserSelect='none';"];
+    
+//    NSMutableString* js = [NSMutableString stringWithFormat:@"%@", @"function mainF() { "];
+//    js = [NSMutableString stringWithFormat:@"%@ document.getElementById('myName').innerHTML='%@';", js, @""];
+//    js = [NSMutableString stringWithFormat:@"%@%@",js,@"} mainF();"];
+//    [webView  stringByEvaluatingJavaScriptFromString:js];
 }
 
 //UIWebViewDelegate method
