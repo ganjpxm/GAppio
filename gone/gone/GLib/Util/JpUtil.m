@@ -18,6 +18,11 @@
     [paragrahStyle setLineSpacing:2];
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragrahStyle range:NSMakeRange(0, [attributedString length])];
     //    [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:20.0] range:NSMakeRange(0, [attributedString length])];
+    //NSTextAttachment *textAttachment = [[NSTextAttachment alloc] init];
+    //textAttachment.image = [UIImage imageNamed:@"icon_comment_red"];
+    //NSAttributedString *attrStringWithImage = [NSAttributedString attributedStringWithAttachment:textAttachment];
+    //[attributedString replaceCharactersInRange:NSMakeRange(0, 2) withAttributedString:attrStringWithImage];
+    
     return attributedString;
 }
 

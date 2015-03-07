@@ -7,8 +7,9 @@
 //
 
 #import "JpVC.h"
+#import <CoreLocation/CoreLocation.h>
 
-@interface ObsBookingDetailVC : JpVC
+@interface ObsBookingDetailVC : JpVC<CLLocationManagerDelegate>
 
 - (id)init:(NSString *)from data:(NSDictionary *)bookingVehicleDetail;
 

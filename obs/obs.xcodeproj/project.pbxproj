@@ -57,6 +57,7 @@
 		BCAB93E41AA3F58C0059DC10 /* ObsWebAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = BCAB93DF1AA3F58C0059DC10 /* ObsWebAPIClient.m */; };
 		BCAB93E91AA3FD0E0059DC10 /* ObsBookingTableSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCAB93E61AA3FD0E0059DC10 /* ObsBookingTableSectionView.m */; };
 		BCAB93EA1AA3FD0E0059DC10 /* ObsBookingTableWithSectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BCAB93E81AA3FD0E0059DC10 /* ObsBookingTableWithSectionVC.m */; };
+		BCEA1EE01AAAE56700D289C2 /* JpLocationShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BCEA1EDF1AAAE56700D289C2 /* JpLocationShareModel.m */; };
 		BCF0AC2C1A8128510005E3C6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF0AC2B1A8128510005E3C6 /* main.m */; };
 		BCF0AC2F1A8128510005E3C6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF0AC2E1A8128510005E3C6 /* AppDelegate.m */; };
 		BCF0AC321A8128510005E3C6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF0AC311A8128510005E3C6 /* ViewController.m */; };
@@ -170,6 +171,8 @@
 		BCAB93E61AA3FD0E0059DC10 /* ObsBookingTableSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObsBookingTableSectionView.m; sourceTree = "<group>"; };
 		BCAB93E71AA3FD0E0059DC10 /* ObsBookingTableWithSectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObsBookingTableWithSectionVC.h; sourceTree = "<group>"; };
 		BCAB93E81AA3FD0E0059DC10 /* ObsBookingTableWithSectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObsBookingTableWithSectionVC.m; sourceTree = "<group>"; };
+		BCEA1EDF1AAAE56700D289C2 /* JpLocationShareModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JpLocationShareModel.m; sourceTree = "<group>"; };
+		BCEA1EE11AAAE58D00D289C2 /* JpLocationShareModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JpLocationShareModel.h; sourceTree = "<group>"; };
 		BCF0AC261A8128510005E3C6 /* obs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = obs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCF0AC2A1A8128510005E3C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BCF0AC2B1A8128510005E3C6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -285,6 +288,8 @@
 			children = (
 				BC0C1DB21A821A66008CD91D /* JpConst.h */,
 				BC0C1DB31A821A66008CD91D /* JpConst.m */,
+				BCEA1EE11AAAE58D00D289C2 /* JpLocationShareModel.h */,
+				BCEA1EDF1AAAE56700D289C2 /* JpLocationShareModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -570,6 +575,9 @@
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = X9YD4PLKSZ;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.InterAppAudio = {
 								enabled = 1;
 							};
@@ -674,6 +682,7 @@
 				BC0C24E51A82293D008CD91D /* ObsTabBC.m in Sources */,
 				BC0C24E21A82293D008CD91D /* ObsUpcomingBookingVC.m in Sources */,
 				BC0C1F9E1A821A66008CD91D /* JpVC.m in Sources */,
+				BCEA1EE01AAAE56700D289C2 /* JpLocationShareModel.m in Sources */,
 				BC0C1F9B1A821A66008CD91D /* JpNC.m in Sources */,
 				BC0C1F9D1A821A66008CD91D /* JpTableVC.m in Sources */,
 				BCAB93D31AA3F5680059DC10 /* ObsBookingListTableCell.m in Sources */,
@@ -844,10 +853,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/obs/obs-Prefix.pch";
 				INFOPLIST_FILE = obs/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -863,10 +874,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/obs/obs-Prefix.pch";
 				INFOPLIST_FILE = obs/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

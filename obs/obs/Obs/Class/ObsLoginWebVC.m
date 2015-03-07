@@ -51,7 +51,7 @@
                         NSString *userCd = [respondDic objectForKey:KEY_USER_CD];
                         [JpDataUtil saveDataToUDForKey:KEY_USER_CD value:userCd];
                         [JpDataUtil saveDataToUDForKey:KEY_OBS_USER_ID value:[respondDic objectForKey:KEY_OBS_USER_ID]];
-                        [JpDataUtil saveDataToUDForKey:KEY_USER_NAME value:[respondDic objectForKey:KEY_USER_NAME]];
+                        [JpDataUtil saveDataToUDForKey:KEY_OBS_USER_NAME value:[respondDic objectForKey:KEY_OBS_USER_NAME]];
                         
                         ObsTabBC *tabBC = [[ObsTabBC alloc] init];
                         [self presentViewController:tabBC animated:YES completion:nil];

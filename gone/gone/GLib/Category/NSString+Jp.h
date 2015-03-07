@@ -25,4 +25,7 @@
 //Coutry:China,Singapore;Gender:Male,Femal;
 - (NSString*)getAllValuesWithComma;
 
+- (int)indexOf:(NSString *)text;
+
+
 @end

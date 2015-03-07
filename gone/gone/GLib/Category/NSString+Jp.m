@@ -113,4 +113,13 @@
     return valuesWithComma;
 }
 
+- (int)indexOf:(NSString *)text {
+    NSRange range = [self rangeOfString:text];
+    if ( range.length > 0 ) {
+        return (int)range.location;
+    } else {
+        return -1;
+    }
+}
+
 @end

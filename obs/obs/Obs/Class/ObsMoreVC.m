@@ -74,7 +74,7 @@
 - (JpTableCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     JpTableCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
-    [cell.textLabel setFont:[UIFont systemFontOfSize:18.0]];
+    [cell.textLabel setFont:[UIFont fontWithName:@"Helvetica" size:18.0]];
 //    if (indexPath.section==0) {
 //        if (indexPath.row==0) {
 //            NSString *usePushNotification = [JpDataUtil getValueFromUDByKey:KEY_PUSH_NOTIFICATION_OBSD];
@@ -149,7 +149,7 @@
                     [JpDataUtil saveDataToUDForKey:lastUpdateTimeKey value:nil];
                     ObsDBManager *dbManager = [ObsDBManager getSharedInstance];
                     [dbManager deleteRecords:TABLE_OBM_BOOKING_VEHICLE_ITEM];
-                    
+                
                     NSURLSessionTask *task = [ObsWebAPIClient getObmBookingItemsFromServerWithBlock:^(NSArray *sections, NSDictionary *sectionCellsDic, NSError *error) {
                         if (!error) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:@"updateBookingTableView" object:nil];
@@ -164,9 +164,11 @@
 //                }
             } else if (alertView.tag==2) {//logout
                 [self unregistDevice];
+                NSString *deviceToken = [JpDataUtil getValueFromUDByKey:KEY_DEVICE_TOKEN_OBS];
                 ObsDBManager *dbManager = [ObsDBManager getSharedInstance];
                 [dbManager deleteRecords:TABLE_OBM_BOOKING_VEHICLE_ITEM];
                 [JpDataUtil resetDefaults];
+                [JpDataUtil saveDataToUDForKey:KEY_DEVICE_TOKEN_OBS value:deviceToken];
                 
                 ObsLoginWebVC *driverLoginWebVC = [[ObsLoginWebVC alloc] init];
                 JpNC *driverLoginWebNC = [[JpNC alloc] initWithRootViewController:driverLoginWebVC];

@@ -85,6 +85,7 @@ static NSString *cellIdentifier = @"BookingAlertCell";
     self.navigationItem.leftBarButtonItem = backButtonItem;
     [self setTitle:@"Broadcast"];
     
+    
     [self reload:nil];
 }
 
@@ -136,6 +137,7 @@ static NSString *cellIdentifier = @"BookingAlertCell";
     float screenWidth = [JpUiUtil getScreenWidth];
     ObsBookingAlertTableCell *bookingAlertCell = (ObsBookingAlertTableCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (bookingAlertCell == nil) bookingAlertCell = [[ObsBookingAlertTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    [bookingAlertCell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     NSDictionary *obmBookingItem = [self.cellDics objectAtIndex:indexPath.row];
     NSMutableAttributedString *htmlAttributedString = [JpUtil getHtmlAttributedString:[self getBookingInfoHtml:obmBookingItem]];

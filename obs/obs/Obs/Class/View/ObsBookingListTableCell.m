@@ -53,9 +53,9 @@
         [middleView setBackgroundColor:[UIColor blackColor]];
         [self addSubview:middleView];
         
-        rightTopTV = [[UILabel alloc]initWithFrame:CGRectMake(80,5,screenWidth-90,20)];
+        rightTopTV = [[UILabel alloc]initWithFrame:CGRectMake(80, 5, screenWidth-90,20)];
         rightTopTV.numberOfLines = 1;
-        rightTopTV.font=[rightTopTV.font fontWithSize:16];
+        rightTopTV.font=[rightTopTV.font fontWithSize:18];
         [self addSubview:rightTopTV];
         
         float rightY = 25;
@@ -70,7 +70,7 @@
         
         rightBottomTV = [[UILabel alloc]initWithFrame:CGRectMake(80,rightY+rightMiddleHeight-3,screenWidth-90,25)];
         rightBottomTV.numberOfLines = 1;
-        rightBottomTV.font=[rightBottomTV.font fontWithSize:14];
+        rightBottomTV.font=[rightBottomTV.font fontWithSize:16];
         [rightBottomTV setTextColor:[UIColor grayColor]];
         [self addSubview:rightBottomTV];
         

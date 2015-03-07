@@ -31,7 +31,7 @@
         [acceptBtn setTitle:@"Accept" forState:UIControlStateNormal];
         [acceptBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [acceptBtn setBackgroundColor:COLOR_BLACK_JP];
-        [acceptBtn setBackgroundImage:[JpUiUtil imageWithColor:[UIColor blackColor]] forState:UIControlStateHighlighted];
+        [acceptBtn setBackgroundImage:[JpUiUtil imageWithColor:COLOR_GRAY_DARK_PRIMARY] forState:UIControlStateHighlighted];
         acceptBtn.layer.cornerRadius = 4;
         acceptBtn.clipsToBounds = YES;
         [self addSubview:acceptBtn];
@@ -40,7 +40,7 @@
         [rejectBtn setTitle:@"Reject" forState:UIControlStateNormal];
         [rejectBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [rejectBtn setBackgroundColor:COLOR_BLACK_JP];
-        [rejectBtn setBackgroundImage:[JpUiUtil imageWithColor:[UIColor blackColor]] forState:UIControlStateHighlighted];
+        [rejectBtn setBackgroundImage:[JpUiUtil imageWithColor:COLOR_GRAY_DARK_PRIMARY] forState:UIControlStateHighlighted];
         rejectBtn.layer.cornerRadius = 4;
         rejectBtn.clipsToBounds = YES;
         [self addSubview:rejectBtn];

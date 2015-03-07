@@ -93,6 +93,11 @@
             }
         }
     }
+    if ([obmBookingVehicleItems count]>300) {
+        NSString *loginUserId = [JpDataUtil getValueFromUDByKey:KEY_OBS_USER_ID];
+        NSString *lastUpdateTimeKey = [loginUserId stringByAppendingString:TABLE_OBM_BOOKING_VEHICLE_ITEM];
+        [JpDataUtil saveDataToUDForKey:lastUpdateTimeKey value:nil];
+    }
 }
 
 #pragma mark - UITableViewDataSource
@@ -132,23 +137,28 @@
     }
     
     NSString *remark = [obmBookingItem objectForKey:COLUMN_REMARK];
-    if (remark && [remark length]>1) {
+    if (remark && [remark length]>1 && ![@"<null>" isEqualToString:remark]) {
         cell.commentIV.hidden = NO;
     } else {
         cell.commentIV.hidden = YES;
     }
     
     NSString *stop1Address = [obmBookingItem objectForKey:COLUMN_STOP1_ADDRESS];
-    if (stop1Address && [stop1Address length]>1) {
+    if (stop1Address && [stop1Address length]>1 && ![@"<null>" isEqualToString:stop1Address]) {
         cell.stopIV.hidden = NO;
-        if (!remark || [remark length]<=1) {
+        if (!(remark && [remark length]>1 && ![@"<null>" isEqualToString:remark])) {
             CGRect oldFrame = cell.stopIV.frame;
             CGRect newFrame = CGRectMake([JpUiUtil getScreenWidth]-24, oldFrame.origin.y, oldFrame.size.width, oldFrame.size.height);
             cell.stopIV.frame = newFrame;
+        } else {
+            CGRect oldFrame = cell.stopIV.frame;
+            cell.stopIV.frame = CGRectMake([JpUiUtil getScreenWidth]-45, oldFrame.origin.y, oldFrame.size.width, oldFrame.size.height);
         }
+    } else {
+        cell.stopIV.hidden = YES;
     }
     
-    NSString *firstLineHtml = [NSString stringWithFormat:@"<div style='font-size:16px;'>%@ <span style='color:gray;'>- %@</span></div>", [obmBookingItem objectForKey:COLUMN_BOOKING_NUMBER], [obmBookingItem objectForKey:COLUMN_BOOKING_SERVICE]];
+    NSString *firstLineHtml = [NSString stringWithFormat:@"<div style='font-size:18px;'>%@ <span style='color:gray;'>- %@</span></div>", [obmBookingItem objectForKey:COLUMN_BOOKING_NUMBER], [obmBookingItem objectForKey:COLUMN_BOOKING_SERVICE]];
     NSAttributedString *firstLineAS = [[NSAttributedString alloc] initWithData:[firstLineHtml dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
     cell.rightTopTV.attributedText = firstLineAS;
     
@@ -157,8 +167,7 @@
     NSString *htmlString = [NSString stringWithFormat:@"<div style='font-size:18px;'><span style='font-weight:bold;'>%@</span> to %@ </div>", pickupAddress, destinationAddress];
     NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[htmlString dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
     cell.rightMiddleTV.attributedText = attributedString;
-    cell.rightBottomTV.text = [NSString stringWithFormat:@"%@ - %@", [obmBookingItem objectForKey:COLUMN_BOOKING_STATUS],
-                               [obmBookingItem objectForKey:COLUMN_ASSIGN_DRIVER_USER_NAME]];
+    cell.rightBottomTV.text = [NSString stringWithFormat:@"%@ - %@", [obmBookingItem objectForKey:COLUMN_BOOKING_STATUS], [obmBookingItem objectForKey:COLUMN_DRIVER_USER_NAME]];
     return cell;
 }
 

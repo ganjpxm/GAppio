@@ -53,7 +53,7 @@
     [upcomingBookingNC.navigationBar setBarStyle:UIBarStyleBlack];
     
     ObsHistoryBookingVC * bookingHistoryVC = [[ObsHistoryBookingVC alloc] init];
-    [bookingHistoryVC setTitle:@"History Booking"];
+    [bookingHistoryVC setTitle:@"Booking History"];
     UITabBarItem *bookingHistoryTabBarItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"History",@"History") image:[UIImage imageNamed:@"icon_history_gray"] tag:1];
     bookingHistoryVC.tabBarItem = bookingHistoryTabBarItem;
     JpNC *historyBookingNC = [[JpNC alloc] init];
