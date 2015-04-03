@@ -78,7 +78,7 @@
 		BC0C1D021A81B57A008CD91D /* goneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = goneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC0C1D071A81B57A008CD91D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC0C1D081A81B57A008CD91D /* goneTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = goneTests.m; sourceTree = "<group>"; };
-		BC0C1D121A81B5C8008CD91D /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		BC0C1D121A81B5C8008CD91D /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BC0C1D181A81B8F8008CD91D /* JpNC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JpNC.h; sourceTree = "<group>"; };
 		BC0C1D191A81B8F8008CD91D /* JpNC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JpNC.m; sourceTree = "<group>"; };
 		BC0C1D1A1A81B8F8008CD91D /* JpTableGroupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JpTableGroupVC.h; sourceTree = "<group>"; };

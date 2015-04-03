@@ -13,6 +13,9 @@
 + (NSMutableDictionary*)loadDictionary:(NSString *)plistFilename;
 
 + (BOOL)deleteMyDocsDirectory:(NSString*)subdir;
-+ (void)saveImage: (UIImage*)image fileName:(NSString*)fileName subDirectory:(NSString*)subDirectory;
++ (void)saveImage: (UIImage*)image imageType:(NSString *)imageType fileName:(NSString*)fileName subDirectory:(NSString*)subDirectory;
++ (BOOL)deleteImage:(NSString*)fileName subDirectory:(NSString*)subDirectory;
+
++ (UIImage *) addText:(UIImage *)img text:(NSString *)mark withRect:(CGRect)rect;
 
 @end

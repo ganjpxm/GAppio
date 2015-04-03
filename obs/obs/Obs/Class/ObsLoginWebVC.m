@@ -44,12 +44,12 @@
                 NSString *mobileNumber = [super.iWebView  stringByEvaluatingJavaScriptFromString:@"document.getElementById('mobileNumber').value"];
                 NSString *password = [super.iWebView  stringByEvaluatingJavaScriptFromString:@"document.getElementById('password').value"];
                 NSDictionary *parameters = @{KEY_LOGIN_USER_CD_OR_EMAIL_OR_MOBILE_NUMBER: mobileNumber, KEY_LOGIN_USER_PASSWORD: password};
-                [[ObsWebAPIClient sharedClient] POST:@"/allOrg/login" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+                [[ObsWebAPIClient sharedClient] POST:@"allOrg/login" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
                     NSMutableDictionary *respondDic = responseObject;
                     NSString *result = [respondDic valueForKey:KEY_RESULT];
                     if ([result isEqualToString:VALUE_SUCCESS]) {
-                        NSString *userCd = [respondDic objectForKey:KEY_USER_CD];
-                        [JpDataUtil saveDataToUDForKey:KEY_USER_CD value:userCd];
+                        NSString *userCd = [respondDic objectForKey:KEY_USER_CD_OBS];
+                        [JpDataUtil saveDataToUDForKey:KEY_USER_CD_OBS value:userCd];
                         [JpDataUtil saveDataToUDForKey:KEY_OBS_USER_ID value:[respondDic objectForKey:KEY_OBS_USER_ID]];
                         [JpDataUtil saveDataToUDForKey:KEY_OBS_USER_NAME value:[respondDic objectForKey:KEY_OBS_USER_NAME]];
                         

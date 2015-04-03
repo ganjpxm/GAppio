@@ -28,6 +28,7 @@
 -(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)index
 {
     NSString *section = [super.sections objectAtIndex:index];
+    NSArray *dataArr = [super.sectionCellsDic objectForKey:section];
     if ([section containsString:@"/"]) {
         NSDate *date = [JpDateUtil getDateFromString:section];
         if ([section containsString:[JpDateUtil getCurrentYearStr]]) {
@@ -36,7 +37,8 @@
             section = [JpDateUtil getDateStrWithDate:date dateFormat:@"EEE, dd MMM yyyy"];
         }
     }
-    return section;
+    
+    return [NSString stringWithFormat:@"%@_%lu", section, (unsigned long)[dataArr count]];
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -46,8 +48,10 @@
     else
         headerView =  [[ObsBookingTableSectionView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), 23.0)];
     [headerView setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];
-    [headerView setTitle:[tableView.dataSource tableView:tableView titleForHeaderInSection:section]];
-    
+    NSString *sectionCount = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
+    NSArray *sectionCountArr = [sectionCount componentsSeparatedByString:@"_"];
+    [headerView setTitle:sectionCountArr[0]];
+    [headerView setCount:sectionCountArr[1]];
     return headerView;
 }
 

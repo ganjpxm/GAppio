@@ -7,7 +7,7 @@
 //
 
 #import "CustomizeTableVC.h"
-#import "JpTableCell.h"
+#import "CustomizeTableCell.h"
 
 @interface CustomizeTableVC ()
 
@@ -28,18 +28,25 @@
     // Initialize table data
 }
 
-//- (JpTableCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    
-//    static NSString *cellIdentifier = @"Cell";
-//    JpTableCell *cell = (JpTableCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-//    if (cell == nil) cell = [[JpTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-//    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-//    
-//    NSDictionary *cellDic = [self.cellDics objectAtIndex:indexPath.row];
-//    cell.textLabel.text = [cellDic objectForKey:@"text"];
-//    return cell;
-//}
+- (JpTableCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    static NSString *cellIdentifier = @"Cell";
+    CustomizeTableCell *cell = (CustomizeTableCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) cell = [[CustomizeTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    
+    NSDictionary *cellDic = [self.cellDics objectAtIndex:indexPath.row];
+    cell.rightTitleLabel.text = [cellDic objectForKey:@"text"];
+    
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 48;
+}
+
 
 
 @end

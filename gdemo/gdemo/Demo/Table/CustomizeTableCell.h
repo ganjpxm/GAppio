@@ -5,9 +5,13 @@
 //  Created by ganjianping on 28/2/15.
 //  Copyright (c) 2015 ganjp. All rights reserved.
 //
+#import "JpTableCell.h"
 
-#ifndef gdemo_CustomizeTableCell_h
-#define gdemo_CustomizeTableCell_h
+@interface CustomizeTableCell : JpTableCell
 
+@property(nonatomic,strong)UIImageView *leftIV;
 
-#endif
+@property(nonatomic,strong)UILabel *rightTitleLabel;
+@property(nonatomic,strong)UILabel *rightSummaryLabel;
+
+@end

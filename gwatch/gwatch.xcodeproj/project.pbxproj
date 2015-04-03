@@ -1,0 +1,686 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BC1FBC0B1AAED4D60023A4F3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1FBC0A1AAED4D60023A4F3 /* main.m */; };
+		BC1FBC0E1AAED4D60023A4F3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1FBC0D1AAED4D60023A4F3 /* AppDelegate.m */; };
+		BC1FBC111AAED4D60023A4F3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1FBC101AAED4D60023A4F3 /* ViewController.m */; };
+		BC1FBC141AAED4D60023A4F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC1FBC121AAED4D60023A4F3 /* Main.storyboard */; };
+		BC1FBC161AAED4D60023A4F3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC1FBC151AAED4D60023A4F3 /* Images.xcassets */; };
+		BC1FBC191AAED4D60023A4F3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC1FBC171AAED4D60023A4F3 /* LaunchScreen.xib */; };
+		BC1FBC251AAED4D60023A4F3 /* gwatchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1FBC241AAED4D60023A4F3 /* gwatchTests.m */; };
+		BC1FBC391AAED4F00023A4F3 /* InterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1FBC381AAED4F00023A4F3 /* InterfaceController.m */; };
+		BC1FBC3C1AAED4F00023A4F3 /* NotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1FBC3B1AAED4F00023A4F3 /* NotificationController.m */; };
+		BC1FBC3E1AAED4F00023A4F3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC1FBC3D1AAED4F00023A4F3 /* Images.xcassets */; };
+		BC1FBC421AAED4F00023A4F3 /* gwatch WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = BC1FBC411AAED4F00023A4F3 /* gwatch WatchKit App.app */; };
+		BC1FBC4A1AAED4F00023A4F3 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC1FBC481AAED4F00023A4F3 /* Interface.storyboard */; };
+		BC1FBC4C1AAED4F00023A4F3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC1FBC4B1AAED4F00023A4F3 /* Images.xcassets */; };
+		BC1FBC4F1AAED4F00023A4F3 /* gwatch WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BC1FBC321AAED4F00023A4F3 /* gwatch WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BC1FBC1F1AAED4D60023A4F3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC1FBBFD1AAED4D60023A4F3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BC1FBC041AAED4D60023A4F3;
+			remoteInfo = gwatch;
+		};
+		BC1FBC431AAED4F00023A4F3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC1FBBFD1AAED4D60023A4F3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BC1FBC401AAED4F00023A4F3;
+			remoteInfo = "gwatch WatchKit App";
+		};
+		BC1FBC4D1AAED4F00023A4F3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC1FBBFD1AAED4D60023A4F3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BC1FBC311AAED4F00023A4F3;
+			remoteInfo = "gwatch WatchKit Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BC1FBC561AAED4F00023A4F3 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				BC1FBC4F1AAED4F00023A4F3 /* gwatch WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		BC1FBC051AAED4D60023A4F3 /* gwatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gwatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC1FBC091AAED4D60023A4F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BC1FBC0A1AAED4D60023A4F3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BC1FBC0C1AAED4D60023A4F3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		BC1FBC0D1AAED4D60023A4F3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		BC1FBC0F1AAED4D60023A4F3 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		BC1FBC101AAED4D60023A4F3 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		BC1FBC131AAED4D60023A4F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BC1FBC151AAED4D60023A4F3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		BC1FBC181AAED4D60023A4F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		BC1FBC1E1AAED4D60023A4F3 /* gwatchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = gwatchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC1FBC231AAED4D60023A4F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BC1FBC241AAED4D60023A4F3 /* gwatchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = gwatchTests.m; sourceTree = "<group>"; };
+		BC1FBC321AAED4F00023A4F3 /* gwatch WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "gwatch WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC1FBC351AAED4F00023A4F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BC1FBC361AAED4F00023A4F3 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		BC1FBC371AAED4F00023A4F3 /* InterfaceController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InterfaceController.h; sourceTree = "<group>"; };
+		BC1FBC381AAED4F00023A4F3 /* InterfaceController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InterfaceController.m; sourceTree = "<group>"; };
+		BC1FBC3A1AAED4F00023A4F3 /* NotificationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationController.h; sourceTree = "<group>"; };
+		BC1FBC3B1AAED4F00023A4F3 /* NotificationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationController.m; sourceTree = "<group>"; };
+		BC1FBC3D1AAED4F00023A4F3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		BC1FBC411AAED4F00023A4F3 /* gwatch WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "gwatch WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC1FBC471AAED4F00023A4F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BC1FBC491AAED4F00023A4F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		BC1FBC4B1AAED4F00023A4F3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BC1FBC021AAED4D60023A4F3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BC1FBC1B1AAED4D60023A4F3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BC1FBC2F1AAED4F00023A4F3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BC1FBBFC1AAED4D60023A4F3 = {
+			isa = PBXGroup;
+			children = (
+				BC1FBC071AAED4D60023A4F3 /* gwatch */,
+				BC1FBC211AAED4D60023A4F3 /* gwatchTests */,
+				BC1FBC331AAED4F00023A4F3 /* gwatch WatchKit Extension */,
+				BC1FBC451AAED4F00023A4F3 /* gwatch WatchKit App */,
+				BC1FBC061AAED4D60023A4F3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BC1FBC061AAED4D60023A4F3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BC1FBC051AAED4D60023A4F3 /* gwatch.app */,
+				BC1FBC1E1AAED4D60023A4F3 /* gwatchTests.xctest */,
+				BC1FBC321AAED4F00023A4F3 /* gwatch WatchKit Extension.appex */,
+				BC1FBC411AAED4F00023A4F3 /* gwatch WatchKit App.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BC1FBC071AAED4D60023A4F3 /* gwatch */ = {
+			isa = PBXGroup;
+			children = (
+				BC1FBC0C1AAED4D60023A4F3 /* AppDelegate.h */,
+				BC1FBC0D1AAED4D60023A4F3 /* AppDelegate.m */,
+				BC1FBC0F1AAED4D60023A4F3 /* ViewController.h */,
+				BC1FBC101AAED4D60023A4F3 /* ViewController.m */,
+				BC1FBC121AAED4D60023A4F3 /* Main.storyboard */,
+				BC1FBC151AAED4D60023A4F3 /* Images.xcassets */,
+				BC1FBC171AAED4D60023A4F3 /* LaunchScreen.xib */,
+				BC1FBC081AAED4D60023A4F3 /* Supporting Files */,
+			);
+			path = gwatch;
+			sourceTree = "<group>";
+		};
+		BC1FBC081AAED4D60023A4F3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BC1FBC091AAED4D60023A4F3 /* Info.plist */,
+				BC1FBC0A1AAED4D60023A4F3 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BC1FBC211AAED4D60023A4F3 /* gwatchTests */ = {
+			isa = PBXGroup;
+			children = (
+				BC1FBC241AAED4D60023A4F3 /* gwatchTests.m */,
+				BC1FBC221AAED4D60023A4F3 /* Supporting Files */,
+			);
+			path = gwatchTests;
+			sourceTree = "<group>";
+		};
+		BC1FBC221AAED4D60023A4F3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BC1FBC231AAED4D60023A4F3 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BC1FBC331AAED4F00023A4F3 /* gwatch WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				BC1FBC371AAED4F00023A4F3 /* InterfaceController.h */,
+				BC1FBC381AAED4F00023A4F3 /* InterfaceController.m */,
+				BC1FBC3A1AAED4F00023A4F3 /* NotificationController.h */,
+				BC1FBC3B1AAED4F00023A4F3 /* NotificationController.m */,
+				BC1FBC3D1AAED4F00023A4F3 /* Images.xcassets */,
+				BC1FBC341AAED4F00023A4F3 /* Supporting Files */,
+			);
+			path = "gwatch WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		BC1FBC341AAED4F00023A4F3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BC1FBC351AAED4F00023A4F3 /* Info.plist */,
+				BC1FBC361AAED4F00023A4F3 /* PushNotificationPayload.apns */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BC1FBC451AAED4F00023A4F3 /* gwatch WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				BC1FBC481AAED4F00023A4F3 /* Interface.storyboard */,
+				BC1FBC4B1AAED4F00023A4F3 /* Images.xcassets */,
+				BC1FBC461AAED4F00023A4F3 /* Supporting Files */,
+			);
+			path = "gwatch WatchKit App";
+			sourceTree = "<group>";
+		};
+		BC1FBC461AAED4F00023A4F3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BC1FBC471AAED4F00023A4F3 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BC1FBC041AAED4D60023A4F3 /* gwatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BC1FBC281AAED4D60023A4F3 /* Build configuration list for PBXNativeTarget "gwatch" */;
+			buildPhases = (
+				BC1FBC011AAED4D60023A4F3 /* Sources */,
+				BC1FBC021AAED4D60023A4F3 /* Frameworks */,
+				BC1FBC031AAED4D60023A4F3 /* Resources */,
+				BC1FBC561AAED4F00023A4F3 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BC1FBC4E1AAED4F00023A4F3 /* PBXTargetDependency */,
+			);
+			name = gwatch;
+			productName = gwatch;
+			productReference = BC1FBC051AAED4D60023A4F3 /* gwatch.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BC1FBC1D1AAED4D60023A4F3 /* gwatchTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BC1FBC2B1AAED4D60023A4F3 /* Build configuration list for PBXNativeTarget "gwatchTests" */;
+			buildPhases = (
+				BC1FBC1A1AAED4D60023A4F3 /* Sources */,
+				BC1FBC1B1AAED4D60023A4F3 /* Frameworks */,
+				BC1FBC1C1AAED4D60023A4F3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BC1FBC201AAED4D60023A4F3 /* PBXTargetDependency */,
+			);
+			name = gwatchTests;
+			productName = gwatchTests;
+			productReference = BC1FBC1E1AAED4D60023A4F3 /* gwatchTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BC1FBC311AAED4F00023A4F3 /* gwatch WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BC1FBC531AAED4F00023A4F3 /* Build configuration list for PBXNativeTarget "gwatch WatchKit Extension" */;
+			buildPhases = (
+				BC1FBC2E1AAED4F00023A4F3 /* Sources */,
+				BC1FBC2F1AAED4F00023A4F3 /* Frameworks */,
+				BC1FBC301AAED4F00023A4F3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BC1FBC441AAED4F00023A4F3 /* PBXTargetDependency */,
+			);
+			name = "gwatch WatchKit Extension";
+			productName = "gwatch WatchKit Extension";
+			productReference = BC1FBC321AAED4F00023A4F3 /* gwatch WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit-extension";
+		};
+		BC1FBC401AAED4F00023A4F3 /* gwatch WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BC1FBC501AAED4F00023A4F3 /* Build configuration list for PBXNativeTarget "gwatch WatchKit App" */;
+			buildPhases = (
+				BC1FBC3F1AAED4F00023A4F3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "gwatch WatchKit App";
+			productName = "gwatch WatchKit App";
+			productReference = BC1FBC411AAED4F00023A4F3 /* gwatch WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BC1FBBFD1AAED4D60023A4F3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0620;
+				ORGANIZATIONNAME = ganjp;
+				TargetAttributes = {
+					BC1FBC041AAED4D60023A4F3 = {
+						CreatedOnToolsVersion = 6.2;
+					};
+					BC1FBC1D1AAED4D60023A4F3 = {
+						CreatedOnToolsVersion = 6.2;
+						TestTargetID = BC1FBC041AAED4D60023A4F3;
+					};
+					BC1FBC311AAED4F00023A4F3 = {
+						CreatedOnToolsVersion = 6.2;
+					};
+					BC1FBC401AAED4F00023A4F3 = {
+						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = JTBLBQ96P4;
+					};
+				};
+			};
+			buildConfigurationList = BC1FBC001AAED4D60023A4F3 /* Build configuration list for PBXProject "gwatch" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BC1FBBFC1AAED4D60023A4F3;
+			productRefGroup = BC1FBC061AAED4D60023A4F3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BC1FBC041AAED4D60023A4F3 /* gwatch */,
+				BC1FBC1D1AAED4D60023A4F3 /* gwatchTests */,
+				BC1FBC311AAED4F00023A4F3 /* gwatch WatchKit Extension */,
+				BC1FBC401AAED4F00023A4F3 /* gwatch WatchKit App */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BC1FBC031AAED4D60023A4F3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC1FBC141AAED4D60023A4F3 /* Main.storyboard in Resources */,
+				BC1FBC191AAED4D60023A4F3 /* LaunchScreen.xib in Resources */,
+				BC1FBC161AAED4D60023A4F3 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BC1FBC1C1AAED4D60023A4F3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BC1FBC301AAED4F00023A4F3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC1FBC421AAED4F00023A4F3 /* gwatch WatchKit App.app in Resources */,
+				BC1FBC3E1AAED4F00023A4F3 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BC1FBC3F1AAED4F00023A4F3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC1FBC4A1AAED4F00023A4F3 /* Interface.storyboard in Resources */,
+				BC1FBC4C1AAED4F00023A4F3 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BC1FBC011AAED4D60023A4F3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC1FBC111AAED4D60023A4F3 /* ViewController.m in Sources */,
+				BC1FBC0E1AAED4D60023A4F3 /* AppDelegate.m in Sources */,
+				BC1FBC0B1AAED4D60023A4F3 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BC1FBC1A1AAED4D60023A4F3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC1FBC251AAED4D60023A4F3 /* gwatchTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BC1FBC2E1AAED4F00023A4F3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC1FBC3C1AAED4F00023A4F3 /* NotificationController.m in Sources */,
+				BC1FBC391AAED4F00023A4F3 /* InterfaceController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BC1FBC201AAED4D60023A4F3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BC1FBC041AAED4D60023A4F3 /* gwatch */;
+			targetProxy = BC1FBC1F1AAED4D60023A4F3 /* PBXContainerItemProxy */;
+		};
+		BC1FBC441AAED4F00023A4F3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BC1FBC401AAED4F00023A4F3 /* gwatch WatchKit App */;
+			targetProxy = BC1FBC431AAED4F00023A4F3 /* PBXContainerItemProxy */;
+		};
+		BC1FBC4E1AAED4F00023A4F3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BC1FBC311AAED4F00023A4F3 /* gwatch WatchKit Extension */;
+			targetProxy = BC1FBC4D1AAED4F00023A4F3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		BC1FBC121AAED4D60023A4F3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BC1FBC131AAED4D60023A4F3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		BC1FBC171AAED4D60023A4F3 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BC1FBC181AAED4D60023A4F3 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		BC1FBC481AAED4F00023A4F3 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BC1FBC491AAED4F00023A4F3 /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BC1FBC261AAED4D60023A4F3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		BC1FBC271AAED4D60023A4F3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BC1FBC291AAED4D60023A4F3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = gwatch/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		BC1FBC2A1AAED4D60023A4F3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = gwatch/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		BC1FBC2C1AAED4D60023A4F3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = gwatchTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/gwatch.app/gwatch";
+			};
+			name = Debug;
+		};
+		BC1FBC2D1AAED4D60023A4F3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = gwatchTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/gwatch.app/gwatch";
+			};
+			name = Release;
+		};
+		BC1FBC511AAED4F00023A4F3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IBSC_MODULE = gwatch_WatchKit_Extension;
+				INFOPLIST_FILE = "gwatch WatchKit App/Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Debug;
+		};
+		BC1FBC521AAED4F00023A4F3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				IBSC_MODULE = gwatch_WatchKit_Extension;
+				INFOPLIST_FILE = "gwatch WatchKit App/Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Release;
+		};
+		BC1FBC541AAED4F00023A4F3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "gwatch WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		BC1FBC551AAED4F00023A4F3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "gwatch WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BC1FBC001AAED4D60023A4F3 /* Build configuration list for PBXProject "gwatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC1FBC261AAED4D60023A4F3 /* Debug */,
+				BC1FBC271AAED4D60023A4F3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BC1FBC281AAED4D60023A4F3 /* Build configuration list for PBXNativeTarget "gwatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC1FBC291AAED4D60023A4F3 /* Debug */,
+				BC1FBC2A1AAED4D60023A4F3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		BC1FBC2B1AAED4D60023A4F3 /* Build configuration list for PBXNativeTarget "gwatchTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC1FBC2C1AAED4D60023A4F3 /* Debug */,
+				BC1FBC2D1AAED4D60023A4F3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		BC1FBC501AAED4F00023A4F3 /* Build configuration list for PBXNativeTarget "gwatch WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC1FBC511AAED4F00023A4F3 /* Debug */,
+				BC1FBC521AAED4F00023A4F3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		BC1FBC531AAED4F00023A4F3 /* Build configuration list for PBXNativeTarget "gwatch WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC1FBC541AAED4F00023A4F3 /* Debug */,
+				BC1FBC551AAED4F00023A4F3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BC1FBBFD1AAED4D60023A4F3 /* Project object */;
+}

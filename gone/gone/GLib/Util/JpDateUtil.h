@@ -18,6 +18,8 @@
 + (NSString *)getCurrentDateStr;
 + (NSString *)getCurrentTimeStr;
 + (NSString *)getCurrentYearStr;
++ (NSString *)getCurrentDateTimeWithAmPmStr;
++ (NSString *)getTomorrowDateStr;
 + (NSString *)getDateStrWithDate:(NSDate *)date dateFormat:(NSString *)dateFormat;
 
 + (NSDate *)getDateFromString:(NSString *)dateStr;

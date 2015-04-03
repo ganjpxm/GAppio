@@ -11,8 +11,12 @@
 + (void) saveDataToUDForKey:(NSString*)key value:(NSObject*)value;
 + (NSString*) getValueFromUDByKey: (NSString*)keyString;
 + (NSDictionary*)getDicFromUDByKey: (NSString*)key;
++ (NSMutableArray*)getArrFromUDByKey: (NSString*)key;
 
 + (NSArray *) getJsonArr:(id)aJsonStr;
 
 + (void)resetDefaults;
+
++ (void)remove:(NSString*)key;
+
 @end

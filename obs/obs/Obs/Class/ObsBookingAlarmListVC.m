@@ -15,15 +15,15 @@
 #import "ObsDBManager.h"
 #import "JpDataUtil.h"
 #import "ObsBookingAlertTableCell.h"
-#import "ObsBookingDetailVC.h"
+#import "ObsUpcomingBookingDetailVC.h"
 #import "JpConst.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
 #import "NSString+Jp.h"
 #import "JpDateUtil.h"
-#import "JpUtil.h"
 #import "ObsTabBC.h"
+#import "JpUtil.h"
 
 @interface ObsBookingAlarmListVC ()
 
@@ -85,7 +85,6 @@ static NSString *cellIdentifier = @"BookingAlertCell";
     self.navigationItem.leftBarButtonItem = backButtonItem;
     [self setTitle:@"Broadcast"];
     
-    
     [self reload:nil];
 }
 
@@ -129,7 +128,39 @@ static NSString *cellIdentifier = @"BookingAlertCell";
     ObsDBManager *dbManager = [ObsDBManager getSharedInstance];
     NSString *loginUserId = [JpDataUtil getValueFromUDByKey:KEY_OBS_USER_ID];
     NSMutableArray *obmBookingVehicleItems = [dbManager getObmBookingVehicleItemWithDriverUserId:loginUserId search:SearchBROADCAST];
-    self.cellDics = obmBookingVehicleItems;
+    
+    NSString *batchBroadcastBookingVehicleItemIds = [JpDataUtil getValueFromUDByKey:KEY_BATCH_BROADCAST_BOOKING_VEHICLE_ITEM_IDS];
+    if (batchBroadcastBookingVehicleItemIds && [batchBroadcastBookingVehicleItemIds length]>=32 && obmBookingVehicleItems && [obmBookingVehicleItems count]>0) {
+        NSMutableArray *newObmBookingVehicleItems = [[NSMutableArray alloc] init];
+        NSArray *batchBroadcastBookingVehicleItemIdArr = [batchBroadcastBookingVehicleItemIds componentsSeparatedByString:@";"];
+        for (NSString *batchBroadcastBookingVehicleItemIdWithComma in batchBroadcastBookingVehicleItemIdArr) {
+            NSArray *broadcastBookingVehicleItemIdArr = [batchBroadcastBookingVehicleItemIdWithComma componentsSeparatedByString:@","];
+            for (int i=0; i < [broadcastBookingVehicleItemIdArr count]; i++) {
+                NSString *broadcastBookingVehicleItemId = broadcastBookingVehicleItemIdArr[i];
+                for (NSMutableDictionary *obmBookingVehicleItem in obmBookingVehicleItems) {
+                    NSString *bookingVehicleItemId = [obmBookingVehicleItem objectForKey:COLUMN_BOOKING_VEHICLE_ITEM_ID];
+                    if ([bookingVehicleItemId isEqualToString:broadcastBookingVehicleItemId]) {
+                        [obmBookingVehicleItem setValue:batchBroadcastBookingVehicleItemIdWithComma forKey:COLUMN_BOOKING_VEHICLE_ITEM_ID];
+                        if (i!=[broadcastBookingVehicleItemIdArr count]-1) {
+                            [obmBookingVehicleItem setValue:@"yes" forKey:COLUMN_HIDE_ACCEPT_BUTTON];
+                        }
+                        if (i>0) {
+                            [obmBookingVehicleItem setValue:@"yes" forKey:COLUMN_HIDE_TITLE];
+                        }
+                        [newObmBookingVehicleItems addObject:obmBookingVehicleItem];
+                        [obmBookingVehicleItems removeObject:obmBookingVehicleItem];
+                        break;
+                    }
+                }
+            }
+        }
+        if ([obmBookingVehicleItems count]>0) {
+            [newObmBookingVehicleItems addObjectsFromArray:obmBookingVehicleItems];
+        }
+        self.cellDics = newObmBookingVehicleItems;
+    } else {
+        self.cellDics = obmBookingVehicleItems;
+    }
 }
 #pragma mark - UITableViewDataSource
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -154,6 +185,15 @@ static NSString *cellIdentifier = @"BookingAlertCell";
     [bookingAlertCell.rejectBtn setFrame:CGRectMake(screenWidth-108, height-8, 100, 35)];
     bookingAlertCell.rejectBtn.tag = indexPath.row;
     [bookingAlertCell.rejectBtn addTarget:self action:@selector(rejectBooking:) forControlEvents:UIControlEventTouchUpInside];
+    
+    NSString *hideAcceptBtn = [obmBookingItem objectForKey:COLUMN_HIDE_ACCEPT_BUTTON];
+    if (hideAcceptBtn && [@"yes" isEqualToString:hideAcceptBtn]) {
+        bookingAlertCell.acceptBtn.hidden = YES;
+        bookingAlertCell.rejectBtn.hidden = YES;
+    } else {
+        bookingAlertCell.acceptBtn.hidden = NO;
+        bookingAlertCell.rejectBtn.hidden = NO;
+    }
     return bookingAlertCell;
 }
 
@@ -161,6 +201,10 @@ static NSString *cellIdentifier = @"BookingAlertCell";
 {
     NSDictionary *obmBookingItem = [self.cellDics objectAtIndex:[indexPath row]];
     float height = [JpUtil getRealHeight:[JpUtil getHtmlAttributedString:[self getBookingInfoHtml:obmBookingItem]] width:[JpUiUtil getScreenWidth]-8] + 35;
+    NSString *hideAcceptBtn = [obmBookingItem objectForKey:COLUMN_HIDE_ACCEPT_BUTTON];
+    if (hideAcceptBtn && [@"yes" isEqualToString:hideAcceptBtn]) {
+        height -= 35;
+    }
     return height;
 }
 
@@ -183,6 +227,10 @@ static NSString *cellIdentifier = @"BookingAlertCell";
             bookingInfoHtml = @"<b><big>New Booking</big></b> <br/> ";
         }
         
+    }
+    NSString *hideTitle = [obmBookingItem objectForKey:COLUMN_HIDE_TITLE];
+    if (hideTitle && [@"yes" isEqualToString:hideTitle]) {
+        bookingInfoHtml = @"";
     }
     bookingInfoHtml = [NSString stringWithFormat:@"%@ %@ (%@) - ", bookingInfoHtml, [obmBookingItem objectForKey:COLUMN_BOOKING_SERVICE], [obmBookingItem objectForKey:COLUMN_BOOKING_NUMBER]];
     if ([obmBookingItem objectForKey:COLUMN_PAYMENT_MODE] && [[obmBookingItem objectForKey:COLUMN_PAYMENT_MODE] containsString:@"Cash"]) {
@@ -276,7 +324,7 @@ static NSString *cellIdentifier = @"BookingAlertCell";
             NSString *action = [self getAction];
             NSDictionary *parameters = @{KEY_USER_ID:loginUserId, KEY_BOOKING_VEHICLE_ITEM_ID:bookingVehicleItemId, KEY_ACTION:action};
             
-            [[ObsWebAPIClient sharedClient] POST:@"/web/responseBroadcastBooking" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+            [[ObsWebAPIClient sharedClient] POST:@"web/responseBroadcastBooking" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
                 NSMutableDictionary *respondDic = responseObject;
                 NSString *result = [respondDic valueForKey:KEY_RESULT];
                 if ([result isEqualToString:VALUE_SUCCESS]) {

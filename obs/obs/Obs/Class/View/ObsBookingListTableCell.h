@@ -17,6 +17,7 @@
 
 @property(nonatomic,strong)UIImageView *commentIV;
 @property(nonatomic,strong)UIImageView *stopIV;
+@property(nonatomic,strong)UIImageView *okIV;
 
 @property (nonatomic, strong) UIColor * accessoryCheckmarkColor;
 @property (nonatomic, strong) UIColor * disclosureIndicatorColor;

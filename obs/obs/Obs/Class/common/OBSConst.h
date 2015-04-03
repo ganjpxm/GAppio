@@ -10,6 +10,7 @@
 #define LIGHT_GRAY_COLOR  [UIColor colorWithRed:240.0/255.0 green:239.0/255.0 blue:245.0/255.0 alpha:1.0]
 #define DARK_GRAY_COLOR  [UIColor colorWithRed:153.0/255.0 green:152.0/255.0 blue:157.0/255.0 alpha:1.0]
 
+#define COLOR_RED_LIGHT [UIColor colorWithRed:255.0/255.0 green:0/255.0 blue:0/255.0 alpha:0.1]
 
 static NSString * const URL_HOST                   = @"http://119.9.74.121/";
 static NSString * const URL_REACHABILITY           = @"http://1.lt.sg";
@@ -29,27 +30,34 @@ static NSInteger const CALL_BOOK_BY_USER = 4;
 static NSInteger const CALL_ASSIGNER = 5;
 static NSInteger const MAP_ROUTE_STOP1 = 6;
 static NSInteger const MAP_ROUTE_STOP2 = 7;
+static NSInteger const OK_SUBMIT = 8;
+static NSInteger const OK_SUBMIT_SUCCESS = 9;
+static NSInteger const COMPLETE_SUCCESS = 10;
+static NSInteger const CHANGE_DRIVER = 11;
+static NSInteger const CHANGE_DRIVER_SUCCESS = 12;
 
 //GOOGLE ANALYTICS
 static NSString * const GOOGLE_ANALYTICS_TRACKING_ID = @"UA-49817046-1";
 static BOOL const GOOGLE_ANALYTICS_OPT_OUT = NO;
 static NSString * const SCREEN_LOGIN = @"Login";
-static NSString * const SCREEN_BOOKING_UPCONMING = @"Upcoming booking";
+static NSString * const SCREEN_BOOKING_UPCONMING = @"Upcoming Booking";
 static NSString * const SCREEN_BOOKING_BROADCAST = @"Broadcast";
-static NSString * const SCREEN_BOOKING_DETAIL = @"Booking detail";
-static NSString * const SCREEN_BOOKING_PAST = @"Pasting Booking";
+static NSString * const SCREEN_BOOKING_UPCOMING_DETAIL = @"Upcoming Booking Detail";
+static NSString * const SCREEN_BOOKING_HISTORY_DETAIL = @"Booking History Detail";
+static NSString * const SCREEN_BOOKING_PAST = @"Booking History";
 static NSString * const SCREEN_PROFILE = @"Profile";
 static NSString * const SCREEN_MORE = @"More";
 static NSString * const SCREEN_CHECK_LIST = @"Check List";
 static NSString * const SCREEN_PRODUCT_INFO = @"Product Info";
+static NSString * const SCREEN_BOOKING_COMPLETE = @"Booking Complete";
 
 static NSString * const KEY_OBS                   = @"OBS";
 static NSString * const KEY_NETWORK_STATUS    = @"ObsNetworkState";
 static NSString * const KEY_DB_VERSION_OBSD        = @"OBSCDbVersion";
-static NSString * const KEY_USER_CD                = @"ObsUserCd";
-static NSString * const KEY_PASSWORD_OBSD          = @"ObsPassword";
+static NSString * const KEY_USER_CD_OBS                = @"ObsUserCd";
+static NSString * const KEY_PASSWORD_OBS          = @"ObsPassword";
 static NSString * const KEY_OBS_USER_ID            = @"ObsUserId";
-static NSString * const KEY_USER_NAME              = @"ObsUserName";
+static NSString * const KEY_OBS_USER_NAME          = @"ObsUserName";
 static NSString * const KEY_USER_MOBILE_PHONE_OBSD = @"ObsdUserMobilePhone";
 static NSString * const KEY_USER_EMAIL_OBSD        = @"ObsdUserEmail";
 static NSString * const KEY_USER_PHOTO_URL_OBSD    = @"ObsdUserPhotoUrl";
@@ -64,17 +72,20 @@ static NSString * const KEY_BOOKING_VEHICLE_ITEM_ID_OBSD = @"ObsdBookingVehicleI
 static NSString * const KEY_LOGIN_USER_CD_OR_EMAIL_OR_MOBILE_NUMBER = @"userCdOrEmailOrMobileNumber";
 static NSString * const KEY_LOGIN_USER_PASSWORD    = @"userPassword";
 static NSString * const KEY_USER_ID                = @"userId";
+static NSString * const KEY_USER_NAME              = @"userName";
 static NSString * const KEY_BOOKING_VEHICLE_ITEM_ID = @"bookingVehicleItemId";
 static NSString * const KEY_ACTION                  = @"action";
 
 static NSString * const KEY_UDID_OBS              = @"ObsUDID";
 static NSString * const KEY_DEVICE_TOKEN_OBS      = @"ObsDeviceToken";
 static NSString * const KEY_IS_REGIST_DEVICE_OBS = @"ObsIsRegistDevice";
+static NSString * const KEY_SIGNATURE_INFOS = @"ObsSignatureInfos";
 
 static NSString * const KEY_RESULT                 = @"result";
 static NSString * const KEY_DATA                   = @"data";
 static NSString * const KEY_START_DATE             = @"startDate";
 static NSString * const KEY_BROADCAST_BOOKING_VEHICLE_ITEM_IDS = @"broadcastBookingVehicleItemIds";
+static NSString * const KEY_BATCH_BROADCAST_BOOKING_VEHICLE_ITEM_IDS = @"batchBroadcastBookingVehicleItemIds";
 static NSString * const KEY_IS_SHOW_BROADCAST      = @"isShowBroadcast";
 
 static NSString * const VALUE_SUCCESS               = @"success";
@@ -101,7 +112,7 @@ static NSString * const VALUE_BOOKING_STATUS_CD_MISSED      = @"0810";
 static NSString * const VALUE_BOOKING_STATUS_CD_COMPLETED   = @"0811";
 static NSString * const VALUE_BOOKING_STATUS_CD_ENQUIREY    = @"0821";
 
-static NSString * const DB_VERSION                 = @"1.0";
+static NSString * const DB_VERSION                 = @"1.2";
 static NSString * const DB_NAME                    = @"obsc.sqlite";
 static NSString * const TABLE_BM_CONFIG            = @"bm_config";
 static NSString * const COLUMN_CONFIG_ID           = @"configId";
@@ -111,6 +122,7 @@ static NSString * const COLUMN_CONFIG_VALUE        = @"configValue";
 
 static NSString * const TABLE_OBM_BOOKING_VEHICLE_ITEM      = @"ObmBookingVehicleItem";
 static NSString * const COLUMN_BOOKING_VEHICLE_ITEM_ID      = @"bookingVehicleItemId";
+static NSString * const COLUMN_BOOKING_VEHICLE_ID           = @"bookingVehicleId";
 static NSString * const COLUMN_BOOKING_NUMBER               = @"bookingNumber";
 static NSString * const COLUMN_PICKUP_DATE                  = @"pickupDate";
 static NSString * const COLUMN_PICKUP_TIME                  = @"pickupTime";
@@ -126,6 +138,7 @@ static NSString * const COLUMN_STOP2_ADDRESS                = @"stop2Address";
 static NSString * const COLUMN_REMARK                       = @"remark";
 
 static NSString * const COLUMN_VEHICLE                      = @"vehicle";
+static NSString * const COLUMN_VEHICLE_CD                   = @"vehicleCd";
 static NSString * const COLUMN_PRICE_UNIT                   = @"priceUnit";
 static NSString * const COLUMN_PRICE                        = @"price";
 static NSString * const COLUMN_PAYMENT_STATUS               = @"paymentStatus";
@@ -144,6 +157,8 @@ static NSString * const COLUMN_LEAD_PASSENGER_LAST_NAME     = @"leadPassengerLas
 static NSString * const COLUMN_LEAD_PASSENGER_GENDER        = @"leadPassengerGender";
 static NSString * const COLUMN_LEAD_PASSENGER_MOBILE_NUMBER = @"leadPassengerMobileNumber";
 static NSString * const COLUMN_LEAD_PASSENGER_EMAIL         = @"leadPassengerEmail";
+static NSString * const COLUMN_LEAD_PASSENGER_SIGNATURE_PATH= @"leadPassengerSignaturePath";
+
 static NSString * const COLUMN_NUMBER_OF_PASSENGER          = @"numberOfPassenger";
 
 static NSString * const COLUMN_DRIVER_USER_NAME            = @"driverUserName";
@@ -152,6 +167,7 @@ static NSString * const COLUMN_DRIVER_MOBILE_NUMBER        = @"driverMobileNumbe
 static NSString * const COLUMN_DRIVER_VEHICLE              = @"driverVehicle";
 static NSString * const COLUMN_DRIVER_CLAIM_CURRENCY       = @"driverClaimCurrency";
 static NSString * const COLUMN_DRIVER_CLAIM_PRICE          = @"driverClaimPrice";
+static NSString * const COLUMN_DRIVER_CLAIM_STATUS          = @"driverClaimStatus";
 static NSString * const COLUMN_DRIVER_ACTION               = @"driverAction";
 
 static NSString * const COLUMN_ASSIGN_DRIVER_USER_ID       = @"assignDriverUserId";
@@ -180,6 +196,9 @@ static NSString * const COLUMN_SEND_DATE_TIME      = @"sendDateTime";
 static NSString * const COLUMN_RECIEVE_DATE_TIME   = @"recieveDateTime";
 static NSString * const COLUMN_QUERY_FILTERS       = @"queryFilters";
 
+static NSString * const COLUMN_HIDE_ACCEPT_BUTTON    = @"hideAcceptButton";
+static NSString * const COLUMN_HIDE_TITLE    = @"hideTitle";
+
 static NSString * const ACTION_ACCEPT_ENQUIRY_BOOKING = @"AcceptEnquiryBooking";
 static NSString * const ACTION_REJECT_ENQUIRY_BOOKING = @"RejectEnquiryBooking";
 static NSString * const ACTION_ACCEPT_NEW_BOOKING = @"AcceptNewBooking";
@@ -188,6 +207,12 @@ static NSString * const ACTION_ACCEPT_UPDATE_BOOKING = @"AcceptUpdateBooking";
 static NSString * const ACTION_REJECT_UPDATE_BOOKING = @"RejectUpdateBooking";
 static NSString * const ACTION_ACCEPT_CANCEL_BOOKING = @"AcceptCancelBooking";
 static NSString * const ACTION_REJECT_CANCEL_BOOKING = @"RejectCancelBooking";
+
+static NSString * const DRIVER_ACTION_VIEWED = @"Viewed";
+static NSString * const DRIVER_ACTION_OK = @"OK";
+
+static NSString * const IMAGE_TYPE_JPG = @"jpg";
+static NSString * const IMAGE_TYPE_PNG = @"png";
 
 typedef enum
 {

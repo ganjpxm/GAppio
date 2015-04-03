@@ -43,6 +43,17 @@
     }
 }
 
++ (NSMutableArray*)getArrFromUDByKey: (NSString*)key
+{
+    if ([key isEmpty]) {
+        return nil;
+    } else {
+        NSUserDefaults  *userDefaults = [NSUserDefaults standardUserDefaults];
+        NSMutableArray *arr = [userDefaults objectForKey:key];
+        return arr;
+    }
+}
+
 //Json
 + (NSArray *) getJsonArr:(id)aJsonStr
 {
@@ -58,6 +69,13 @@
         [defs removeObjectForKey:key];
     }
     [defs synchronize];
+}
++ (void)remove:(NSString*)key
+{
+    // Save the data
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults removeObjectForKey:key];
+    [userDefaults synchronize];
 }
 
 @end

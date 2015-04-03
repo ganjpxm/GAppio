@@ -1,5 +1,5 @@
 //
-//  ObsPastBookingVC.h
+//  ObsHistoryBookingVC.h
 //  obs
 //
 //  Created by Johnny on 14/3/14.

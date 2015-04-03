@@ -17,12 +17,13 @@
 #import "JpDateUtil.h"
 #import "JpDataUtil.h"
 #import "ObsBookingListTableCell.h"
-#import "ObsBookingDetailVC.h"
+#import "ObsUpcomingBookingDetailVC.h"
 #import "JpConst.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
 #import "ObsBookingAlarmListVC.h"
+#import "JpFileUtil.h"
 
 
 @interface ObsUpcomingBookingVC ()
@@ -174,19 +175,56 @@
     }
     
     NSString *stop1Address = [obmBookingItem objectForKey:COLUMN_STOP1_ADDRESS];
-    if (stop1Address && [stop1Address length]>1 && ![@"<null>" isEqualToString:stop1Address]) {
-        cell.stopIV.hidden = NO;
-        if (!(remark && [remark length]>1 && ![@"<null>" isEqualToString:remark])) {
-            CGRect oldFrame = cell.stopIV.frame;
-            CGRect newFrame = CGRectMake([JpUiUtil getScreenWidth]-24, oldFrame.origin.y, oldFrame.size.width, oldFrame.size.height);
-            cell.stopIV.frame = newFrame;
+    
+    NSString *today = [JpDateUtil getCurrentDateStr];
+    NSString *tomorrow = [JpDateUtil getTomorrowDateStr];
+    NSString *pickupDateIntStr = [obmBookingItem objectForKey:COLUMN_PICKUP_DATE];
+    NSString *pickupDateStr = [JpDateUtil getDateStrByMilliSecond:[pickupDateIntStr longLongValue]];
+    NSString *driverAction = [obmBookingItem objectForKey:COLUMN_DRIVER_ACTION];
+    if ([DRIVER_ACTION_OK isEqualToString:driverAction]) {
+        [cell.contentView setBackgroundColor:[UIColor whiteColor]];
+        
+        if (stop1Address && [stop1Address length]>1 && ![@"<null>" isEqualToString:stop1Address]) {
+            cell.stopIV.hidden = NO;
+            if (!(remark && [remark length]>1 && ![@"<null>" isEqualToString:remark])) {
+                CGRect oldFrame = cell.stopIV.frame;
+                CGRect newFrame = CGRectMake([JpUiUtil getScreenWidth]-45, oldFrame.origin.y, oldFrame.size.width, oldFrame.size.height);
+                cell.stopIV.frame = newFrame;
+            } else {
+                CGRect oldFrame = cell.stopIV.frame;
+                cell.stopIV.frame = CGRectMake([JpUiUtil getScreenWidth]-66, oldFrame.origin.y, oldFrame.size.width, oldFrame.size.height);
+            }
         } else {
-            CGRect oldFrame = cell.stopIV.frame;
-            cell.stopIV.frame = CGRectMake([JpUiUtil getScreenWidth]-45, oldFrame.origin.y, oldFrame.size.width, oldFrame.size.height);
+            cell.stopIV.hidden = YES;
         }
+        
+        if (remark && [remark length]>1 && ![@"<null>" isEqualToString:remark]) {
+            CGRect oldFrame = cell.commentIV.frame;
+            cell.commentIV.frame = CGRectMake([JpUiUtil getScreenWidth]-45, oldFrame.origin.y, oldFrame.size.width, oldFrame.size.height);
+        }
+        cell.okIV.hidden = NO;
     } else {
-        cell.stopIV.hidden = YES;
+        if ([today isEqualToString:pickupDateStr] || [tomorrow isEqualToString:pickupDateStr]) {
+            [cell.contentView setBackgroundColor:COLOR_RED_LIGHT];
+        } else {
+            [cell.contentView setBackgroundColor:[UIColor whiteColor]];
+        }
+        if (stop1Address && [stop1Address length]>1 && ![@"<null>" isEqualToString:stop1Address]) {
+            cell.stopIV.hidden = NO;
+            if (!(remark && [remark length]>1 && ![@"<null>" isEqualToString:remark])) {
+                CGRect oldFrame = cell.stopIV.frame;
+                CGRect newFrame = CGRectMake([JpUiUtil getScreenWidth]-24, oldFrame.origin.y, oldFrame.size.width, oldFrame.size.height);
+                    cell.stopIV.frame = newFrame;
+            } else {
+                CGRect oldFrame = cell.stopIV.frame;
+                cell.stopIV.frame = CGRectMake([JpUiUtil getScreenWidth]-45, oldFrame.origin.y, oldFrame.size.width, oldFrame.size.height);
+            }
+        } else {
+            cell.stopIV.hidden = YES;
+        }
+        cell.okIV.hidden = YES;
     }
+    
     
     NSString *firstLineHtml = [NSString stringWithFormat:@"<div style='font-size:18px;'>%@ <span style='color:gray;'>- %@</span></div>", [obmBookingItem objectForKey:COLUMN_BOOKING_NUMBER], [obmBookingItem objectForKey:COLUMN_BOOKING_SERVICE]];
     NSString *stateCd = [obmBookingItem objectForKey:COLUMN_BOOKING_STATUS_CD];
@@ -198,8 +236,21 @@
     cell.rightTopTV.attributedText = firstLineAS;
     
     NSString *pickupAddress = [obmBookingItem objectForKey:COLUMN_PICKUP_ADDRESS];
+    NSString *flightNumber = [obmBookingItem objectForKey:COLUMN_FLIGHT_NUMBER];
+    NSString *serviceCd = [obmBookingItem objectForKey:COLUMN_BOOKING_SERVICE_CD];
     NSString *destinationAddress = [obmBookingItem objectForKey:COLUMN_DESTINATION];
-    NSString *htmlString = [NSString stringWithFormat:@"<div style='font-size:18px;'><span style='font-weight:bold;'>%@</span> to %@ </div>", pickupAddress, destinationAddress];
+    NSString *htmlString = @"<div style='font-size:18px;'><span style='font-weight:bold;'>";
+    if ([serviceCd length]>0 && [VALUE_BOOKING_SERVICE_CD_ARRIVAL isEqualToString:serviceCd] && [flightNumber length]>1 && ![@"<null>" isEqualToString:flightNumber]) {
+        pickupAddress = [NSString stringWithFormat:@"(%@) %@ ", flightNumber, pickupAddress];
+    } else if ([serviceCd length]>0 && [VALUE_BOOKING_SERVICE_CD_HOURLY isEqualToString:serviceCd]) {
+        pickupAddress = [NSString stringWithFormat:@"(%@ hours) %@ ", [obmBookingItem objectForKey:COLUMN_BOOKING_HOURS], pickupAddress];
+    }
+    htmlString = [NSString stringWithFormat:@"%@%@<span> to ", htmlString, pickupAddress];
+    if ([serviceCd length]>0 && [VALUE_BOOKING_SERVICE_CD_DEPARTURE isEqualToString:serviceCd] && [flightNumber length]>1 && ![@"<null>" isEqualToString:flightNumber]) {
+        destinationAddress = [NSString stringWithFormat:@"(%@) %@ ", [obmBookingItem objectForKey:COLUMN_FLIGHT_NUMBER], destinationAddress];
+    }
+    htmlString = [NSString stringWithFormat:@"%@%@ </div>", htmlString, destinationAddress];
+    
     NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[htmlString dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
     cell.rightMiddleTV.attributedText = attributedString;
     cell.rightBottomTV.text = [NSString stringWithFormat:@"%@ - %@", [obmBookingItem objectForKey:COLUMN_BOOKING_STATUS], [obmBookingItem objectForKey:COLUMN_DRIVER_USER_NAME]];
@@ -214,7 +265,7 @@
     NSMutableArray *obmBookingItems= [self.sectionCellsDic objectForKey:sectionName];
     NSDictionary *obmBookingItem = [obmBookingItems objectAtIndex:indexPath.row];
     
-    ObsBookingDetailVC *bookingVehicleDetailVC = [[ObsBookingDetailVC alloc] init:@"Upcoming" data:obmBookingItem];
+    ObsUpcomingBookingDetailVC *bookingVehicleDetailVC = [[ObsUpcomingBookingDetailVC alloc] init:@"Upcoming" data:obmBookingItem];
     CATransition* transition = [CATransition animation];
     transition.duration = 0.3;
     transition.type = kCATransitionMoveIn;

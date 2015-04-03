@@ -7,6 +7,7 @@
 //
 
 #import "ObsBookingTableSectionView.h"
+#import "JpUiUtil.h"
 
 
 @interface ObsBookingTableSectionView ()
@@ -27,6 +28,11 @@
         self.iImageView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 9, 16, 16)];
         self.iImageView.image = [UIImage imageNamed:@"icon_calendar"];
         [self addSubview:self.iImageView];
+        
+        self.mCountLabel = [[CountLabel alloc] initWithFrame:CGRectMake([JpUiUtil getScreenWidth]-40, 4, 26, 26)];
+        [self.mCountLabel setTextAlignment:NSTextAlignmentCenter];
+        [self.mCountLabel setBackgroundColor:[UIColor whiteColor]];
+        [self addSubview:self.mCountLabel];
     }
     return self;
 }
@@ -34,6 +40,11 @@
 - (void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
+}
+
+- (void)setCount:(NSString *)count
+{
+    [self.mCountLabel setText:count];
 }
 
 @end

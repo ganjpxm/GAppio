@@ -67,6 +67,14 @@
     [dateFormatter setDateFormat:@"dd/MM/yyyy"];
     return [dateFormatter stringFromDate:[NSDate date]];
 }
+
++ (NSString *)getTomorrowDateStr
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+    NSDate *tomorrow = [NSDate dateWithTimeInterval:(24*60*60) sinceDate:[NSDate date]];
+    return [dateFormatter stringFromDate:tomorrow];
+}
 + (NSString *)getCurrentTimeStr
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -77,6 +85,12 @@
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy"];
+    return [dateFormatter stringFromDate:[NSDate date]];
+}
++ (NSString *)getCurrentDateTimeWithAmPmStr
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd/MM/yyyy HH:mm a"];
     return [dateFormatter stringFromDate:[NSDate date]];
 }
 + (NSString *)getDateStrWithDate:(NSDate *)date dateFormat:(NSString *)dateFormat

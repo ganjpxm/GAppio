@@ -27,7 +27,6 @@
 		BC0C1FA41A821A66008CD91D /* Frutiger65Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC0C1DBA1A821A66008CD91D /* Frutiger65Bold.ttf */; };
 		BC0C1FA51A821A66008CD91D /* frutigerltstdblack.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC0C1DBB1A821A66008CD91D /* frutigerltstdblack.ttf */; };
 		BC0C1FA61A821A66008CD91D /* frutigerltstdroman.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC0C1DBC1A821A66008CD91D /* frutigerltstdroman.ttf */; };
-		BC0C1FA71A821A66008CD91D /* JpLibImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC0C1DBD1A821A66008CD91D /* JpLibImage.xcassets */; };
 		BC0C1FC81A821A66008CD91D /* JpDataStoreUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0C1E161A821A66008CD91D /* JpDataStoreUtil.m */; };
 		BC0C1FC91A821A66008CD91D /* JpDataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0C1E181A821A66008CD91D /* JpDataUtil.m */; };
 		BC0C1FCA1A821A66008CD91D /* JpDateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0C1E1A1A821A66008CD91D /* JpDateUtil.m */; };
@@ -39,7 +38,7 @@
 		BC0C1FD11A821A66008CD91D /* JpTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0C1E2A1A821A66008CD91D /* JpTableCell.m */; };
 		BC0C1FD21A821A66008CD91D /* JpTableSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0C1E2C1A821A66008CD91D /* JpTableSectionView.m */; };
 		BC0C24C31A82285B008CD91D /* ObsLoginWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0C24C21A82285B008CD91D /* ObsLoginWebVC.m */; };
-		BC0C24DF1A82293D008CD91D /* ObsBookingDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0C24D21A82293C008CD91D /* ObsBookingDetailVC.m */; };
+		BC0C24DF1A82293D008CD91D /* ObsUpcomingBookingDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0C24D21A82293C008CD91D /* ObsUpcomingBookingDetailVC.m */; };
 		BC0C24E11A82293D008CD91D /* ObsHistoryBookingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0C24D61A82293C008CD91D /* ObsHistoryBookingVC.m */; };
 		BC0C24E21A82293D008CD91D /* ObsUpcomingBookingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0C24D81A82293C008CD91D /* ObsUpcomingBookingVC.m */; };
 		BC0C24E31A82293D008CD91D /* ObsMoreVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0C24DA1A82293C008CD91D /* ObsMoreVC.m */; };
@@ -49,6 +48,17 @@
 		BC0C27A51A8312B8008CD91D /* obs.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC0C27A41A8312B8008CD91D /* obs.xcassets */; };
 		BC13E61E1A9F42A100480A27 /* ObsBookingAlarmListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13E61D1A9F42A100480A27 /* ObsBookingAlarmListVC.m */; };
 		BC13E6591AA1BFA500480A27 /* JpTableWithSectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13E6581AA1BFA500480A27 /* JpTableWithSectionVC.m */; };
+		BC14912E1ACA414800FE7D04 /* JBSignatureController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC14912B1ACA414800FE7D04 /* JBSignatureController.m */; };
+		BC14912F1ACA414800FE7D04 /* JBSignatureView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC14912D1ACA414800FE7D04 /* JBSignatureView.m */; };
+		BC1491311ACA95A900FE7D04 /* JpLibImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC1491301ACA95A900FE7D04 /* JpLibImage.xcassets */; };
+		BC3A38571AC569EA00FF3FAA /* JpRoundedRectLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BC3A38561AC569EA00FF3FAA /* JpRoundedRectLabel.m */; };
+		BC5BF9201ACCFD6600185D7C /* GKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5BF9121ACCFD6600185D7C /* GKImageCropper.m */; };
+		BC5BF9211ACCFD6600185D7C /* GKImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5BF9141ACCFD6600185D7C /* GKImagePicker.m */; };
+		BC5BF9221ACCFD6600185D7C /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5BF9171ACCFD6600185D7C /* UIImage+Alpha.m */; };
+		BC5BF9231ACCFD6600185D7C /* UIImage+FixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5BF9191ACCFD6600185D7C /* UIImage+FixOrientation.m */; };
+		BC5BF9241ACCFD6600185D7C /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5BF91B1ACCFD6600185D7C /* UIImage+Resize.m */; };
+		BC5BF9251ACCFD6600185D7C /* UIImage+Rotate.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5BF91D1ACCFD6600185D7C /* UIImage+Rotate.m */; };
+		BC5BF9261ACCFD6600185D7C /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5BF91F1ACCFD6600185D7C /* UIImage+RoundedCorner.m */; };
 		BC7F2C9C1AA56CB3001E4416 /* JpUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BC7F2C9B1AA56CB3001E4416 /* JpUtil.m */; };
 		BCAB93D21AA3F5680059DC10 /* ObsBookingAlertTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCAB93CF1AA3F5680059DC10 /* ObsBookingAlertTableCell.m */; };
 		BCAB93D31AA3F5680059DC10 /* ObsBookingListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCAB93D11AA3F5680059DC10 /* ObsBookingListTableCell.m */; };
@@ -58,6 +68,9 @@
 		BCAB93E91AA3FD0E0059DC10 /* ObsBookingTableSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCAB93E61AA3FD0E0059DC10 /* ObsBookingTableSectionView.m */; };
 		BCAB93EA1AA3FD0E0059DC10 /* ObsBookingTableWithSectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BCAB93E81AA3FD0E0059DC10 /* ObsBookingTableWithSectionVC.m */; };
 		BCEA1EE01AAAE56700D289C2 /* JpLocationShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BCEA1EDF1AAAE56700D289C2 /* JpLocationShareModel.m */; };
+		BCEFFFB31AC259CE0020320F /* ObsHistoryBookingDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BCEFFFB21AC259CE0020320F /* ObsHistoryBookingDetailVC.m */; };
+		BCEFFFB61AC2BDA50020320F /* ObsBookingCompleteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BCEFFFB51AC2BDA50020320F /* ObsBookingCompleteVC.m */; };
+		BCEFFFB91AC2C19E0020320F /* JpFXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCEFFFB81AC2C19E0020320F /* JpFXBlurView.m */; };
 		BCF0AC2C1A8128510005E3C6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF0AC2B1A8128510005E3C6 /* main.m */; };
 		BCF0AC2F1A8128510005E3C6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF0AC2E1A8128510005E3C6 /* AppDelegate.m */; };
 		BCF0AC321A8128510005E3C6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF0AC311A8128510005E3C6 /* ViewController.m */; };
@@ -113,7 +126,6 @@
 		BC0C1DBA1A821A66008CD91D /* Frutiger65Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Frutiger65Bold.ttf; sourceTree = "<group>"; };
 		BC0C1DBB1A821A66008CD91D /* frutigerltstdblack.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = frutigerltstdblack.ttf; sourceTree = "<group>"; };
 		BC0C1DBC1A821A66008CD91D /* frutigerltstdroman.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = frutigerltstdroman.ttf; sourceTree = "<group>"; };
-		BC0C1DBD1A821A66008CD91D /* JpLibImage.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = JpLibImage.xcassets; sourceTree = "<group>"; };
 		BC0C1E151A821A66008CD91D /* JpDataStoreUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JpDataStoreUtil.h; sourceTree = "<group>"; };
 		BC0C1E161A821A66008CD91D /* JpDataStoreUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JpDataStoreUtil.m; sourceTree = "<group>"; };
 		BC0C1E171A821A66008CD91D /* JpDataUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JpDataUtil.h; sourceTree = "<group>"; };
@@ -136,8 +148,8 @@
 		BC0C1E2C1A821A66008CD91D /* JpTableSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JpTableSectionView.m; sourceTree = "<group>"; };
 		BC0C24C11A82285B008CD91D /* ObsLoginWebVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObsLoginWebVC.h; sourceTree = "<group>"; };
 		BC0C24C21A82285B008CD91D /* ObsLoginWebVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObsLoginWebVC.m; sourceTree = "<group>"; };
-		BC0C24D11A82293C008CD91D /* ObsBookingDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObsBookingDetailVC.h; sourceTree = "<group>"; };
-		BC0C24D21A82293C008CD91D /* ObsBookingDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObsBookingDetailVC.m; sourceTree = "<group>"; };
+		BC0C24D11A82293C008CD91D /* ObsUpcomingBookingDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObsUpcomingBookingDetailVC.h; sourceTree = "<group>"; };
+		BC0C24D21A82293C008CD91D /* ObsUpcomingBookingDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObsUpcomingBookingDetailVC.m; sourceTree = "<group>"; };
 		BC0C24D51A82293C008CD91D /* ObsHistoryBookingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObsHistoryBookingVC.h; sourceTree = "<group>"; };
 		BC0C24D61A82293C008CD91D /* ObsHistoryBookingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObsHistoryBookingVC.m; sourceTree = "<group>"; };
 		BC0C24D71A82293C008CD91D /* ObsUpcomingBookingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObsUpcomingBookingVC.h; sourceTree = "<group>"; };
@@ -154,6 +166,27 @@
 		BC13E61F1A9F42B400480A27 /* ObsBookingAlarmListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObsBookingAlarmListVC.h; sourceTree = "<group>"; };
 		BC13E6571AA1BFA500480A27 /* JpTableWithSectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JpTableWithSectionVC.h; sourceTree = "<group>"; };
 		BC13E6581AA1BFA500480A27 /* JpTableWithSectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JpTableWithSectionVC.m; sourceTree = "<group>"; };
+		BC14912A1ACA414800FE7D04 /* JBSignatureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBSignatureController.h; sourceTree = "<group>"; };
+		BC14912B1ACA414800FE7D04 /* JBSignatureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBSignatureController.m; sourceTree = "<group>"; };
+		BC14912C1ACA414800FE7D04 /* JBSignatureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBSignatureView.h; sourceTree = "<group>"; };
+		BC14912D1ACA414800FE7D04 /* JBSignatureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBSignatureView.m; sourceTree = "<group>"; };
+		BC1491301ACA95A900FE7D04 /* JpLibImage.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = JpLibImage.xcassets; sourceTree = "<group>"; };
+		BC3A38551AC569EA00FF3FAA /* JpRoundedRectLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JpRoundedRectLabel.h; sourceTree = "<group>"; };
+		BC3A38561AC569EA00FF3FAA /* JpRoundedRectLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JpRoundedRectLabel.m; sourceTree = "<group>"; };
+		BC5BF9111ACCFD6600185D7C /* GKImageCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKImageCropper.h; sourceTree = "<group>"; };
+		BC5BF9121ACCFD6600185D7C /* GKImageCropper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKImageCropper.m; sourceTree = "<group>"; };
+		BC5BF9131ACCFD6600185D7C /* GKImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKImagePicker.h; sourceTree = "<group>"; };
+		BC5BF9141ACCFD6600185D7C /* GKImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKImagePicker.m; sourceTree = "<group>"; };
+		BC5BF9161ACCFD6600185D7C /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
+		BC5BF9171ACCFD6600185D7C /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
+		BC5BF9181ACCFD6600185D7C /* UIImage+FixOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FixOrientation.h"; sourceTree = "<group>"; };
+		BC5BF9191ACCFD6600185D7C /* UIImage+FixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FixOrientation.m"; sourceTree = "<group>"; };
+		BC5BF91A1ACCFD6600185D7C /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		BC5BF91B1ACCFD6600185D7C /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		BC5BF91C1ACCFD6600185D7C /* UIImage+Rotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Rotate.h"; sourceTree = "<group>"; };
+		BC5BF91D1ACCFD6600185D7C /* UIImage+Rotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Rotate.m"; sourceTree = "<group>"; };
+		BC5BF91E1ACCFD6600185D7C /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
+		BC5BF91F1ACCFD6600185D7C /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		BC7F2C9A1AA56CB3001E4416 /* JpUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JpUtil.h; sourceTree = "<group>"; };
 		BC7F2C9B1AA56CB3001E4416 /* JpUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JpUtil.m; sourceTree = "<group>"; };
 		BCAB93CE1AA3F5680059DC10 /* ObsBookingAlertTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObsBookingAlertTableCell.h; sourceTree = "<group>"; };
@@ -173,6 +206,12 @@
 		BCAB93E81AA3FD0E0059DC10 /* ObsBookingTableWithSectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObsBookingTableWithSectionVC.m; sourceTree = "<group>"; };
 		BCEA1EDF1AAAE56700D289C2 /* JpLocationShareModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JpLocationShareModel.m; sourceTree = "<group>"; };
 		BCEA1EE11AAAE58D00D289C2 /* JpLocationShareModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JpLocationShareModel.h; sourceTree = "<group>"; };
+		BCEFFFB11AC259CE0020320F /* ObsHistoryBookingDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObsHistoryBookingDetailVC.h; sourceTree = "<group>"; };
+		BCEFFFB21AC259CE0020320F /* ObsHistoryBookingDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObsHistoryBookingDetailVC.m; sourceTree = "<group>"; };
+		BCEFFFB41AC2BDA50020320F /* ObsBookingCompleteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObsBookingCompleteVC.h; sourceTree = "<group>"; };
+		BCEFFFB51AC2BDA50020320F /* ObsBookingCompleteVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObsBookingCompleteVC.m; sourceTree = "<group>"; };
+		BCEFFFB71AC2C19E0020320F /* JpFXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JpFXBlurView.h; sourceTree = "<group>"; };
+		BCEFFFB81AC2C19E0020320F /* JpFXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JpFXBlurView.m; sourceTree = "<group>"; };
 		BCF0AC261A8128510005E3C6 /* obs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = obs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCF0AC2A1A8128510005E3C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BCF0AC2B1A8128510005E3C6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -224,6 +263,7 @@
 		BC0C1D951A821A66008CD91D /* GLib */ = {
 			isa = PBXGroup;
 			children = (
+				BC5BF90F1ACCFD6600185D7C /* Thirdparty */,
 				BC0C1D961A821A66008CD91D /* Category */,
 				BC0C1DA31A821A66008CD91D /* Controller */,
 				BC0C1DAE1A821A66008CD91D /* Manager */,
@@ -297,9 +337,9 @@
 		BC0C1DB41A821A66008CD91D /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				BC1491301ACA95A900FE7D04 /* JpLibImage.xcassets */,
 				BC0C1DB51A821A66008CD91D /* Audio */,
 				BC0C1DB71A821A66008CD91D /* Font */,
-				BC0C1DBD1A821A66008CD91D /* JpLibImage.xcassets */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -357,6 +397,11 @@
 		BC0C1E251A821A66008CD91D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BC1491291ACA414800FE7D04 /* JBS */,
+				BC3A38551AC569EA00FF3FAA /* JpRoundedRectLabel.h */,
+				BC3A38561AC569EA00FF3FAA /* JpRoundedRectLabel.m */,
+				BCEFFFB71AC2C19E0020320F /* JpFXBlurView.h */,
+				BCEFFFB81AC2C19E0020320F /* JpFXBlurView.m */,
 				BC0C1E261A821A66008CD91D /* JpActivityIndicatorView.h */,
 				BC0C1E271A821A66008CD91D /* JpActivityIndicatorView.m */,
 				BC0C1E281A821A66008CD91D /* Table */,
@@ -389,8 +434,12 @@
 			children = (
 				BCAB93D41AA3F58C0059DC10 /* Common */,
 				BCAB93CD1AA3F5680059DC10 /* View */,
-				BC0C24D11A82293C008CD91D /* ObsBookingDetailVC.h */,
-				BC0C24D21A82293C008CD91D /* ObsBookingDetailVC.m */,
+				BCEFFFB41AC2BDA50020320F /* ObsBookingCompleteVC.h */,
+				BCEFFFB51AC2BDA50020320F /* ObsBookingCompleteVC.m */,
+				BCEFFFB11AC259CE0020320F /* ObsHistoryBookingDetailVC.h */,
+				BCEFFFB21AC259CE0020320F /* ObsHistoryBookingDetailVC.m */,
+				BC0C24D11A82293C008CD91D /* ObsUpcomingBookingDetailVC.h */,
+				BC0C24D21A82293C008CD91D /* ObsUpcomingBookingDetailVC.m */,
 				BC0C24D51A82293C008CD91D /* ObsHistoryBookingVC.h */,
 				BC0C24D61A82293C008CD91D /* ObsHistoryBookingVC.m */,
 				BC0C24D71A82293C008CD91D /* ObsUpcomingBookingVC.h */,
@@ -416,6 +465,54 @@
 				BC0C27A41A8312B8008CD91D /* obs.xcassets */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		BC1491291ACA414800FE7D04 /* JBS */ = {
+			isa = PBXGroup;
+			children = (
+				BC14912A1ACA414800FE7D04 /* JBSignatureController.h */,
+				BC14912B1ACA414800FE7D04 /* JBSignatureController.m */,
+				BC14912C1ACA414800FE7D04 /* JBSignatureView.h */,
+				BC14912D1ACA414800FE7D04 /* JBSignatureView.m */,
+			);
+			path = JBS;
+			sourceTree = "<group>";
+		};
+		BC5BF90F1ACCFD6600185D7C /* Thirdparty */ = {
+			isa = PBXGroup;
+			children = (
+				BC5BF9101ACCFD6600185D7C /* GKImagePicker */,
+			);
+			path = Thirdparty;
+			sourceTree = "<group>";
+		};
+		BC5BF9101ACCFD6600185D7C /* GKImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				BC5BF9111ACCFD6600185D7C /* GKImageCropper.h */,
+				BC5BF9121ACCFD6600185D7C /* GKImageCropper.m */,
+				BC5BF9131ACCFD6600185D7C /* GKImagePicker.h */,
+				BC5BF9141ACCFD6600185D7C /* GKImagePicker.m */,
+				BC5BF9151ACCFD6600185D7C /* UIImage+ */,
+			);
+			path = GKImagePicker;
+			sourceTree = "<group>";
+		};
+		BC5BF9151ACCFD6600185D7C /* UIImage+ */ = {
+			isa = PBXGroup;
+			children = (
+				BC5BF9161ACCFD6600185D7C /* UIImage+Alpha.h */,
+				BC5BF9171ACCFD6600185D7C /* UIImage+Alpha.m */,
+				BC5BF9181ACCFD6600185D7C /* UIImage+FixOrientation.h */,
+				BC5BF9191ACCFD6600185D7C /* UIImage+FixOrientation.m */,
+				BC5BF91A1ACCFD6600185D7C /* UIImage+Resize.h */,
+				BC5BF91B1ACCFD6600185D7C /* UIImage+Resize.m */,
+				BC5BF91C1ACCFD6600185D7C /* UIImage+Rotate.h */,
+				BC5BF91D1ACCFD6600185D7C /* UIImage+Rotate.m */,
+				BC5BF91E1ACCFD6600185D7C /* UIImage+RoundedCorner.h */,
+				BC5BF91F1ACCFD6600185D7C /* UIImage+RoundedCorner.m */,
+			);
+			path = "UIImage+";
 			sourceTree = "<group>";
 		};
 		BCAB93CD1AA3F5680059DC10 /* View */ = {
@@ -619,12 +716,12 @@
 				BC0C1FA31A821A66008CD91D /* Frutiger45Light.ttf in Resources */,
 				BC0C1FA21A821A66008CD91D /* pushNotification.mp3 in Resources */,
 				BC0C1FA61A821A66008CD91D /* frutigerltstdroman.ttf in Resources */,
+				BC1491311ACA95A900FE7D04 /* JpLibImage.xcassets in Resources */,
 				BC0C1FA51A821A66008CD91D /* frutigerltstdblack.ttf in Resources */,
 				BC0C27A51A8312B8008CD91D /* obs.xcassets in Resources */,
 				BCF0AC351A8128510005E3C6 /* Main.storyboard in Resources */,
 				BC0C1FA41A821A66008CD91D /* Frutiger65Bold.ttf in Resources */,
 				BCF0AC3A1A8128510005E3C6 /* LaunchScreen.xib in Resources */,
-				BC0C1FA71A821A66008CD91D /* JpLibImage.xcassets in Resources */,
 				BC0C27A31A824CFE008CD91D /* Web in Resources */,
 				BC0C1CDE1A81A3C5008CD91D /* Podfile in Resources */,
 				BCF0AC371A8128510005E3C6 /* Images.xcassets in Resources */,
@@ -684,43 +781,56 @@
 				BC0C1F9E1A821A66008CD91D /* JpVC.m in Sources */,
 				BCEA1EE01AAAE56700D289C2 /* JpLocationShareModel.m in Sources */,
 				BC0C1F9B1A821A66008CD91D /* JpNC.m in Sources */,
+				BC5BF9201ACCFD6600185D7C /* GKImageCropper.m in Sources */,
 				BC0C1F9D1A821A66008CD91D /* JpTableVC.m in Sources */,
 				BCAB93D31AA3F5680059DC10 /* ObsBookingListTableCell.m in Sources */,
+				BC3A38571AC569EA00FF3FAA /* JpRoundedRectLabel.m in Sources */,
 				BC0C1FC81A821A66008CD91D /* JpDataStoreUtil.m in Sources */,
 				BC0C24E11A82293D008CD91D /* ObsHistoryBookingVC.m in Sources */,
 				BC0C1FD11A821A66008CD91D /* JpTableCell.m in Sources */,
 				BC0C1F991A821A66008CD91D /* UIFont+Jp.m in Sources */,
+				BC5BF9221ACCFD6600185D7C /* UIImage+Alpha.m in Sources */,
 				BCAB93EA1AA3FD0E0059DC10 /* ObsBookingTableWithSectionVC.m in Sources */,
+				BC14912E1ACA414800FE7D04 /* JBSignatureController.m in Sources */,
 				BC0C1FA01A821A66008CD91D /* JpApplication.m in Sources */,
 				BC0C1FA11A821A66008CD91D /* JpConst.m in Sources */,
+				BC5BF9241ACCFD6600185D7C /* UIImage+Resize.m in Sources */,
 				BC0C24C31A82285B008CD91D /* ObsLoginWebVC.m in Sources */,
 				BC0C1F961A821A66008CD91D /* NSString+Jp.m in Sources */,
+				BC14912F1ACA414800FE7D04 /* JBSignatureView.m in Sources */,
 				BC0C1F9A1A821A66008CD91D /* UIScrollView+Jp.m in Sources */,
 				BCAB93D21AA3F5680059DC10 /* ObsBookingAlertTableCell.m in Sources */,
 				BC0C1FD01A821A66008CD91D /* JpActivityIndicatorView.m in Sources */,
 				BCAB93E41AA3F58C0059DC10 /* ObsWebAPIClient.m in Sources */,
+				BC5BF9211ACCFD6600185D7C /* GKImagePicker.m in Sources */,
 				BC0C1F981A821A66008CD91D /* UIButton+Jp.m in Sources */,
 				BCF0AC321A8128510005E3C6 /* ViewController.m in Sources */,
 				BC0C1F9C1A821A66008CD91D /* JpTableGroupVC.m in Sources */,
 				BCAB93E31AA3F58C0059DC10 /* ObsData.m in Sources */,
 				BC0C1FCA1A821A66008CD91D /* JpDateUtil.m in Sources */,
 				BC0C1F951A821A66008CD91D /* NSObject+Jp.m in Sources */,
-				BC0C24DF1A82293D008CD91D /* ObsBookingDetailVC.m in Sources */,
+				BC0C24DF1A82293D008CD91D /* ObsUpcomingBookingDetailVC.m in Sources */,
 				BCAB93E91AA3FD0E0059DC10 /* ObsBookingTableSectionView.m in Sources */,
 				BC0C1FCC1A821A66008CD91D /* JpLogUtil.m in Sources */,
 				BCF0AC2F1A8128510005E3C6 /* AppDelegate.m in Sources */,
 				BC0C1FD21A821A66008CD91D /* JpTableSectionView.m in Sources */,
+				BCEFFFB91AC2C19E0020320F /* JpFXBlurView.m in Sources */,
 				BC7F2C9C1AA56CB3001E4416 /* JpUtil.m in Sources */,
 				BC0C1FCD1A821A66008CD91D /* JpSystemUtil.m in Sources */,
+				BCEFFFB61AC2BDA50020320F /* ObsBookingCompleteVC.m in Sources */,
+				BC5BF9261ACCFD6600185D7C /* UIImage+RoundedCorner.m in Sources */,
 				BC0C1F9F1A821A66008CD91D /* JpWebVC.m in Sources */,
 				BC0C1FCE1A821A66008CD91D /* JpUiUtil.m in Sources */,
+				BCEFFFB31AC259CE0020320F /* ObsHistoryBookingDetailVC.m in Sources */,
 				BC0C24E31A82293D008CD91D /* ObsMoreVC.m in Sources */,
+				BC5BF9231ACCFD6600185D7C /* UIImage+FixOrientation.m in Sources */,
 				BCF0AC2C1A8128510005E3C6 /* main.m in Sources */,
 				BC0C1F971A821A66008CD91D /* UIAlertView+Jp.m in Sources */,
 				BC0C1FC91A821A66008CD91D /* JpDataUtil.m in Sources */,
 				BC13E6591AA1BFA500480A27 /* JpTableWithSectionVC.m in Sources */,
 				BC0C1FCB1A821A66008CD91D /* JpFileUtil.m in Sources */,
 				BC13E61E1A9F42A100480A27 /* ObsBookingAlarmListVC.m in Sources */,
+				BC5BF9251ACCFD6600185D7C /* UIImage+Rotate.m in Sources */,
 				BCAB93E21AA3F58C0059DC10 /* ObsDBManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -797,7 +907,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -833,7 +943,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -846,6 +956,7 @@
 			baseConfigurationReference = C15FFD29D91CE7B086340906 /* Pods-obs.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = obs/obs.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -867,6 +978,7 @@
 			baseConfigurationReference = C7B29E8890A1FA542C22F5D5 /* Pods-obs.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = obs/obs.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

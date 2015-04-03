@@ -1,5 +1,5 @@
 //
-//  ObsPastBookingVC.m
+//  ObsHistoryBookingVC.m
 //  obs
 //
 //  Created by Johnny on 14/3/14.
@@ -18,7 +18,7 @@
 #import "JpDateUtil.h"
 #import "JpDataUtil.h"
 #import "ObsBookingListTableCell.h"
-#import "ObsBookingDetailVC.h"
+#import "ObsHistoryBookingDetailVC.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
@@ -158,13 +158,54 @@
         cell.stopIV.hidden = YES;
     }
     
-    NSString *firstLineHtml = [NSString stringWithFormat:@"<div style='font-size:18px;'>%@ <span style='color:gray;'>- %@</span></div>", [obmBookingItem objectForKey:COLUMN_BOOKING_NUMBER], [obmBookingItem objectForKey:COLUMN_BOOKING_SERVICE]];
+    NSString *bookingServiceCd = [obmBookingItem objectForKey:COLUMN_BOOKING_SERVICE_CD];
+    NSString *bookingService = [obmBookingItem objectForKey:COLUMN_BOOKING_SERVICE];
+    if ([VALUE_BOOKING_SERVICE_CD_ARRIVAL isEqualToString:bookingServiceCd]) {
+        bookingService = @"Arr";
+    } else if ([VALUE_BOOKING_SERVICE_CD_DEPARTURE isEqualToString:bookingServiceCd]) {
+        bookingService = @"Dep";
+    } else if ([VALUE_BOOKING_SERVICE_CD_POINT_TO_POINT isEqualToString:bookingServiceCd]) {
+        bookingService = @"PTP";
+    } else if ([VALUE_BOOKING_SERVICE_CD_HOURLY isEqualToString:bookingServiceCd]) {
+        bookingService = @"HD";
+    }
+    
+    NSString *firstLineHtml = [NSString stringWithFormat:@"<div style='font-size:18px;'>%@ <span style='color:gray;'>- %@</span>", [obmBookingItem objectForKey:COLUMN_BOOKING_NUMBER], bookingService];
+    NSString *driverClaimPrice = [obmBookingItem objectForKey:COLUMN_DRIVER_CLAIM_PRICE];
+    if ([driverClaimPrice length]>0 && ![@"0.0" isEqualToString:driverClaimPrice]) {
+        NSString *driverClaimStatus = [obmBookingItem objectForKey:COLUMN_DRIVER_CLAIM_STATUS];
+        NSString *currency = [obmBookingItem objectForKey:COLUMN_DRIVER_CLAIM_CURRENCY];
+        if ([@"SGD" isEqualToString:currency]) {
+            currency = @"S$";
+        } else if ([@"MYR" isEqualToString:currency]) {
+            currency = @"RM";
+        }
+        if ([@"Paid" isEqualToString:driverClaimStatus]) {
+            firstLineHtml = [NSString stringWithFormat:@"%@ <span>%@%@</span>", firstLineHtml,currency,driverClaimPrice];
+        } else {
+            firstLineHtml = [NSString stringWithFormat:@"%@ <span style='color:red'>%@%@</span>", firstLineHtml,currency,driverClaimPrice];
+        }
+    }
+    firstLineHtml = [NSString stringWithFormat:@"%@</div>", firstLineHtml];
     NSAttributedString *firstLineAS = [[NSAttributedString alloc] initWithData:[firstLineHtml dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
     cell.rightTopTV.attributedText = firstLineAS;
     
     NSString *pickupAddress = [obmBookingItem objectForKey:COLUMN_PICKUP_ADDRESS];
+    NSString *flightNumber = [obmBookingItem objectForKey:COLUMN_FLIGHT_NUMBER];
+    NSString *serviceCd = [obmBookingItem objectForKey:COLUMN_BOOKING_SERVICE_CD];
     NSString *destinationAddress = [obmBookingItem objectForKey:COLUMN_DESTINATION];
-    NSString *htmlString = [NSString stringWithFormat:@"<div style='font-size:18px;'><span style='font-weight:bold;'>%@</span> to %@ </div>", pickupAddress, destinationAddress];
+    NSString *htmlString = @"<div style='font-size:18px;'><span style='font-weight:bold;'>";
+    if ([serviceCd length]>0 && [VALUE_BOOKING_SERVICE_CD_ARRIVAL isEqualToString:serviceCd] && [flightNumber length]>1 && ![@"<null>" isEqualToString:flightNumber]) {
+        pickupAddress = [NSString stringWithFormat:@"(%@) %@ ", flightNumber, pickupAddress];
+    } else if ([serviceCd length]>0 && [VALUE_BOOKING_SERVICE_CD_HOURLY isEqualToString:serviceCd]) {
+        pickupAddress = [NSString stringWithFormat:@"(%@ hours) %@ ", [obmBookingItem objectForKey:COLUMN_BOOKING_HOURS], pickupAddress];
+    }
+    htmlString = [NSString stringWithFormat:@"%@%@<span> to ", htmlString, pickupAddress];
+    if ([serviceCd length]>0 && [VALUE_BOOKING_SERVICE_CD_DEPARTURE isEqualToString:serviceCd] && [flightNumber length]>1 && ![@"<null>" isEqualToString:flightNumber]) {
+        destinationAddress = [NSString stringWithFormat:@"(%@) %@ ", [obmBookingItem objectForKey:COLUMN_FLIGHT_NUMBER], destinationAddress];
+    }
+    htmlString = [NSString stringWithFormat:@"%@%@ </div>", htmlString, destinationAddress];
+    
     NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[htmlString dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
     cell.rightMiddleTV.attributedText = attributedString;
     cell.rightBottomTV.text = [NSString stringWithFormat:@"%@ - %@", [obmBookingItem objectForKey:COLUMN_BOOKING_STATUS], [obmBookingItem objectForKey:COLUMN_DRIVER_USER_NAME]];
@@ -179,7 +220,7 @@
     NSMutableArray *obmBookingItems= [self.sectionCellsDic objectForKey:sectionName];
     NSDictionary *obmBookingItem = [obmBookingItems objectAtIndex:indexPath.row];
     
-    ObsBookingDetailVC *bookingVehicleDetailVC = [[ObsBookingDetailVC alloc] init:@"Past" data:obmBookingItem];
+    ObsHistoryBookingDetailVC *bookingVehicleDetailVC = [[ObsHistoryBookingDetailVC alloc] init:@"Past" data:obmBookingItem];
     CATransition* transition = [CATransition animation];
     transition.duration = 0.3;
     transition.type = kCATransitionMoveIn;

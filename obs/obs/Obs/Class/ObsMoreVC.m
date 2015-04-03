@@ -18,6 +18,7 @@
 #import "JpNC.h"
 #import "UIAlertView+AFNetworking.h"
 #import "JpConst.h"
+#import "JpFileUtil.h"
 
 @interface ObsMoreVC ()
 
@@ -169,6 +170,7 @@
                 [dbManager deleteRecords:TABLE_OBM_BOOKING_VEHICLE_ITEM];
                 [JpDataUtil resetDefaults];
                 [JpDataUtil saveDataToUDForKey:KEY_DEVICE_TOKEN_OBS value:deviceToken];
+                [JpFileUtil deleteMyDocsDirectory:@"signature"];
                 
                 ObsLoginWebVC *driverLoginWebVC = [[ObsLoginWebVC alloc] init];
                 JpNC *driverLoginWebNC = [[JpNC alloc] initWithRootViewController:driverLoginWebVC];

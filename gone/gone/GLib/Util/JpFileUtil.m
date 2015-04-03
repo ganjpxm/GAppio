@@ -72,16 +72,51 @@
     }
 }
 
-+ (void)saveImage: (UIImage*)image fileName:(NSString*)fileName subDirectory:(NSString*)subDirectory
++ (void)saveImage: (UIImage*)image imageType:(NSString *)imageType fileName:(NSString*)fileName subDirectory:(NSString*)subDirectory
 {
     if (image != nil)
     {
-        //NSData* data = UIImagePNGRepresentation(image);
-        NSData* data = UIImageJPEGRepresentation(image, 1.0);
+        NSData* data;
+        if ([IMAGE_TYPE_JPG isEqualToString:imageType]) {
+            data = UIImageJPEGRepresentation(image, 1.0);
+        } else if ([IMAGE_TYPE_PNG isEqualToString:imageType]) {
+            data = UIImagePNGRepresentation(image);
+        } else {
+            return;
+        }
         NSString *path = [subDirectory stringByAppendingPathComponent:fileName];
         NSLog(@"save Image in %@", path);
         [data writeToFile:path atomically:YES];
     }
+}
+
++ (BOOL)deleteImage:(NSString*)fileName subDirectory:(NSString*)subDirectory
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *path = [subDirectory stringByAppendingPathComponent:fileName];
+    if ([fileManager fileExistsAtPath: path]) {
+        NSError *error;
+        return [fileManager removeItemAtPath:path error:&error];
+    } else {
+        return FALSE;
+    }
+}
+
++ (UIImage *) addText:(UIImage *)img text:(NSString *)mark withRect:(CGRect)rect
+{
+    int w = img.size.width;
+    int h = img.size.height;
+    
+    UIGraphicsBeginImageContext(img.size);
+    [[UIColor redColor] set];
+    [img drawInRect:CGRectMake(0, 0, w, h)];
+    
+    NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:18.0f], NSFontAttributeName,[UIColor grayColor] ,NSForegroundColorAttributeName,nil];
+    [mark drawInRect:rect withAttributes:dic];
+    
+    UIImage *aimg = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return aimg;
 }
 
 @end

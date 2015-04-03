@@ -24,6 +24,8 @@
 #import "JpDataUtil.h"
 #import "JpDateUtil.h"
 #import "ObsDBManager.h"
+#import "JpFileUtil.h"
+#import "JpSystemUtil.h"
 
 @implementation ObsWebAPIClient
 
@@ -48,7 +50,8 @@
         [parameters setObject:lastUpdateTimeStr forKey:KEY_START_DATE];
         NSLog(@"%@'s last update date is %@", [JpDataUtil getValueFromUDByKey:KEY_USER_NAME], lastUpdateTimeStr);
     }
-    
+    [parameters setObject:@"1.2" forKey:@"version"];
+    [self synSignature];
     return [[ObsWebAPIClient sharedClient] GET:[@"free/driver/booking/" stringByAppendingString:[JpDataUtil getValueFromUDByKey:KEY_OBS_USER_ID]] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
             NSDictionary *respondDic = responseObject;
             NSString *result = [respondDic valueForKey:KEY_RESULT];
@@ -60,7 +63,8 @@
             if ([broadcastBookingVehicleItemIds length]>=32) {
                 [mutaleSectionAndCellsDic setObject:broadcastBookingVehicleItemIds forKey:KEY_BROADCAST_BOOKING_VEHICLE_ITEM_IDS];
             }
-        
+            NSString *batchBroadcastBookingVehicleItemIds = [respondDic valueForKey:KEY_BATCH_BROADCAST_BOOKING_VEHICLE_ITEM_IDS];
+            [JpDataUtil saveDataToUDForKey:KEY_BATCH_BROADCAST_BOOKING_VEHICLE_ITEM_IDS value:batchBroadcastBookingVehicleItemIds];
             if ([result isEqualToString:VALUE_SUCCESS]) {
                 NSArray *obmBookingItems = [respondDic valueForKeyPath:KEY_DATA];
                 NSString *newLastUpdateTimeIntStr = lastUpdateTimeIntStr;
@@ -100,11 +104,11 @@
                         }
                         [dbManager insertOrUpdateOneRecord:TABLE_OBM_BOOKING_VEHICLE_ITEM pkColumnName:COLUMN_BOOKING_VEHICLE_ITEM_ID columnValueDic:mutableDic];
                     }
+                    [self downloadSignature:[obmBookingItem objectForKey:COLUMN_LEAD_PASSENGER_SIGNATURE_PATH]];
                 }
                 [JpDataUtil saveDataToUDForKey:lastUpdateTimeKey value:newLastUpdateTimeIntStr];
                 NSLog(@"The update date is %@", [JpDateUtil getDateTimeStrByMilliSecond:[newLastUpdateTimeIntStr longLongValue]]);
             }
-        
             if (block) {
                 block([NSArray arrayWithArray:mutableSections],[NSDictionary dictionaryWithDictionary:mutaleSectionAndCellsDic], nil);
             }
@@ -116,5 +120,106 @@
         }];
 }
 
++ (void) downloadSignature:(NSString *) signaturePath
+{
+    @try {
+      if (![signaturePath isKindOfClass:[NSNull class]] && [signaturePath length]>10) {
+        NSRange range = [signaturePath rangeOfString:@"/" options:NSBackwardsSearch];
+        NSString *imageName = [signaturePath substringFromIndex:range.location+1];
+        NSString *signatureLocalFullPath = [JpFileUtil getFullPathWithDirName:@"signature"];
+        signatureLocalFullPath = [signatureLocalFullPath stringByAppendingPathComponent:imageName];
+        if (![[NSFileManager defaultManager] fileExistsAtPath:signatureLocalFullPath]) {
+          NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+          AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+          NSString *signtureUrl = [NSString stringWithFormat:@"%@%@", URL_HOST, signaturePath];
+          NSURL *URL = [NSURL URLWithString:signtureUrl];
+          NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+        
+          NSURLSessionDownloadTask *downloadTask = [manager downloadTaskWithRequest:request progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
+            //          NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
+            NSString *signaturePath = [NSString stringWithFormat:@"file://%@", [JpFileUtil getFullPathWithDirName:@"signature"]];
+            NSURL *documentsDirectoryURL = [NSURL URLWithString:signaturePath];
+            return [documentsDirectoryURL URLByAppendingPathComponent:[response suggestedFilename]];
+          } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
+            NSLog(@"File downloaded to: %@", filePath);
+          }];
+          [downloadTask resume];
+
+        }
+      }
+    }
+    @catch (NSException *exception) {
+        
+    }
+    @finally {
+        
+    }
+}
+
++ (void) synSignature
+{
+    @try {
+        NSMutableArray *signatureInfoArr = [JpDataUtil getArrFromUDByKey:KEY_SIGNATURE_INFOS];
+        if (![signatureInfoArr isKindOfClass:[NSNull class]] && [signatureInfoArr count]>0) {
+            NSString *signaturePath = [JpFileUtil getFullPathWithDirName:@"signature"];
+            for (NSString *signatureInfo in signatureInfoArr) {
+                if ([signatureInfo length]>0 && [signatureInfo containsString:@","]) {
+                    NSArray *signatureArr = [signatureInfo componentsSeparatedByString:@","];
+                    NSString *fullPath = [signaturePath stringByAppendingPathComponent:signatureArr[0]];
+                    [ObsWebAPIClient uploadSignature:fullPath imagName:signatureArr[0] bookingVehicleItemId:signatureArr[1]];
+                }
+            }
+        }
+    }
+    @catch (NSException *exception) {
+    
+    }
+    @finally {
+    
+    }
+}
+    
++ (void) uploadSignature:(NSString *)signatureFullPath imagName:(NSString *)imageName bookingVehicleItemId:(NSString *) bookingVehicleItemId
+{
+    @try {
+    NSString *userName = [JpDataUtil getValueFromUDByKey:KEY_OBS_USER_NAME];
+    NSString *deviceName = [JpSystemUtil getDeviceName];
+    NSDictionary *parameters = @{KEY_BOOKING_VEHICLE_ITEM_ID: bookingVehicleItemId, KEY_USER_NAME:userName, @"deviceName":deviceName};
+    NSURL *filePath = [NSURL fileURLWithPath:signatureFullPath];
+    NSString *urlStr = [URL_HOST stringByAppendingString:@"web/01/uploadSignature"];
+    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:urlStr parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFileURL:filePath name:@"files" fileName:imageName mimeType:@"image/jpeg" error:nil];
+    } error:nil];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSProgress *progress = nil;
+    NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:request progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        } else {
+            NSMutableArray *signatureInfoArr = [JpDataUtil getArrFromUDByKey:KEY_SIGNATURE_INFOS];
+            if (![signatureInfoArr isKindOfClass:[NSNull class]] && [signatureInfoArr count]>0) {
+                NSString *signatureInfo = [NSString stringWithFormat:@"%@,%@", imageName, bookingVehicleItemId];
+                if ([signatureInfoArr indexOfObject:signatureInfo] != NSNotFound) {
+                    signatureInfoArr = [signatureInfoArr mutableCopy];
+                    [signatureInfoArr removeObject:signatureInfo];
+                    if ([signatureInfoArr count]==0) {
+                        [JpDataUtil remove:KEY_SIGNATURE_INFOS];
+                    } else {
+                        [JpDataUtil saveDataToUDForKey:KEY_SIGNATURE_INFOS value:signatureInfoArr];
+                    }
+                }
+            }
+            NSLog(@"%@ %@", response, responseObject);
+        }
+    }];
+    [uploadTask resume];
+    }
+    @catch (NSException *exception) {
+            
+    }
+    @finally {
+            
+    }
+}
 
 @end

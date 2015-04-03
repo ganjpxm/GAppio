@@ -12,7 +12,7 @@
 
 @implementation ObsBookingListTableCell
 
-@synthesize leftTopTV,leftBottomTV,middleView,rightTopTV,rightMiddleTV,rightBottomTV,commentIV,stopIV;
+@synthesize leftTopTV,leftBottomTV,middleView,rightTopTV,rightMiddleTV,rightBottomTV,commentIV,stopIV,okIV;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier 
 {
@@ -48,6 +48,12 @@
         [stopIV setContentMode:UIViewContentModeScaleAspectFit];
         [self addSubview:stopIV];
         stopIV.hidden = YES;
+        
+        okIV = [[UIImageView alloc] initWithFrame:CGRectMake(screenWidth-24, 7, 16, 16)];
+        [okIV setImage:[UIImage imageNamed:@"icon_ok_black"]];
+        [okIV setContentMode:UIViewContentModeScaleAspectFit];
+        [self addSubview:okIV];
+        okIV.hidden = YES;
         
         middleView = [[UIView alloc]initWithFrame:CGRectMake(68, 10, 1, middleHeight)];
         [middleView setBackgroundColor:[UIColor blackColor]];
