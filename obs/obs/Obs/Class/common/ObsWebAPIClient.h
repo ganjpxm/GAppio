@@ -28,4 +28,7 @@
 
 + (NSURLSessionDataTask *)getObmBookingItemsFromServerWithBlock:(void (^)(NSArray *sections, NSDictionary *sectionAndCellsDic, NSError *error))block;
 
++ (void) downloadSignature:(NSString *) signaturePath;
++ (void) uploadSignature:(NSString *)signatureFullPath imagName:(NSString *)imageName bookingVehicleItemId:(NSString *) bookingVehicleItemId;
+
 @end

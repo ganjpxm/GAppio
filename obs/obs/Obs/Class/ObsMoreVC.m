@@ -118,7 +118,7 @@
         }
     } else if ([sectionName isEqualToString:@"Product"]) {
         if ([@"About" isEqualToString:cellName]) {
-            [JpUiUtil showAlertWithMessage:@"Version : 1.0.0" title:@"Limousine Transport"];
+            [JpUiUtil showAlertWithMessage:@"Version : 1.2.0" title:@"Limousine Transport"];
         }
     } else {
        [super tableView:tableView didSelectRowAtIndexPath:indexPath];
